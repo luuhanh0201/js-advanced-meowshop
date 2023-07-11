@@ -25,6 +25,8 @@ git log: Hiển thị lịch sử commit.
                                             - git pull origin dev
                                             - Kiểm tra và giải quyết xung đột nếu có
                                             - git push origin dev
+    Trỏ nhánh mặc đình thành dev:   -   git remote set-head origin -a
+                                    -   git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/dev
 
 ```
 
