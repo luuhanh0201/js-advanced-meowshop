@@ -1,0 +1,74 @@
+{
+    "products": [
+      {
+        "name": "",
+        "category": "",
+        "image": "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748135/Meowshop/lfylq7bko7h52jbr5ldv.jpg",
+        "detailImage": [
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748136/Meowshop/non5ikbj8zdkxxhwoegs.jpg",
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748138/Meowshop/wrmcgldg14hruzb7crwi.jpg",
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748137/Meowshop/usbu4yf0wmquuxzkk7uu.jpg",
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748139/Meowshop/iqyuerrzkclmtcwrlamu.jpg",
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748139/Meowshop/uomll0a8vnsf0vgcrnay.jpg",
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748140/Meowshop/fkylgj2gk1m4eml3blwb.jpg",
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748138/Meowshop/gyddcdsvmodcgddxn8uf.jpg"
+        ],
+        "price": "",
+        "discount": "",
+        "quantify": "",
+        "description": "",
+        "id": 1
+      },
+      {
+        "name": "Nhà cho mèo",
+        "category": "Nội thất",
+        "image": "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/zvyxz4firuqhronmcvuo.png",
+        "detailImage": [
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/qncfkfpiy3lofoh7c05g.png"
+        ],
+        "price": "1000000",
+        "discount": "10",
+        "quantify": "2",
+        "description": "nhà ở dành cho mèo",
+        "id": 2
+      },
+      {
+        "name": "",
+        "category": "",
+        "image": "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688750143/Meowshop/m2xy78rxqfnigyhlytty.png",
+        "detailImage": [
+          "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688750144/Meowshop/auzbf9w0s9noverqylzt.jpg"
+        ],
+        "price": "",
+        "discount": "",
+        "quantify": "",
+        "description": "",
+        "id": 3
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "userName": "admin",
+        "password": "123",
+        "fullName": "Administrator",
+        "avatar": "",
+        "email": "luuhanh0201@gmail.com",
+        "numberPhone": "0399095138",
+        "address": "Hải Phòng",
+        "roll": "Admin"
+      }
+    ],
+    "categories": [
+      {
+        "id": "1",
+        "name": "Thức ăn",
+        "image": ""
+      },
+      {
+        "id": "1",
+        "name": "Nội thất",
+        "image": ""
+      }
+    ]
+  }

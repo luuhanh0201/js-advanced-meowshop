@@ -5,6 +5,10 @@ import HomePage from "./User/Pages/Home";
 
 import ComponentsAdmin from "./Admin";
 
+import RenderAdminPage from "./Admin";
+import AdminProductPage from "./Admin/pages/Products";
+import AdminDetailProduct from "./Admin/pages/Products/detailProduct";
+
 const app = document.getElementById("app");
 
 // user routers
@@ -31,5 +35,9 @@ router.on("/admin/products", () => {
 router.on("/admin/product/:id", ({ data }) => {
   render(() => ComponentsAdmin(() => ProductDetailPage(data)), app);
 });
+router.on("/admin", () => { render(() => RenderAdminPage(HomePage), app) })
+router.on("/admin/home", () => { render(() => RenderAdminPage(HomePage), app) })
+router.on("/admin/products", () => { render(() => RenderAdminPage(AdminProductPage), app) })
+router.on("/admin/product/:id", ({ data }) => { render(() => RenderAdminPage(() => AdminDetailProduct(data)), app) })
 
 router.resolve();

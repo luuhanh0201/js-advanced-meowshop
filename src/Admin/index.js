@@ -1,12 +1,12 @@
-import AdminHeader from "./Components/Header";
-function ComponentsAdmin(container) {
-  return `
+import AdminHeader from "./Components/Header"
+function RenderAdminPage(container) {
+    return `
     
-    ${Header()}
+    ${AdminHeader()}
     ${container()}
    
     
     `;
 }
 
-export default ComponentsAdmin;
+export default RenderAdminPage;
