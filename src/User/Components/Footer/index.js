@@ -41,37 +41,37 @@ function UserFooter() {
         </div>
       </div>
       <!-- group right -->
-      <div class="grid grid-cols-3 auto-cols-min gap-16">
+      <div class="grid grid-cols-3 auto-cols-min gap-16 text-gray-600">
         <div>
           <span class="title text-lg font-semibold text-black">
             Where's my order?</span
           >
           <ul class="style-footer">
             <li
-              class="inline-block text-center uppercase text-sm text-white font-semibold px-5 py-2.5 bg-detail rounded-full"
+              class="w-full inline-block text-center uppercase text-sm text-white font-semibold px-5 py-2.5 bg-detail rounded-full my-6"
             >
               TRACK ORDER
             </li>
-            <li class="leading-normal">
+            <li class="leading-normal text-gray-500">
               Please note, it may take longer than usual to fulfill orders
               due to the impacts of COVID-19.
             </li>
           </ul>
         </div>
         <div>
-          <span class="title text-lg font-semibold text-black"
+          <span class="title text-lg font-semibold text-black "
             >Shipping</span
           >
-          <ul class="style-footer">
-            <li class="leading-normal">Shipping Information</li>
-            <li class="leading-normal">About Free Shipping</li>
+          <ul class="style-footer mt-6">
+            <li class="leading-normal mb-3">Shipping Information</li>
+            <li class="leading-normal ">About Free Shipping</li>
           </ul>
         </div>
         <div>
-          <span class="title text-lg font-semibold text-black"
+          <span class="title text-lg font-semibold text-black "
             >Shopping App</span
           >
-          <ul class="style-footer">
+          <ul class="style-footer mt-6">
             <li class="leading-normal">
               Try our View in Your Room feature, manage registries and
               save payment info.
@@ -85,18 +85,18 @@ function UserFooter() {
             >Our Company</span
           >
           <ul class="style-footer">
-            <li class="leading-normal">About Us</li>
-            <li class="leading-normal">Careers</li>
-            <li class="leading-normal">Contact</li>
-            <li class="leading-normal">Store locations</li>
+            <li class="leading-normal pb-3 mt-6">About Us</li>
+            <li class="leading-normal pb-3">Careers</li>
+            <li class="leading-normal pb-3">Contact</li>
+            <li class="leading-normal pb-3">Store locations</li>
           </ul>
         </div>
         <div class="">
           <span class="title text-lg font-semibold text-black"
             >Social Media</span
           >
-          <ul class="style-footer">
-            <li class="flex flex-row justify-between pr-4 text-2xl">
+          <ul class="style-footer mt-6 mb-3">
+            <li class="flex flex-row justify-between pr-4 text-2xl mb-3">
             <i class="fa-brands fa-facebook"></i>
             <i class="fa-brands fa-instagram"></i>
             <i class="fa-brands fa-youtube"></i>
@@ -111,10 +111,10 @@ function UserFooter() {
           <span class="title text-lg font-semibold text-black"
             >Policies</span
           >
-          <ul class="style-footer">
-            <li class="leading-normal">Shipping Policy</li>
-            <li class="leading-normal">vvvc</li>
-            <li class="leading-normal">Privacy Policy</li>
+          <ul class="style-footer mt-6">
+            <li class="leading-normal mb-3">Shipping Policy</li>
+          
+            <li class="leading-normal mb-3">Privacy Policy</li>
             <li class="leading-normal">Terms of Service</li>
           </ul>
         </div>
