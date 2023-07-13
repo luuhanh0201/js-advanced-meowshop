@@ -3,7 +3,6 @@ import RenderUserPage from "./User";
 import ProductPage from "./User/Pages/Products";
 import HomePage from "./User/Pages/Home";
 
-import ComponentsAdmin from "./Admin";
 
 import RenderAdminPage from "./Admin";
 import AdminProductPage from "./Admin/pages/Products";
@@ -23,18 +22,6 @@ router.on("/products", () => {
 });
 
 // Admin routes
-router.on("/admin", () => {
-  render(() => ComponentsAdmin(HomePage), app);
-});
-router.on("/admin/home", () => {
-  render(() => ComponentsAdmin(HomePage), app);
-});
-router.on("/admin/products", () => {
-  render(() => ComponentsAdmin(ProductPage), app);
-});
-router.on("/admin/product/:id", ({ data }) => {
-  render(() => ComponentsAdmin(() => ProductDetailPage(data)), app);
-});
 router.on("/admin", () => { render(() => RenderAdminPage(HomePage), app) })
 router.on("/admin/home", () => { render(() => RenderAdminPage(HomePage), app) })
 router.on("/admin/products", () => { render(() => RenderAdminPage(AdminProductPage), app) })
