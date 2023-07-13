@@ -19,6 +19,7 @@
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
+    "dotenv-webpack": "^8.0.1",
     "navigo": "^8.11.1"
   }
 }
