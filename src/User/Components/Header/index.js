@@ -89,7 +89,7 @@ const UserHeader = () => {
             </nav>
             <ul
                 id="menu"
-                class="flex flex-col gap-7 mt-9 max-w-width-nav-tablet transition-all duration-100 ease-linear hidden lg:flex lg:max-w-full lg:flex-row lg:items-center lg:flex-wrap lg:justify-between lg:gap-3"
+                class="uppercase flex flex-col gap-7 mt-9 max-w-width-nav-tablet transition-all duration-100 ease-linear lg:flex lg:max-w-full lg:flex-row lg:items-center lg:flex-wrap lg:justify-between lg:gap-3"
             >
                 <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
                     <a href="/home">Home</a>
@@ -104,23 +104,12 @@ const UserHeader = () => {
                     
                 </li>
                 <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="">CAT PROOF HOME</a>
+                    <a href="/information">information</a>
                     
                 </li>
+          
                 <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="">CAT FEEDERS</a>
-                    
-                </li>
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="">CAT LITTLE BOXES</a>
-                    
-                </li>
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="">CAT HOUSES </a>
-                    
-                </li>
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="">BLOGS</a>
+                    <a href="/blog">BLOGS</a>
                     
                 </li>
             </ul>
