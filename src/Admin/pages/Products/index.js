@@ -1,10 +1,9 @@
 import { useState, useEffect, uploadFiles, uploadFile } from "~/assets/lib";
 import axios from "axios";
 import { API_URL } from "~/assets/data";
-function ProductPage() {
+function AdminProductPage() {
     const [products, setProduct] = useState([])
     const [categories, setCategories] = useState([])
-
     // Bật tắt form add, reset value khi bật tắt form add
     useEffect(() => {
         const wrapperFormAdd = document.getElementById('wrapper-form-add');
@@ -20,6 +19,7 @@ function ProductPage() {
         })
     })
 
+   
     // render category, sản phẩm
     useEffect(() => {
         axios.get(`${API_URL}/products`)
@@ -90,14 +90,14 @@ function ProductPage() {
                 quantify: document.querySelector("#quantify").value,
                 description: document.querySelector("#description").value
             }
-            axios.post(`${API_URL}/products`,product)
-            .then(()=>{
-                
-                window.location.href = "/admin/products"
+            axios.post(`${API_URL}/products`, product)
+                .then(() => {
 
-            })
-            
-            
+                    window.location.href = "/admin/products"
+
+                })
+
+
         })
     })
     return `
@@ -175,19 +175,19 @@ function ProductPage() {
                 <th class="px-4 py-2 w-1/12 border-r"></th>
                 <th class="px-4 py-2  border-r"></th>
                 </tr>
-                ${products.map(({ id, name, category, image,detailImage, price, discount, quantify }, index) => {
+                ${products.map(({ id, name, category, image, detailImage, price, discount, quantify }, index) => {
         return `
                     <tr class= "${index % 2 === 0 ? 'bg-gray-100 shadow-sm' : ''}">
                     
                     <td class="px-4 py-2 border-r">${id}</td>
                     <td class="px-4 py-2 border-r">${name}</td>
-                    <td class="px-4 py-2 border-r">${category  === "" ? "Chưa xác định" : category}</td>
+                    <td class="px-4 py-2 border-r">${category === "" ? "Chưa xác định" : category}</td>
                     <td class="px-4 py-2 border-r">
                         <img src="${image}" alt="Hình ảnh sản phẩm" class="w-12 h-12 rounded" />
                     </td>
                     <td class="px-4 py-2 border-r">${price === "" ? 0 : price} VNĐ</td>
-                    <td class="px-4 py-2 border-r">${discount  === "" ? 0 : discount} %</td>
-                    <td class="px-4 py-2 border-r">${quantify  === "" ? 0 : quantify}</td>
+                    <td class="px-4 py-2 border-r">${discount === "" ? 0 : discount} %</td>
+                    <td class="px-4 py-2 border-r">${quantify === "" ? 0 : quantify}</td>
                     <td class="px-4 py-2 border-r text-xs">
                         
                         <a class="hover:text-blue-500 duration-300" href="/admin/product/${id}">Chi tiết</a>
@@ -318,4 +318,4 @@ function ProductPage() {
     `
 }
 
-export default ProductPage;
+export default AdminProductPage;

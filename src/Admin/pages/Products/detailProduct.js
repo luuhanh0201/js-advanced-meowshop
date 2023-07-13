@@ -1,8 +1,29 @@
-function DetailProduct({ id }) {
+import axios from "axios"
+import { useEffect, useState } from "~/assets/lib"
+import { API_URL } from "~/assets/data"
+function AdminDetailProduct({ id }) {
+    const [product, setProduct] = useState({})
+    useEffect(() => {
+        axios.get(`${API_URL}/products/${id}`,)
+            .then(response => {
+                setProduct(response)
+            })
+
+    }, [])
+
+    useEffect(() => {
+        const btnName = document.getElementById("btn-name");
+        const inputName = document.getElementById("input-name");
+        btnName.addEventListener("click", (e) => {
+            inputName.disabled = false
+            btnName.className.add("hidden")
+            console.log(inputName)
+        })
+        
+    })
     return `
     <div class="w-full h-screen rounded-md">
             <form class="w-10/12 m-auto px-4 pb-8 min-h-72 bg-white grid grid-cols-3 rounded-md pt-12">
-                <!-- Content for the three columns -->
                 <div class="items-center grid grid-cols-5 p-2">
                     <div class="mr-2 flex items-center col-span-4">
                         <img
@@ -51,11 +72,12 @@ function DetailProduct({ id }) {
                                 class="w-full outline-none h-full py-1 px-2"
                                 type="text"
                                 value="Name product"
+                                id = "input-name"
                                 disabled
                             />
-                            <button class="absolute hover:text-green-600 duration-200 z-10 right-2">
+                            <span id ="btn-name" class="absolute hover:text-green-600 duration-200 z-10 right-2">
                                 <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
+                            </span>
                         </div>
                     </div>
                     <div class="flex mb-4 pr-2 items-center">
@@ -144,4 +166,4 @@ function DetailProduct({ id }) {
     `
 }
 
-export default DetailProduct;
+export default AdminDetailProduct;
