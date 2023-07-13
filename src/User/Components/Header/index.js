@@ -108,7 +108,7 @@ const UserHeader = () => {
                     <a href="/information">information</a>
                     
                 </li>
-             
+          
                 <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
                     <a href="/blog">BLOGS</a>
                     
