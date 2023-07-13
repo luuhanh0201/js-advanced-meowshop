@@ -1,11 +1,8 @@
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+import Header from "./Components/Header"
 function RenderUserPage(page) {
-  return `
+    return `
     ${Header()}
     ${page()}
-    ${Footer()}
-
     `;
 }
 
