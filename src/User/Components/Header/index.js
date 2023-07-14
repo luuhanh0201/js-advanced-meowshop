@@ -1,6 +1,6 @@
 const UserHeader = () => {
   return `
-    <div class="w-full content-wrapper font-Roboto mx-auto">
+    <div class="w-full content-wrapper mx-auto">
     <!-- detail -->
     <div class="flex detail w-full bg-green-700 py-2 items-center justify-center text-white gap-2">
         <span class="text-sm font-semibold"> FREE SHIPPING with $20 Purchase </span>
@@ -34,8 +34,8 @@ const UserHeader = () => {
                         class="logo"
                     />
                 </div>
-                <form action="" class="flex-center relative w-2/5">
-                    <img src="imgs/icon-search.svg" alt="" class="absolute left-4" />
+                <form action="" class=" flex flex-center relative w-2/5 items-center">
+                <i class="fa-solid fa-magnifying-glass absolute left-4  text-center"></i>
                     <input
                         type="text"
                         placeholder="What can we help you find? "
@@ -45,7 +45,7 @@ const UserHeader = () => {
                     <input
                         type="submit"
                         value="search"
-                        class="absolute right-1 text-1.5 uppercase py-mini_padding px-5 bg-detail rounded-full text-white"
+                        class="absolute right-0  text-1.5  uppercase h-full px-5 bg-detail rounded-full text-white"
                     />
                 </form>
                 <div class="flex flex-center gap-7">
