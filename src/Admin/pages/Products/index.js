@@ -55,7 +55,6 @@ function AdminProductPage() {
                 if (!confirm) return;
                 axios.delete(`${API_URL}/products/${id}`)
                     .then(() => {
-                        console.log("OK")
                         window.location.reload()
                     })
                     .catch(err => {
