@@ -10,5 +10,4 @@ function RenderAdminPage(container) {
     `;
 }
 
-
 export default RenderAdminPage;
