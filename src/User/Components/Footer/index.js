@@ -77,7 +77,6 @@ function UserFooter() {
               save payment info.
             </li>
             <li class="leading-normal">
-              <img src="imgs/icon-footer-list.svg" alt="" />
             </li>
           </ul>
         </div>

@@ -11,9 +11,7 @@ import ProductDetailPage from "./User/Pages/Products/ProductDetail";
 const app = document.getElementById("app");
 
 // user routers
-router.on("/", () => {
-  render(() => RenderUserPage(HomePage), app);
-});
+router.on("/", () => {render(() => RenderUserPage(HomePage), app);});
 router.on("/home", () => {
   render(() => RenderUserPage(HomePage), app);
 });

@@ -12,22 +12,21 @@ const UserHeader = () => {
             <nav>
                 <ul class="flex items-center justify-end gap-6 mb-6 pt-0.5">
                     <li>
-                        <a href="" class="text-xs underline">Help</a>
+                        <a href="#" class="text-xs underline">Help</a>
                     </li>
                     <li>
-                        <a href="" class="text-xs underline">Order Tracker</a>
+                        <a href="#" class="text-xs underline">Order Tracker</a>
                     </li>
                     <li>
-                        <a href="" class="text-xs underline">About Us</a>
+                        <a href="#" class="text-xs underline">About Us</a>
                     </li>
                     <li>
-                        <a href="" class="text-xs underline font-normal text-black">Newsletter Singup</a>
+                        <a href="#" class="text-xs underline font-normal text-black">Newsletter Singup</a>
                     </li>
                 </ul>
             </nav>
             <nav class="flex justify-between items-center">
                 <div class="flex flex-row gap-5">
-                    <img src="./imgs/icon-menu.svg" alt="" id="hidden-nav" class="lg:hidden" />
                     <img
                         src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686825638/logo.aabe47d334b1014d8199a12eb123fced_rfq1yu.svg"
                         alt=""
