@@ -1,12 +1,11 @@
 import { useEffect } from "~/assets/lib";
 ("use strict");
 
-function ProductDetailPage({ name }) {
-  console.log(name);
+function ProductDetailPage({ id }) {
+  console.log(id);
   useEffect(() => {
     const handleOther = () => {
-      console.log("quang");
-
+  
       const $ = document.querySelector.bind(document);
       console.log($("#group-rated"));
       $("#group-rated").onclick = function (e) {
