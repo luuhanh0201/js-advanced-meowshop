@@ -20,8 +20,8 @@ router.on("/home", () => {
 router.on("/products", () => {
   render(() => RenderUserPage(ProductPage), app);
 });
-router.on("/products/:id", ({ route }) => {
-  render(() => RenderUserPage(() => ProductDetailPage(route)), app);
+router.on("/products/:id", ({ data }) => {
+  render(() => RenderUserPage(() => ProductDetailPage(data)), app);
 });
 
 // Admin routes
