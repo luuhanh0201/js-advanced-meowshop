@@ -3,17 +3,10 @@ import RenderUserPage from "./User";
 import ProductPage from "./User/Pages/Products";
 import HomePage from "./User/Pages/Home";
 
-<<<<<<< HEAD
 import RenderAdminPage from "./Admin";
 import AdminProductPage from "./Admin/pages/Products";
 import AdminDetailProduct from "./Admin/pages/Products/detailProduct";
 import ProductDetailPage from "./User/Pages/Products/ProductDetail";
-=======
-
-import RenderAdminPage from "./Admin";
-import AdminProductPage from "./Admin/pages/Products";
-import AdminDetailProduct from "./Admin/pages/Products/detailProduct";
->>>>>>> f153b93 (.)
 
 const app = document.getElementById("app");
 
