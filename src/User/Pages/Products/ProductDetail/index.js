@@ -207,22 +207,22 @@ function ProductDetailPage({ id }) {
                               <div class="swiper-wrapper h-full w-full">
                                   <div class="swiper-slide rounded-md overflow-hidden">
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="w-full h-full object-cover" />
                                   </div>
                                   <div class="swiper-slide rounded-md overflow-hidden">
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="w-full h-full object-cover" />
                                   </div>
                                   <div class="swiper-slide rounded-md overflow-hidden">
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="w-full h-full object-cover" />
                                   </div>
                                   <div class="swiper-slide rounded-md overflow-hidden">
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="w-full h-full object-cover" />
                                   </div>
                               </div>
@@ -241,7 +241,7 @@ function ProductDetailPage({ id }) {
                                       class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
                                   >
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="block w-full h-full object-cover" />
                                   </div>
 
@@ -249,21 +249,21 @@ function ProductDetailPage({ id }) {
                                       class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
                                   >
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="block w-full h-full object-cover" />
                                   </div>
                                   <div
                                       class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
                                   >
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="block w-full h-full object-cover" />
                                   </div>
                                   <div
                                       class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
                                   >
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                       class="block w-full h-full object-cover" />
                                   </div>
                               </div>
@@ -350,7 +350,7 @@ function ProductDetailPage({ id }) {
                               <!-- user -->
                               <div class="basis-2/12 flex flex-row gap-2.5">
                                   <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                   alt="" class="h-33 w-33 rounded-full object-cover" />
                                   <!-- info -->
                                   <div class="flex flex-col gap-1">
@@ -379,12 +379,12 @@ function ProductDetailPage({ id }) {
                                   <!-- img -->
                                   <div class="flex flex-row justify-start gap-3.5">
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
@@ -405,7 +405,7 @@ function ProductDetailPage({ id }) {
                               <!-- user -->
                               <div class="basis-2/12 flex flex-row gap-2.5">
                                   <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                   alt="" class="h-33 w-33 rounded-full object-cover" />
                                   <!-- info -->
                                   <div class="flex flex-col gap-1">
@@ -432,7 +432,7 @@ function ProductDetailPage({ id }) {
                                   <!-- img -->
                                   <div class="flex flex-row justify-start gap-3.5">
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
@@ -453,7 +453,7 @@ function ProductDetailPage({ id }) {
                               <!-- user -->
                               <div class="basis-2/12 flex flex-row gap-2.5">
                                   <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                   alt="" class="h-33 w-33 rounded-full object-cover" />
                                   <!-- info -->
                                   <div class="flex flex-col gap-1">
@@ -479,12 +479,12 @@ function ProductDetailPage({ id }) {
                                   <!-- img -->
                                   <div class="flex flex-row justify-start gap-3.5">
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
@@ -580,19 +580,19 @@ function ProductDetailPage({ id }) {
                               id="list-accessories"
                           >
                               <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                               alt="" class="w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                               alt="" class="w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                               alt="" class="w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                               alt="" class="w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                               alt="" class="w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" />
                           </div>
@@ -755,7 +755,7 @@ function ProductDetailPage({ id }) {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-md "
                             /></div>
@@ -818,7 +818,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -880,7 +880,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -942,7 +942,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1004,7 +1004,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1066,7 +1066,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1128,7 +1128,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1190,7 +1190,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1252,7 +1252,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1314,7 +1314,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1393,7 +1393,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1455,7 +1455,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1517,7 +1517,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1579,7 +1579,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1641,7 +1641,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1703,7 +1703,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1765,7 +1765,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1832,7 +1832,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1894,7 +1894,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1956,7 +1956,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2018,7 +2018,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2080,7 +2080,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2142,7 +2142,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2204,7 +2204,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />

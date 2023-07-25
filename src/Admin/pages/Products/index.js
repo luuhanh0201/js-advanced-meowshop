@@ -1,11 +1,20 @@
 import { useState, useEffect, uploadFiles, uploadFile } from "~/assets/lib";
 import axios from "axios";
 import { API_URL } from "~/assets/data";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import productValidate from "./productValidate";
+
 function AdminProductPage() {
+
     const [products, setProduct] = useState([])
     const [categories, setCategories] = useState([])
     // Bật tắt form add, reset value khi bật tắt form add
     useEffect(() => {
+        ClassicEditor
+            .create(document.getElementById('description'))
+            .catch(error => {
+                console.error(error);
+            });
         const wrapperFormAdd = document.getElementById('wrapper-form-add');
         const btnCloseFormAdd = document.getElementById('close-form-add');
         const btnOpenFormAdd = document.getElementById('open-form-add');
@@ -19,14 +28,15 @@ function AdminProductPage() {
         })
     })
 
-   
+
     // render category, sản phẩm
     useEffect(() => {
+
         axios.get(`${API_URL}/products`)
             .then(response => {
                 const products = response.data;
                 // Xử lý dữ liệu sản phẩm
-                setProduct(products);
+                setProduct(products.data);
             })
             .catch(error => {
                 // Xử lý lỗi
@@ -37,7 +47,7 @@ function AdminProductPage() {
             .then(response => {
                 const categories = response.data;
                 // Xử lý dữ liệu sản phẩm
-                setCategories(categories);
+                setCategories(categories.data);
             })
             .catch(error => {
                 // Xử lý lỗi
@@ -70,37 +80,46 @@ function AdminProductPage() {
         formAdd.addEventListener("submit", async (e) => {
             // Note 
             e.preventDefault()
-
-            // Upload 1 img
-            const image = document.getElementById("image").files[0];
-            const imageUrl = await uploadFile(image);
-
+            console.log(1123)
             // Upload > 1 img
-            const images = document.getElementById("images").files;
+            const images = Array.from(document.getElementById("images").files);
             const imagesUrl = await uploadFiles(images);
-            console.log(imagesUrl);
             const product = {
                 name: document.querySelector("#name").value,
                 category: document.querySelector("#category").value,
-                image: imageUrl,
-                detailImage: imagesUrl,
+                images: imagesUrl,
                 price: document.querySelector("#price").value,
                 discount: document.querySelector("#discount").value,
                 quantify: document.querySelector("#quantify").value,
                 description: document.querySelector("#description").value
             }
-            axios.post(`${API_URL}/products`, product)
-                .then(() => {
+            const dataProduct = productValidate.validate(product)
 
+            if (dataProduct.error) {
+                console.log(dataProduct.error.details)
+                return
+            }
+            await axios.post(`${API_URL}/products`, product)
+                .then(() => {
                     window.location.href = "/admin/products"
 
+                })
+                .catch((err)=>{
+                    console.log(err)
                 })
 
 
         })
     })
+
+    useEffect(() => {
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 'auto',
+
+        });
+    })
     return `
-    <main class="w-full relative m-auto flex justify-center items-center h-screen">
+    <main class="w-full relative m-auto flex justify-center items-center h-screen z-0">
     <div class="w-10/12 m-auto mt-4 flex">
         <div class="w-2/12">
             <nav class="w-full flex flex-col items-center shadow-md mb-4">
@@ -174,26 +193,35 @@ function AdminProductPage() {
                 <th class="px-4 py-2 w-1/12 border-r"></th>
                 <th class="px-4 py-2  border-r"></th>
                 </tr>
-                ${products.map(({ id, name, category, image, detailImage, price, discount, quantify }, index) => {
+                ${products.map(({ _id, name, categoryId, images, price, discount, quantify }, index) => {
+        // let img = Array.from(images)
+
         return `
                     <tr class= "${index % 2 === 0 ? 'bg-gray-100 shadow-sm' : ''}">
                     
-                    <td class="px-4 py-2 border-r">${id}</td>
+                    <td class="px-4 py-2 border-r">${index + 1}</td>
                     <td class="px-4 py-2 border-r">${name}</td>
-                    <td class="px-4 py-2 border-r">${category === "" ? "Chưa xác định" : category}</td>
-                    <td class="px-4 py-2 border-r">
-                        <img src="${image}" alt="Hình ảnh sản phẩm" class="w-12 h-12 rounded" />
-                    </td>
+                    <td class="px-4 py-2 border-r">${categories.find((cate) => {
+            cate._id === categoryId ? cate.name : "Chưa xác định"
+        })}</td>
+                    <td class="px-4 py-2 border-r overflow-hidden">
+                    <div class="swiper-container">
+                      <div class="swiper-wrapper">
+                        ${images.map(image => `<div class="swiper-slide "><img src="${image}" alt="img error" class="w-16 h-16 rounded overflow-hidden" /></div>`).join("")}
+                      </div>
+                     
+                    </div>
+                  </td>
                     <td class="px-4 py-2 border-r">${price === "" ? 0 : price} VNĐ</td>
                     <td class="px-4 py-2 border-r">${discount === "" ? 0 : discount} %</td>
                     <td class="px-4 py-2 border-r">${quantify === "" ? 0 : quantify}</td>
                     <td class="px-4 py-2 border-r text-xs">
                         
-                        <a class="hover:text-blue-500 duration-300" href="/admin/product/${id}">Chi tiết</a>
+                        <a class="hover:text-blue-500 duration-300" href="/admin/product/${_id}">Chi tiết</a>
                         
                     </td>
                     <td class="px-4 py-2 border-r">
-                    <button id = "btn-remove" data-id="${id}"><i class="fa-solid fa-trash"></i></button>
+                    <button id = "btn-remove" data-id="${_id}"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
                     `
@@ -253,23 +281,15 @@ function AdminProductPage() {
                         id="category"
                     >
                         <option value="" disabled selected>Chọn danh mục</option>
-                        ${categories.map(({ name }) => {
+                        ${categories.map(({ _id, name }) => {
         return `
-                           <option value="${name}">${name}</option>
+                           <option value="${_id}">${name}</option>
                            `
 
     })}
                     </select>
                 </div>
-                <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="image">Hình ảnh</label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="image"
-                        type="file"
-                        placeholder="Nhập URL hình ảnh"
-                    />
-                </div>
+              
                 <div>
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="quantity">Số lượng</label>
                     <input
@@ -280,7 +300,7 @@ function AdminProductPage() {
                     />
                 </div>
                 <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="detailImage"
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="images"
                         >Hình ảnh chi tiết</label
                     >
                     <input

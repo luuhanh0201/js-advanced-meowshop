@@ -84,7 +84,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-md "
                             /></div>
@@ -145,7 +145,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -203,7 +203,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -261,7 +261,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -319,7 +319,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -377,7 +377,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -435,7 +435,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -493,7 +493,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -551,7 +551,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -609,7 +609,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
@@ -667,7 +667,7 @@ function ProductPage() {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-t-md hover:scale-105  transition duration-500"
                             />
