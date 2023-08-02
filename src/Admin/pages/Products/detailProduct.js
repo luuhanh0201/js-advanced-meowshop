@@ -3,7 +3,7 @@ import { useEffect, useState, uploadFiles } from "~/assets/lib"
 import { API_URL } from "~/assets/data"
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import productValidate from "./productValidate";
-
+import numeral from "numeral"
 function AdminDetailProduct({ id }) {
     const [product, setProduct] = useState({images :[]})
     // const [detailProduct, setDetailProduct] = useState(product)
@@ -60,30 +60,40 @@ function AdminDetailProduct({ id }) {
             e.preventDefault();
             const images = document.getElementById("images").files;
             const imagesUrl = await uploadFiles(images);
+            const currentImages = product.images; // Lưu danh sách ảnh cũ
+    
+            // Kiểm tra xem có ảnh mới được tải lên hay không
             const newProduct = {
                 name: document.getElementById("product-name").value,
-                images: imagesUrl,
                 categoryId: document.getElementById("category").value,
                 price: document.getElementById("price").value,
                 brand: document.getElementById("brand").value,
                 discount: document.getElementById("discount").value,
                 quantify: document.getElementById("quantify").value,
                 description: document.getElementById("description").value,
+            };
+    
+            if (imagesUrl.length > 0) {
+                newProduct.images = imagesUrl;
+            } else {
+                newProduct.images = currentImages; // Giữ nguyên danh sách ảnh cũ nếu không có ảnh mới
             }
-            const dataProduct = productValidate.validate(newProduct)
+    
+            const dataProduct = productValidate.validate(newProduct);
             if (dataProduct.error) {
-                console.log(dataProduct.error.details)
-                return
+                console.log(dataProduct.error.details);
+                return;
             }
-
+    
             axios.put(`${API_URL}/products/${id}`, newProduct)
                 .then(() => {
-                    const confirm = window.confirm("Add product successfully")
+                    const confirm = window.confirm("Cập nhật sản phẩm thành công");
                     if (confirm) return window.location.href = "/admin/products";
                     window.location.reload();
-                })
-        })
-    })
+                });
+        });
+    });
+    
     // delete
     useEffect(() => {
         const btnDelete = document.getElementById("btn-delete");
@@ -220,7 +230,7 @@ function AdminDetailProduct({ id }) {
                             <input
                                 class="w-full outline-none h-full py-1 px-2 input-name"
                                 type="text"
-                                value="${product.price}"
+                                value="${numeral(product.price).format("0,0")}"
                                 id = "price"
                                 disabled
                             />
@@ -274,7 +284,7 @@ ${product.description}
                 </div>
 
                 <div class="m-auto col-span-3 pt-6">
-                    <button id ="btn-update" class="p-2 bg-green-600 text-white rounded-md text-center" type="submit">
+                    <button style="background-color: #166534" id ="btn-update" class="p-2 bg-green-600 text-white rounded-md text-center" type="submit">
                         <i class="fa-solid fa-floppy-disk"></i> Cập nhật
                     </button>
                     <button id="btn-delete" class="p-2 bg-red-600 text-white rounded-md text-center">

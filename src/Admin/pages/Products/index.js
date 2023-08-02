@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_URL } from "~/assets/data";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import productValidate from "./productValidate";
-
+import numeral from "numeral"
 function AdminProductPage() {
 
     const [products, setProduct] = useState([])
@@ -171,13 +171,13 @@ function AdminProductPage() {
             <div class="flex justify-between items-center">
                 <h3 class="text-lg font-medium">Sản phẩm</h3>
                 <div>
-                    <button id="open-form-add" class="bg-green-700 text-white px-2 py-1 rounded text-sm" type="submit">
+                    <button style = "background-color:#166534" id="open-form-add" class="bg-green-700 text-white px-2 py-1 rounded text-sm" type="submit">
                         Thêm mới <i class="fa-solid fa-plus"></i>
                     </button>
-                    <button class="bg-green-700 text-white px-2 py-1 rounded text-sm" type="submit">
+                    <button style = "background-color:#166534" class="bg-green-700 text-white px-2 py-1 rounded text-sm" type="submit">
                         <a href="#">Import <i class="fa-solid fa-file-import"></i></a>
                     </button>
-                    <button class="bg-green-700 text-white px-2 py-1 rounded text-sm" type="submit">
+                    <button style = "background-color:#166534" class="bg-green-700 text-white px-2 py-1 rounded text-sm" type="submit">
                         <a href="#">Export <i class="fa-solid fa-file-export"></i></a>
                     </button>
                 </div>
@@ -212,7 +212,7 @@ function AdminProductPage() {
                      
                     </div>
                   </td>
-                    <td class="px-4 py-2 border-r">${price === "" ? 0 : price} VNĐ</td>
+                    <td class="px-4 py-2 border-r">${price === "" ? 0 : numeral(price).format("0,0")} VNĐ</td>
                     <td class="px-4 py-2 border-r">${discount === "" ? 0 : discount} %</td>
                     <td class="px-4 py-2 border-r">${quantify === "" ? 0 : quantify}</td>
                     <td class="px-4 py-2 border-r text-xs">
@@ -329,6 +329,7 @@ function AdminProductPage() {
                 </div>
                 <div class="col-span-2 flex justify-center">
                     <button
+                        style = "background-color:#166534"
                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit"
                         id = "submit-form"

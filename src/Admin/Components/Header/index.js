@@ -20,7 +20,7 @@ function AdminHeader() {
     <header class="w-full border-b pt-2 z-50">
             <div class="w-10/12 m-auto flex justify-between">
                 <img
-                    src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686825638/logo.aabe47d334b1014d8199a12eb123fced_rfq1yu.svg"
+                    src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689681502/Meowshop/LOGO4_1_w8r6hs.png"
                     class="w-34 h-full"
                 />
                 <ul class="flex items-center relative">
