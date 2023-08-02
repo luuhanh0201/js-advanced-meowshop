@@ -1,36 +1,56 @@
 {
   "products": [
     {
-      "name": "",
-      "category": "",
-      "image": "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748135/Meowshop/lfylq7bko7h52jbr5ldv.jpg",
-      "detailImage": [
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748136/Meowshop/non5ikbj8zdkxxhwoegs.jpg",
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748138/Meowshop/wrmcgldg14hruzb7crwi.jpg",
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748137/Meowshop/usbu4yf0wmquuxzkk7uu.jpg",
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748139/Meowshop/iqyuerrzkclmtcwrlamu.jpg",
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748139/Meowshop/uomll0a8vnsf0vgcrnay.jpg",
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748140/Meowshop/fkylgj2gk1m4eml3blwb.jpg",
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688748138/Meowshop/gyddcdsvmodcgddxn8uf.jpg"
+      "name": "Kính cho mèo update",
+      "images": [
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841380/Meowshop/sotwgaogmgmyd8uyud0o.png",
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841381/Meowshop/bhnheroo3ghd76zkiygt.png",
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841380/Meowshop/ncapflzpnmvyna1vpfua.png",
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841381/Meowshop/b49byexuj4xvvivfvie8.png",
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841381/Meowshop/nfb3svvzvt6tcsz1id3n.png"
       ],
+      "categoryId": "1",
+      "price": "100000",
+      "discount": "0",
+      "quantify": "12",
+      "description": "<p>Kính này là để đeo cho <strong>mèo</strong></p><p> </p><p>Đeo cho <strong>mèo</strong></p><p> </p><p>Kính cho <strong>mèo méo meo</strong></p>\n                        \n                        \n                        \n                        \n                        ",
+      "id": 11
+    },
+    {
+      "name": "",
+      "images": [
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689754684/Meowshop/fxnxkq5mel3n7hi8kdc5.jpg"
+      ],
+      "categoryId": "2",
       "price": "",
       "discount": "",
       "quantify": "",
-      "description": "",
-      "id": 1
+      "description": "\n                        ",
+      "id": 12
     },
     {
-      "name": "Nhà cho mèo",
-      "category": "Nội thất",
-      "image": "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/zvyxz4firuqhronmcvuo.png",
-      "detailImage": [
-        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/qncfkfpiy3lofoh7c05g.png"
+      "name": "123123123",
+      "images": [
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689832961/Meowshop/t825sj8fzwxfubgwbwps.jpg"
       ],
-      "price": "1000000",
-      "discount": "10",
-      "quantify": "2",
-      "description": "nhà ở dành cho mèo",
-      "id": 2
+      "categoryId": "3",
+      "price": "100000",
+      "discount": "0",
+      "quantify": "4",
+      "description": "<p>a123123</p>\n                        \n                        ",
+      "id": 13
+    },
+    {
+      "name": "Pate vị cá",
+      "categoryId": "1",
+      "images": [
+        "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841464/Meowshop/gggqke8ilrosa4zohjdy.png"
+      ],
+      "price": "1000",
+      "discount": "20",
+      "quantify": "22",
+      "description": "<p>Pate cho <strong>mèo </strong>ăn</p>",
+      "id": 14
     }
   ],
   "users": [
@@ -48,13 +68,18 @@
   ],
   "categories": [
     {
-      "id": "1",
-      "name": "Thức ăn",
+      "_id": 1,
+      "name": "Thức ăn",  
       "image": ""
     },
     {
-      "id": "1",
+      "_id": 2,
       "name": "Nội thất",
+      "image": ""
+    },
+    {
+      "_id": 3,
+      "name": "Phụ kiện",
       "image": ""
     }
   ]

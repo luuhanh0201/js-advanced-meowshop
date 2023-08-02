@@ -1,25 +1,15 @@
 import axios from "axios"
-import { useEffect, useState } from "~/assets/lib"
+import { useEffect, useState, uploadFiles } from "~/assets/lib"
 import { API_URL } from "~/assets/data"
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import productValidate from "./productValidate";
+
 function AdminDetailProduct({ id }) {
-    const [product, setProduct] = useState({})
+    const [product, setProduct] = useState({images :[]})
+    // const [detailProduct, setDetailProduct] = useState(product)
     const [categories, setCategories] = useState([])
-    useEffect(() => {
-        axios.get(`${API_URL}/products/${id}`,)
-            .then(response => {
-                setProduct(response.data)
-            })
-        axios.get(`${API_URL}/categories`)
-            .then(response => {
-                const categories = response.data;
-                // Xử lý dữ liệu sản phẩm
-                setCategories(categories);
-            })
-            .catch(error => {
-                // Xử lý lỗi
-                console.error(error);
-            });
-    }, [])
+
+
 
     // show input edit product
     useEffect(() => {
@@ -33,80 +23,135 @@ function AdminDetailProduct({ id }) {
         })
 
     })
+    useEffect(async () => {
+        await axios
+            .get(`${API_URL}/products/${id}`)
+            .then(response => {
+                const products = response.data;
+                // Xử lý dữ liệu sản phẩm
+                // console.log(typeof [products.images].)
+                setProduct(products.data);
 
+            })
+            .catch(error => {
+                // Xử lý lỗi
+                console.error(error.message);
+            });
+
+        await axios
+            .get(`${API_URL}/categories`)
+            .then((response) => {
+                const categories = response.data;
+                setCategories(categories.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
     // update
     useEffect(() => {
-        const formUpdate = document.getElementById("form-update");
-        formUpdate.addEventListener("submit", (e) => {
+        ClassicEditor
+            .create(document.getElementById('description'))
+            .catch(error => {
+                console.error(error);
+            });
+        const btnUpdate = document.getElementById("btn-update");
+        btnUpdate.addEventListener("click", async (e) => {
             e.preventDefault();
+            const images = document.getElementById("images").files;
+            const imagesUrl = await uploadFiles(images);
             const newProduct = {
                 name: document.getElementById("product-name").value,
-                category: document.getElementById("category").value,
+                images: imagesUrl,
+                categoryId: document.getElementById("category").value,
                 price: document.getElementById("price").value,
+                brand: document.getElementById("brand").value,
                 discount: document.getElementById("discount").value,
                 quantify: document.getElementById("quantify").value,
                 description: document.getElementById("description").value,
             }
-            try {
-                axios.put(`${API_URL}/products`, newProduct)
-                    .then(() => {
-                        const confirm = window.confirm("Add product successfully")
-                        if (confirm) window.location.href = "/admin/products";
-
-                    })
-            } catch (error) {
-
+            const dataProduct = productValidate.validate(newProduct)
+            if (dataProduct.error) {
+                console.log(dataProduct.error.details)
+                return
             }
+
+            axios.put(`${API_URL}/products/${id}`, newProduct)
+                .then(() => {
+                    const confirm = window.confirm("Add product successfully")
+                    if (confirm) return window.location.href = "/admin/products";
+                    window.location.reload();
+                })
         })
-    }, [])
-// delete
-    useEffect(()=>{
+    })
+    // delete
+    useEffect(() => {
         const btnDelete = document.getElementById("btn-delete");
-        btnDelete.addEventListener("click",async (e) =>{
+        btnDelete.addEventListener("click", async (e) => {
             e.preventDefault()
             const confirm = window.confirm("Bạn có chắc muốn xoá")
 
-            if(confirm){
-               await axios.delete(`${API_URL}/products/${id}`)
+            if (confirm) {
+                await axios.delete(`${API_URL}/products/${id}`)
                 window.confirm("Xoá sản phẩm thành công")
                 window.location.href = "/admin/products"
             }
         })
     })
+
+    // slideshow
+    useEffect(() => {
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 'auto',
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Xử lý sự kiện click
+        var smallImages = document.querySelectorAll('.small-image');
+        smallImages.forEach(function (image) {
+            image.addEventListener('click', function () {
+                var mainImage = document.querySelector('.main-image');
+                mainImage.src = image.src;
+            });
+        });
+    })
     return `
+    
     <div class="w-full h-screen rounded-md">
             <form id= "form-update" class=" w-10/12 m-auto px-4 pb-8 min-h-72 bg-white grid grid-cols-3 rounded-md pt-12">
-                <div class="items-center grid grid-cols-5 p-2">
-                    <div class="mr-2 flex items-center col-span-4">
-                        <img
-                            class="w-full"
-                            src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/zvyxz4firuqhronmcvuo.png"
-                            alt=""
-                        />
-                    </div>
-                    <div class="col-span-1">
-                        <img
-                            class="w-full mb-2"
-                            src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/zvyxz4firuqhronmcvuo.png"
-                            alt=""
-                        />
-                        <img
-                            class="w-full mb-2"
-                            src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/zvyxz4firuqhronmcvuo.png"
-                            alt=""
-                        />
-                        <img
-                            class="w-full mb-2"
-                            src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1688749955/Meowshop/zvyxz4firuqhronmcvuo.png"
-                            alt=""
-                        />
-                    </div>
-                    <div class="col-span-5">
-                        <input type="file" name="" id="" class="w-full py-2 px-4 border rounded" />
-
-                        <input type="file" name="" id="" multiple class="w-full py-2 px-4 border rounded" />
+            <div class="grid grid-cols-5 gap-2 p-2 overflow-hidden">
+            <div class="col-span-5 flex items-center max-h-64">
+                <img
+                    class="w-full max-h-64 object-contain main-image border rounded-md"
+                    src='${product.images[0]}'
+                    alt=""
+                />
+            </div>
+            <div class="col-span-5 grid grid-cols-4 gap-2 ">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper flex justify-between items-center">
+                        ${product.images.map(img =>{
+                            return `
+                            <div class="swiper-slide mr-2 ">
+                            <img
+                                class="rounded-md w-full h-20 object-cover cursor-pointer small-image"
+                                src="${img}"
+                                alt=""
+                            />
+                        </div>
+                            `
+                        }).join("")}
+                       
                     </div>
                 </div>
+            </div>
+            <input id="images" class="absolute" type="file" name="" multiple>
+        </div>
+
+
                 <div class="ml-4 py-4 flex flex-col">
                     <div class="flex mb-4 pr-2">
                         <p class="w-1/3 font-bold">Mã sản phẩm:</p>
@@ -141,13 +186,32 @@ function AdminDetailProduct({ id }) {
                             id="category"
                         >
                             <option value="${product.category}" disabled selected>${product.category}</option>
-                            ${categories.map(({ name }) => {
-        return `
-                               <option value="${name}">${name}</option>
-                               `
+                            ${categories.map(({ _id, name }) => {
+        if (product.categoryId === _id) {
+            return `<option value="${_id}" selected>${name}</option>`
+        } else {
+            return `<option value="${_id}">${name}</option>`
+
+        }
+
 
     })}
                         </select>
+                        </div>
+                    </div>
+                    <div class="flex mb-4 pr-2 items-center">
+                        <p class="w-1/3 font-bold">Tên hãng:</p>
+                        <div class="relative w-2/3 border rounded">
+                            <input
+                                class="w-full outline-none h-full py-1 px-2 input-name"
+                                type="text"
+                                value="${product.brand}"
+                                id = "brand"
+                                disabled
+                            />
+                            <span class="btn-icon absolute hover:text-green-600 duration-200 z-10 right-2">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="flex mb-4 pr-2 items-center">
@@ -156,7 +220,7 @@ function AdminDetailProduct({ id }) {
                             <input
                                 class="w-full outline-none h-full py-1 px-2 input-name"
                                 type="text"
-                                value="${product.price} VNĐ"
+                                value="${product.price}"
                                 id = "price"
                                 disabled
                             />
@@ -171,7 +235,7 @@ function AdminDetailProduct({ id }) {
                             <input
                                 class="w-full outline-none h-full py-1 px-2 input-name"
                                 type="text"
-                                value="${product.discount} %"
+                                value="${product.discount}"
                                 id = "discount"
                                 disabled
                             />
@@ -200,17 +264,17 @@ function AdminDetailProduct({ id }) {
                 <div class="flex ml-4 py-4 flex-col">
                     <p class="font-bold">Mô tả:</p>
                     <div class="relative w-full border rounded">
-                        <textarea class="w-full outline-none h-full py-1 px-2 input-name" cols="8" id="description" disabled>
+                        <textarea class="w-full outline-none h-full py-1 px-2 input-name" cols="auto" id="description" disabled>
 ${product.description}
                         </textarea>
-                        <span class="btn-icon absolute hover:text-green-600 duration-200 z-10 right-2">
+                        <span class="btn-icon absolute hover:text-green-600 duration-200 z-10 w-full h-full bg-slate-500 top-0 opacity-5">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </span>
                     </div>
                 </div>
 
                 <div class="m-auto col-span-3 pt-6">
-                    <button class="p-2 bg-green-600 text-white rounded-md text-center" type="submit">
+                    <button id ="btn-update" class="p-2 bg-green-600 text-white rounded-md text-center" type="submit">
                         <i class="fa-solid fa-floppy-disk"></i> Cập nhật
                     </button>
                     <button id="btn-delete" class="p-2 bg-red-600 text-white rounded-md text-center">

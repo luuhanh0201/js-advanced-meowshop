@@ -17,7 +17,7 @@ function AdminHeader() {
         });
     })
     return `
-    <header class="w-full border-b pt-2">
+    <header class="w-full border-b pt-2 z-50">
             <div class="w-10/12 m-auto flex justify-between">
                 <img
                     src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686825638/logo.aabe47d334b1014d8199a12eb123fced_rfq1yu.svg"
@@ -29,7 +29,7 @@ function AdminHeader() {
                             <button id="avatarBtn">
                                 <img
                                     class="w-12 h-12 rounded-full border-2 border-gray-200"
-                                    src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1688198205/ECMA/313326952_3233338263580980_7160894109242646862_n_wd5gp4.jpg"
+                                    src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689681502/Meowshop/LOGO4_1_w8r6hs.png"
                                     alt="Avatar"
                                 />
                             </button>
@@ -45,7 +45,7 @@ function AdminHeader() {
                     <ul
                         id="navMenu"
                         class=" absolute hidden bg-white text-gray-700 border border-gray-200 rounded-md shadow-lg top-14 left-0 
-                        w-32"
+                        w-32 z-50"
                     >
                         <li>
                             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Ngôn ngữ</a>

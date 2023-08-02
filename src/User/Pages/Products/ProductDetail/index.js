@@ -1,186 +1,200 @@
-import { useEffect } from "~/assets/lib";
+import axios from "axios";
+import { useEffect, useState } from "~/assets/lib";
+import { API_URL } from "~/assets/data";
+import numeral from "numeral";
+
 ("use strict");
 
 function ProductDetailPage({ id }) {
-  console.log(id);
-  useEffect(() => {
-    const handleOther = () => {
-  
-      const $ = document.querySelector.bind(document);
-      console.log($("#group-rated"));
-      $("#group-rated").onclick = function (e) {
-        var ElementActive = $("#group-rated .rated-active");
-        if (ElementActive) {
-          if (e.target.closest(".opacity")) {
-            if (ElementActive === e.target.parentElement) {
-              e.target.parentElement.classList.remove("rated-active");
-            } else {
-              ElementActive.classList.remove("rated-active");
-              e.target.parentElement.classList.add("rated-active");
-            }
-          }
-        } else {
-          e.target.parentElement.classList.add("rated-active");
-        }
-      };
-      // sử lý click accessories
-      $("#list-accessories").onclick = function (e) {
-        // Element đang active
-        var accessoriesActive = $(".accessories-active");
-        var elementTarget = e.target.closest("#img-accessory");
-        if (elementTarget) {
-          if (accessoriesActive) {
-            if (elementTarget === accessoriesActive) {
-              accessoriesActive.classList.remove("accessories-active");
-            } else {
-              accessoriesActive.classList.remove("accessories-active");
-              e.target.classList.add("accessories-active");
-            }
-          } else {
-            elementTarget.classList.add("accessories-active");
-          }
-        }
-      };
-      // sử lý tăng giảm số lượng
-      $("#less").onclick = function () {
-        var input = document.getElementById("number-input");
-        var value = parseInt(input.value);
+    const [product, setProduct] = useState({images:[]})
+    console.log(id);
+    useEffect(async () => {
+        await axios.get(`${API_URL}/products/${id}`)
+            .then(response => {
+                const product = response.data
+               setProduct(product.data)
+            })
+    }, [])
+    useEffect(() => {
+        const handleOther = () => {
 
-        if (value > 1) {
-          input.value = value - 1;
-        }
-      };
+            const $ = document.querySelector.bind(document);
+            console.log($("#group-rated"));
+            $("#group-rated").onclick = function (e) {
+                var ElementActive = $("#group-rated .rated-active");
+                if (ElementActive) {
+                    if (e.target.closest(".opacity")) {
+                        if (ElementActive === e.target.parentElement) {
+                            e.target.parentElement.classList.remove("rated-active");
+                        } else {
+                            ElementActive.classList.remove("rated-active");
+                            e.target.parentElement.classList.add("rated-active");
+                        }
+                    }
+                } else {
+                    e.target.parentElement.classList.add("rated-active");
+                }
+            };
+            // sử lý click accessories
+            $("#list-accessories").onclick = function (e) {
+                // Element đang active
+                var accessoriesActive = $(".accessories-active");
+                var elementTarget = e.target.closest("#img-accessory");
+                if (elementTarget) {
+                    if (accessoriesActive) {
+                        if (elementTarget === accessoriesActive) {
+                            accessoriesActive.classList.remove("accessories-active");
+                        } else {
+                            accessoriesActive.classList.remove("accessories-active");
+                            e.target.classList.add("accessories-active");
+                        }
+                    } else {
+                        elementTarget.classList.add("accessories-active");
+                    }
+                }
+            };
+            // sử lý tăng giảm số lượng
+            $("#less").onclick = function () {
+                var input = document.getElementById("number-input");
+                var value = parseInt(input.value);
 
-      $("#plus").onclick = function () {
-        var input = document.getElementById("number-input");
-        var value = parseInt(input.value);
-        input.value = value + 1;
-      };
-      $("#number-input").onblur = function () {
-        var input = document.getElementById("number-input");
-        var value = input.value;
-        var newValue = "";
+                if (value > 1) {
+                    input.value = value - 1;
+                }
+            };
 
-        for (var i = 0; i < value.length; i++) {
-          if (!isNaN(value[i])) {
-            newValue += value[i];
-          }
-        }
-        if (newValue) {
-          input.value = newValue;
-        } else {
-          input.value = 1;
-        }
-      };
-    };
-    handleOther();
+            $("#plus").onclick = function () {
+                var input = document.getElementById("number-input");
+                var value = parseInt(input.value);
+                input.value = value + 1;
+            };
+            $("#number-input").onblur = function () {
+                var input = document.getElementById("number-input");
+                var value = input.value;
+                var newValue = "";
 
-    const slideSwiper = () => {
-      var swiper4 = new Swiper(".swiper-product-more", {
-        loop: true,
-        lazy: {
-          enabled: true, // Bật tính năng Lazy Loading
-        },
+                for (var i = 0; i < value.length; i++) {
+                    if (!isNaN(value[i])) {
+                        newValue += value[i];
+                    }
+                }
+                if (newValue) {
+                    input.value = newValue;
+                } else {
+                    input.value = 1;
+                }
+            };
+        };
+        handleOther();
 
-        breakpoints: {
-          // when window width is >= 320px
-          320: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          // when window width is >= 480px
-          480: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          // when window width is >= 640px
-          640: {
-            slidesPerView: 5,
-            spaceBetween: 10,
-          },
-        },
-      });
+        const slideSwiper = () => {
+            var swiper4 = new Swiper(".swiper-product-more", {
+                loop: true,
+                lazy: {
+                    enabled: true, // Bật tính năng Lazy Loading
+                },
 
-      var swiper = new Swiper(".mySwiper", {
-        loop: true,
-        spaceBetween: 10,
-        slidesPerView: 1,
-        freeMode: true,
-        watchSlidesProgress: true,
-        lazy: {
-          enabled: true, // Bật tính năng Lazy Loading
-        },
-      });
-      var swiper2 = new Swiper(".mySwiper2", {
-        loop: true,
-        lazy: {
-          enabled: true, // Bật tính năng Lazy Loading
-        },
-        autoplay: {
-          delay: 3000, // Thời gian chuyển đổi giữa các slide
-          disableOnInteraction: false, // Không tắt autoplay khi tương tác người dùng
-        },
-        spaceBetween: 10,
-        slidesPerView: 1,
+                breakpoints: {
+                    // when window width is >= 320px
+                    320: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                    // when window width is >= 480px
+                    480: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    // when window width is >= 640px
+                    640: {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                    },
+                },
+            });
 
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        thumbs: {
-          swiper: swiper,
-        },
-      });
+            var swiper = new Swiper(".mySwiper", {
+                loop: true,
+                spaceBetween: 10,
+                slidesPerView: 1,
+                freeMode: true,
+                watchSlidesProgress: true,
+                lazy: {
+                    enabled: true, // Bật tính năng Lazy Loading
+                },
+            });
+            var swiper2 = new Swiper(".mySwiper2", {
+                loop: true,
+                lazy: {
+                    enabled: true, // Bật tính năng Lazy Loading
+                },
+                autoplay: {
+                    delay: 3000, // Thời gian chuyển đổi giữa các slide
+                    disableOnInteraction: false, // Không tắt autoplay khi tương tác người dùng
+                },
+                spaceBetween: 10,
+                slidesPerView: 1,
 
-      // slide products
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                thumbs: {
+                    swiper: swiper,
+                },
+            });
 
-      var swiper1 = new Swiper(".swiper-product", {
-        loop: true,
-        lazy: {
-          enabled: true, // Bật tính năng Lazy Loading
-        },
-        cssMode: true,
-        pagination: {
-          el: ".swiper-pagination",
-        },
-        spaceBetween: 10,
+            // slide products
 
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        allowSlideNext: true,
-        allowSlidePrev: true,
+            var swiper1 = new Swiper(".swiper-product", {
+                loop: true,
+                lazy: {
+                    enabled: true, // Bật tính năng Lazy Loading
+                },
+                cssMode: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                },
+                spaceBetween: 10,
 
-        scrollbar: {
-          el: ".swiper-scrollbar",
-        },
-        breakpoints: {
-          // when window width is >= 320px
-          320: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          // when window width is >= 480px
-          480: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          // when window width is >= 640px
-          640: {
-            slidesPerView: 5,
-            spaceBetween: 10,
-          },
-        },
-      });
-    };
-    slideSwiper();
-  }, []);
-  return `
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                allowSlideNext: true,
+                allowSlidePrev: true,
+
+                scrollbar: {
+                    el: ".swiper-scrollbar",
+                },
+                breakpoints: {
+                    // when window width is >= 320px
+                    320: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                    // when window width is >= 480px
+                    480: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    // when window width is >= 640px
+                    640: {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                    },
+                },
+            });
+        };
+        slideSwiper();
+    });
+
+
+    return `
   <div class="scroll-smooth box-border relative">
   <style>
       .mySwiper .swiper-slide-thumb-active {
@@ -193,8 +207,8 @@ function ProductDetailPage({ id }) {
               <!-- phân trang -->
               <div class="pt-3 mt-2px">
                   <span class="text-xs font-normal text-black pr-1">Home /</span>
-                  <span class="text-xs font-normal text-black pr-1">Cat Accessories /</span>
-                  <span class="text-xs font-semibold text-black pr-1">Sunglasses for Cats</span>
+                  <span class="text-xs font-normal text-black pr-1">Product /</span>
+                  <span class="text-xs font-semibold text-black pr-1">${product.name || ""}</span>
               </div>
               <!-- content -->
               <div class="bg-white rounded-md p-7 mt-4 flex gap-12">
@@ -205,26 +219,14 @@ function ProductDetailPage({ id }) {
                           <!-- slide -->
                           <div class="swiper mySwiper2 basis-11/12">
                               <div class="swiper-wrapper h-full w-full">
-                                  <div class="swiper-slide rounded-md overflow-hidden">
-                                      <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                                      class="w-full h-full object-cover" />
-                                  </div>
-                                  <div class="swiper-slide rounded-md overflow-hidden">
-                                      <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                                      class="w-full h-full object-cover" />
-                                  </div>
-                                  <div class="swiper-slide rounded-md overflow-hidden">
-                                      <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                                      class="w-full h-full object-cover" />
-                                  </div>
-                                  <div class="swiper-slide rounded-md overflow-hidden">
-                                      <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                                      class="w-full h-full object-cover" />
-                                  </div>
+                                  ${product.images.map(img =>{
+                                    return `
+                                    <div class="swiper-slide flex items-center justify-center rounded-md overflow-hidden">
+                                    <img src="${img}" class=" object-cover object-center" />
+                                </div>
+                                    `
+                                  }).join("")}
+                                 
                               </div>
                               <div
                                   class="swiper-button-next text-black text-center w-10 h-10 rounded-full bg-white after:content-['next'] after:text-1.5"
@@ -237,35 +239,19 @@ function ProductDetailPage({ id }) {
 
                           <div thumbsSlider="" class="swiper mySwiper basis-1/12">
                               <div class="swiper-wrapper flex flex-col h-full w-full gap-2">
-                                  <div
+                                 ${
+                                    product.images.map(img=>{
+                                        return `
+                                        <div
                                       class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
                                   >
                                       <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                      src="${img}"
                                       class="block w-full h-full object-cover" />
                                   </div>
-
-                                  <div
-                                      class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
-                                  >
-                                      <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                                      class="block w-full h-full object-cover" />
-                                  </div>
-                                  <div
-                                      class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
-                                  >
-                                      <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                                      class="block w-full h-full object-cover" />
-                                  </div>
-                                  <div
-                                      class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
-                                  >
-                                      <img
-                                      src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                                      class="block w-full h-full object-cover" />
-                                  </div>
+                                        `
+                                    }).join("")
+                                 }
                               </div>
                           </div>
                       </div>
@@ -350,7 +336,7 @@ function ProductDetailPage({ id }) {
                               <!-- user -->
                               <div class="basis-2/12 flex flex-row gap-2.5">
                                   <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                   alt="" class="h-33 w-33 rounded-full object-cover" />
                                   <!-- info -->
                                   <div class="flex flex-col gap-1">
@@ -379,12 +365,12 @@ function ProductDetailPage({ id }) {
                                   <!-- img -->
                                   <div class="flex flex-row justify-start gap-3.5">
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
@@ -405,7 +391,7 @@ function ProductDetailPage({ id }) {
                               <!-- user -->
                               <div class="basis-2/12 flex flex-row gap-2.5">
                                   <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                   alt="" class="h-33 w-33 rounded-full object-cover" />
                                   <!-- info -->
                                   <div class="flex flex-col gap-1">
@@ -432,7 +418,7 @@ function ProductDetailPage({ id }) {
                                   <!-- img -->
                                   <div class="flex flex-row justify-start gap-3.5">
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
@@ -453,7 +439,7 @@ function ProductDetailPage({ id }) {
                               <!-- user -->
                               <div class="basis-2/12 flex flex-row gap-2.5">
                                   <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
                                   alt="" class="h-33 w-33 rounded-full object-cover" />
                                   <!-- info -->
                                   <div class="flex flex-col gap-1">
@@ -479,12 +465,12 @@ function ProductDetailPage({ id }) {
                                   <!-- img -->
                                   <div class="flex flex-row justify-start gap-3.5">
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
                                       <img
-                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                          src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                           alt=""
                                           class="w-57 h-57 object-cover"
                                       />
@@ -534,7 +520,7 @@ function ProductDetailPage({ id }) {
                   </div>
                   <!-- content-right -->
                   <div class="w-2/5">
-                      <div class="text-base font-medium text-black">Sunglasses for Cats</div>
+                      <div class="text-base font-medium text-black">${product.name || ""}</div>
                       <!-- overview -->
                       <div class="flex flex-row text-xs font-normal gap-1.5 mt-2">
                           <div>20,506 sales</div>
@@ -554,13 +540,21 @@ function ProductDetailPage({ id }) {
                       </div>
                       <!-- Price -->
                       <div class="flex flex-row gap-1.5 mt-5">
-                          <div class="text-3xl font-medium text-Price">$7.99</div>
-                          <div
-                              class="text-sm text-detail2 font-medium flex flex-row justify-center items-center gap-1"
-                          >
-                              <div class="line-through">$16.00</div>
-                              <div>(51% Off)</div>
-                          </div>
+                          ${product.discount !== 0 ? `
+                          <div class="text-3xl font-medium text-Price">${numeral(product.price - (product.price/product.discount)).format("0,0") + " VNĐ" || ""}</div>
+                          ` : `
+                          <div class="text-3xl font-medium text-Price">${numeral(product.price).format("0,0") + " VNĐ" || ""}</div>
+                          `}
+
+
+                         ${product.discount !== 0 ? `
+                         <div
+                         class="text-sm text-detail2 font-medium flex flex-row justify-center items-center gap-1"
+                     >
+                         <div class="line-through">${numeral(product.price).format("0,0") + " VNĐ" || ""}</div>
+                         <div>(${product.discount || ""}% Off)</div>
+                     </div>
+                         ` : ""}
                       </div>
                       <!-- time Sale -->
                       <div
@@ -580,20 +574,20 @@ function ProductDetailPage({ id }) {
                               id="list-accessories"
                           >
                               <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                              alt="" class="w-51px h-51px rounded-full object-cover border border-solid
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
+                              alt="" class="cursor-pointer w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                              alt="" class="w-51px h-51px rounded-full object-cover border border-solid
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
+                              alt="" class="cursor-pointer w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                              alt="" class="w-51px h-51px rounded-full object-cover border border-solid
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
+                              alt="" class="cursor-pointer w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                              alt="" class="w-51px h-51px rounded-full object-cover border border-solid
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
+                              alt="" class="cursor-pointer w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" /> <img id="img-accessory"
-                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png""
-                              alt="" class="w-51px h-51px rounded-full object-cover border border-solid
+                              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg""
+                              alt="" class="cursor-pointer w-51px h-51px rounded-full object-cover border border-solid
                               border-accessory-opacity" />
                           </div>
                           <div class="">
@@ -603,7 +597,7 @@ function ProductDetailPage({ id }) {
                               <div class="basis-1/3 relative">
                                   <button
                                       id="less"
-                                      class="absolute left-2 text-base top-calc-50%-width-minus-16 p-1"
+                                      class="absolute left-2 text-base top-calc-50%-width-minus-16 p-1 hover:scale-150 duration-200 "
                                   >
                                       -
                                   </button>
@@ -615,20 +609,19 @@ function ProductDetailPage({ id }) {
                                   />
                                   <button
                                       id="plus"
-                                      class="absolute right-2 text-base top-calc-50%-width-minus-16 p-1"
+                                      class="absolute right-2 text-base top-calc-50%-width-minus-16 p-1 hover:scale-150 duration-200 "
                                   >
                                       +
                                   </button>
                               </div>
-                              <div class="text-sm text-detail2 basis-2/3">750 pieces available</div>
+                              <div class="text-sm text-detail2 basis-2/3">${product.quantify || "0"} pieces available</div>
                           </div>
                       </div>
                       <!-- add to cart -->
                       <div class="grid grid-cols-[1fr,auto] mt-8 gap-2.5 items-center">
                           <div
-                              class="border border-solid border-detail rounded-full flex flex-row items-center justify-center gap-1 h-10 bg-detail-opacity"
+                              class="border border-solid border-detail rounded-full flex flex-row items-center justify-center gap-1 h-10 bg-detail-opacity hover:bg-Secondary-yl hover:border-none hover:cursor-pointer duration-200 "
                           >
-                              <img src="./src/assets/imgs/icon-cart-2.svg" alt="" />
                               <span class="uppercase text-base text-detail font-bold">add to cart</span>
                           </div>
                           <div class="w-10 h-10">
@@ -639,7 +632,7 @@ function ProductDetailPage({ id }) {
                       </div>
                       <!-- buy now -->
                       <div
-                          class="uppercase text-white font-bold text-center text-base border border-solid border-detail bg-detail rounded-full mt-2.5 py-2.5"
+                          class="uppercase text-white font-bold text-center text-base border border-solid border-detail bg-detail rounded-full mt-2.5 py-2.5 hover:bg-Secondary-yl duration-200 cursor-pointer hover:border-none"
                       >
                           buy it now
                       </div>
@@ -675,46 +668,12 @@ function ProductDetailPage({ id }) {
                               class="text-xs py-1.5 px-4 rounded-full bg-btn-search"
                           />
                       </form>
-                      <!-- detail -->
-                      <div class="mt-8">
-                          <div class="text-base font-semibold">Detail</div>
-                          <ul class="mt-3.5 ml-6 list-disc text-sm font-normal">
-                              <li>Color: yellow, dark blue, pink, dark green, light green</li>
-                              <li>Brand: Coolrunner</li>
-                              <li>Fabric: Type AC resin, alloy</li>
-                              <li>Material: AC resin, Alloy</li>
-                              <li>Pattern: Retro</li>
-                              <li>Size: Frame width about 8cm/3.15in</li>
-                          </ul>
-                      </div>
+                     
                       <!-- Description -->
                       <div class="mt-8">
                           <div class="text-base font-semibold">Description</div>
                           <ul class="mt-3.5 text-sm font-normal flex flex-col gap-1.5">
-                              <li>Your pets will looks fashion and cool with our sunglasses.</li>
-                              <li>
-                                  The lenses are made of AC resin, spectacles frame using stainless steel,
-                                  durable, lightweight, comfortable, easy to wear, fit for pet cat or dog
-                                  as daily wear photo props or show
-                              </li>
-                              <li>
-                                  Our glasses are available in a variety of colors and the are suitable
-                                  for cats or small dogssuch as Chihuahua, Pomeranian, Small Poodle,
-                                  Yorkshire, Shorthair, Persian, Puppet, etc.
-                              </li>
-                              <li>
-                                  Suitable for small dogs or cats such as Chihuahua, Pomeranian, Small
-                                  Poodle, Yorkshire, Shorthair, Persian, Puppet, etc.
-                              </li>
-                              <li>
-                                  No clear lenses, your pets will looks fashion and cool with our punk
-                                  rock sunglasses.
-                              </li>
-                              <li>
-                                  The lenses are made of AC resin, spectacles frame using alloy metal, let
-                                  the glasses looks very texture.
-                              </li>
-                              <li>Legs of glasses are made of spring, more comfortable to wear.</li>
+                              ${product.description}
                           </ul>
                       </div>
                   </div>
@@ -755,7 +714,7 @@ function ProductDetailPage({ id }) {
                                 />
                             </svg>
                             <img
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                 alt=""
                                 class="h-56 w-full object-cover rounded-md "
                             /></div>
@@ -818,7 +777,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -880,7 +839,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -942,7 +901,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1004,7 +963,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1066,7 +1025,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1128,7 +1087,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1190,7 +1149,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1252,7 +1211,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1314,7 +1273,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1393,7 +1352,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1455,7 +1414,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1517,7 +1476,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1579,7 +1538,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1641,7 +1600,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1703,7 +1662,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1765,7 +1724,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1832,7 +1791,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1894,7 +1853,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -1956,7 +1915,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2018,7 +1977,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2080,7 +2039,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2142,7 +2101,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />
@@ -2204,7 +2163,7 @@ function ProductDetailPage({ id }) {
                                   />
                               </svg>
                               <img
-                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686706200/ECMA/sd463bffk3740iqigi29.png"
+                                  src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689834447/Meowshop/wzo369tbtnjamethfmsl.jpg"
                                   alt=""
                                   class="h-56 w-full object-cover rounded-t-md"
                               />

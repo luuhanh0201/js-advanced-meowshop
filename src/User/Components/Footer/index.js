@@ -9,7 +9,7 @@ function UserFooter() {
         <!-- group-1 -->
         <div class="flex flex-col gap-7">
           <img
-            src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686825638/logo.aabe47d334b1014d8199a12eb123fced_rfq1yu.svg"
+            src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690795491/LOGO4_2_lkctpn.png"
             alt=""
             class="inline-block h-102 w-375 object-cover"
           />
@@ -77,7 +77,6 @@ function UserFooter() {
               save payment info.
             </li>
             <li class="leading-normal">
-              <img src="imgs/icon-footer-list.svg" alt="" />
             </li>
           </ul>
         </div>
