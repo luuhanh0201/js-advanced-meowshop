@@ -28,7 +28,7 @@ const UserHeader = () => {
             <nav class="flex justify-between items-center">
                 <div class="flex flex-row gap-5">
                     <img
-                        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1686825638/logo.aabe47d334b1014d8199a12eb123fced_rfq1yu.svg"
+                        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689681502/Meowshop/LOGO4_1_w8r6hs.png"
                         alt=""
                         class="logo"
                     />

@@ -86,7 +86,8 @@ function AdminProductPage() {
             const imagesUrl = await uploadFiles(images);
             const product = {
                 name: document.querySelector("#name").value,
-                category: document.querySelector("#category").value,
+                categoryId: document.querySelector("#category").value,
+                brand: document.querySelector("#brand").value,
                 images: imagesUrl,
                 price: document.querySelector("#price").value,
                 discount: document.querySelector("#discount").value,
@@ -104,7 +105,7 @@ function AdminProductPage() {
                     window.location.href = "/admin/products"
 
                 })
-                .catch((err)=>{
+                .catch((err) => {
                     console.log(err)
                 })
 
@@ -195,15 +196,14 @@ function AdminProductPage() {
                 </tr>
                 ${products.map(({ _id, name, categoryId, images, price, discount, quantify }, index) => {
         // let img = Array.from(images)
-
+        console.log(categoryId)
         return `
                     <tr class= "${index % 2 === 0 ? 'bg-gray-100 shadow-sm' : ''}">
                     
                     <td class="px-4 py-2 border-r">${index + 1}</td>
                     <td class="px-4 py-2 border-r">${name}</td>
-                    <td class="px-4 py-2 border-r">${categories.find((cate) => {
-            cate._id === categoryId ? cate.name : "Chưa xác định"
-        })}</td>
+                    <td class="px-4 py-2 border-r">${categories.find((cate) => categoryId === cate._id)?.name}</td>
+
                     <td class="px-4 py-2 border-r overflow-hidden">
                     <div class="swiper-container">
                       <div class="swiper-wrapper">
@@ -218,10 +218,9 @@ function AdminProductPage() {
                     <td class="px-4 py-2 border-r text-xs">
                         
                         <a class="hover:text-blue-500 duration-300" href="/admin/product/${_id}">Chi tiết</a>
-                        
                     </td>
                     <td class="px-4 py-2 border-r">
-                    <button id = "btn-remove" data-id="${_id}"><i class="fa-solid fa-trash"></i></button>
+                    <button id = "btn-remove" data-id="${_id}" class ="hover:text-red-500 duration-200"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
                     `
@@ -272,6 +271,15 @@ function AdminProductPage() {
                         id="discount"
                         type="text"
                         placeholder="Nhập giảm giá"
+                    />
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="discount">Tên hãng</label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="brand"
+                        type="text"
+                        placeholder="Nhập tên hãng"
                     />
                 </div>
                 <div>

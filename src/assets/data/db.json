@@ -9,7 +9,7 @@
         "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841381/Meowshop/b49byexuj4xvvivfvie8.png",
         "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841381/Meowshop/nfb3svvzvt6tcsz1id3n.png"
       ],
-      "category": "Phụ kiện",
+      "categoryId": "1",
       "price": "100000",
       "discount": "0",
       "quantify": "12",
@@ -21,7 +21,7 @@
       "images": [
         "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689754684/Meowshop/fxnxkq5mel3n7hi8kdc5.jpg"
       ],
-      "category": "",
+      "categoryId": "2",
       "price": "",
       "discount": "",
       "quantify": "",
@@ -33,7 +33,7 @@
       "images": [
         "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689832961/Meowshop/t825sj8fzwxfubgwbwps.jpg"
       ],
-      "category": "Thức ăn",
+      "categoryId": "3",
       "price": "100000",
       "discount": "0",
       "quantify": "4",
@@ -42,7 +42,7 @@
     },
     {
       "name": "Pate vị cá",
-      "category": "Thức ăn",
+      "categoryId": "1",
       "images": [
         "https://res.cloudinary.com/dn3k4bznz/image/upload/v1689841464/Meowshop/gggqke8ilrosa4zohjdy.png"
       ],
@@ -68,17 +68,17 @@
   ],
   "categories": [
     {
-      "id": 1,
-      "name": "Thức ăn",
+      "_id": 1,
+      "name": "Thức ăn",  
       "image": ""
     },
     {
-      "id": 2,
+      "_id": 2,
       "name": "Nội thất",
       "image": ""
     },
     {
-      "id": 3,
+      "_id": 3,
       "name": "Phụ kiện",
       "image": ""
     }

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"json-server --watch ./src/assets/data/db.json --port 9998\"",
+    "dev": "concurrently \"vite\" ",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -21,6 +21,7 @@
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "joi": "^17.9.2",
-    "navigo": "^8.11.1"
+    "navigo": "^8.11.1",
+    "numeral": "^2.0.6"
   }
 }

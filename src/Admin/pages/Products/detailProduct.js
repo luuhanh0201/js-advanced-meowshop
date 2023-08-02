@@ -4,9 +4,8 @@ import { API_URL } from "~/assets/data"
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import productValidate from "./productValidate";
 
-function AdminDetailProduct({id}) {
-    console.log(id)
-    const [product, setProduct] = useState({})
+function AdminDetailProduct({ id }) {
+    const [product, setProduct] = useState({images :[]})
     // const [detailProduct, setDetailProduct] = useState(product)
     const [categories, setCategories] = useState([])
 
@@ -64,8 +63,9 @@ function AdminDetailProduct({id}) {
             const newProduct = {
                 name: document.getElementById("product-name").value,
                 images: imagesUrl,
-                category: document.getElementById("category").value,
+                categoryId: document.getElementById("category").value,
                 price: document.getElementById("price").value,
+                brand: document.getElementById("brand").value,
                 discount: document.getElementById("discount").value,
                 quantify: document.getElementById("quantify").value,
                 description: document.getElementById("description").value,
@@ -119,40 +119,32 @@ function AdminDetailProduct({id}) {
         });
     })
     return `
+    
     <div class="w-full h-screen rounded-md">
             <form id= "form-update" class=" w-10/12 m-auto px-4 pb-8 min-h-72 bg-white grid grid-cols-3 rounded-md pt-12">
             <div class="grid grid-cols-5 gap-2 p-2 overflow-hidden">
             <div class="col-span-5 flex items-center max-h-64">
                 <img
                     class="w-full max-h-64 object-contain main-image border rounded-md"
-                    src=""
+                    src='${product.images[0]}'
                     alt=""
                 />
             </div>
             <div class="col-span-5 grid grid-cols-4 gap-2 ">
                 <div class="swiper-container">
                     <div class="swiper-wrapper flex justify-between items-center">
-                        <div class="swiper-slide mr-2 ">
+                        ${product.images.map(img =>{
+                            return `
+                            <div class="swiper-slide mr-2 ">
                             <img
                                 class="rounded-md w-full h-20 object-cover cursor-pointer small-image"
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689681502/Meowshop/LOGO4_1_w8r6hs.png"
+                                src="${img}"
                                 alt=""
                             />
                         </div>
-                        <div class="swiper-slide mr-2 ">
-                            <img
-                                class="rounded-md w-full h-20 object-cover cursor-pointer small-image"
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689681374/Meowshop/hp3dh7len1zaum9x7xtj.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div class="swiper-slide mr-2 ">
-                            <img
-                                class="rounded-md w-full h-20 object-cover cursor-pointer small-image"
-                                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689681502/Meowshop/LOGO4_1_w8r6hs.png"
-                                alt=""
-                            />
-                        </div>  
+                            `
+                        }).join("")}
+                       
                     </div>
                 </div>
             </div>
@@ -194,13 +186,32 @@ function AdminDetailProduct({id}) {
                             id="category"
                         >
                             <option value="${product.category}" disabled selected>${product.category}</option>
-                            ${categories.map(({ name }) => {
-        return `
-                               <option value="${name}">${name}</option>
-                               `
+                            ${categories.map(({ _id, name }) => {
+        if (product.categoryId === _id) {
+            return `<option value="${_id}" selected>${name}</option>`
+        } else {
+            return `<option value="${_id}">${name}</option>`
+
+        }
+
 
     })}
                         </select>
+                        </div>
+                    </div>
+                    <div class="flex mb-4 pr-2 items-center">
+                        <p class="w-1/3 font-bold">Tên hãng:</p>
+                        <div class="relative w-2/3 border rounded">
+                            <input
+                                class="w-full outline-none h-full py-1 px-2 input-name"
+                                type="text"
+                                value="${product.brand}"
+                                id = "brand"
+                                disabled
+                            />
+                            <span class="btn-icon absolute hover:text-green-600 duration-200 z-10 right-2">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="flex mb-4 pr-2 items-center">
