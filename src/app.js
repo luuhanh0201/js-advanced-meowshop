@@ -9,10 +9,14 @@ import AdminProductPage from "./Admin/pages/Products";
 import AdminDetailProduct from "./Admin/pages/Products/detailProduct";
 import ProductDetailPage from "./User/Pages/Products/ProductDetail";
 
+import SignUp from "./AccountUsers/SignUp";
+import Login from "./AccountUsers/Login";
+import FormSignUpLogin from "./AccountUsers";
+
 const app = document.getElementById("app");
 
 // user routers
-router.on("/", () => {render(() => RenderUserPage(HomePage), app);});
+router.on("/", () => { render(() => RenderUserPage(HomePage), app); });
 router.on("/home", () => {
   render(() => RenderUserPage(HomePage), app);
 });
@@ -24,7 +28,22 @@ router.on("/products/:id", ({ data }) => {
 });
 
 
-// Admin routes
+
+// Admin routes & validate routes
+router.on("/login", () => { render(() => FormSignUpLogin(Login), app) })
+router.on("/signup", () => { render(() => FormSignUpLogin(SignUp), app) })
+
+router.on("/admin/*", () => { }, {
+  before(next) {
+    // user = {}
+      const token = window.localStorage.getItem("token")
+      console.log(token)
+      if(!token) return window.location.href="/login"
+      next();
+  }
+})
+
+
 router.on("/admin", () => {
   render(() => RenderAdminPage(HomePage), app);
 });
@@ -34,7 +53,7 @@ router.on("/admin/home", () => {
 router.on("/admin/products", () => {
   render(() => RenderAdminPage(AdminProductPage), app);
 });
-router.on("/admin/product/:id", ({data}) => {
+router.on("/admin/product/:id", ({ data }) => {
   render(() => RenderAdminPage(() => AdminDetailProduct(data)), app);
 });
 

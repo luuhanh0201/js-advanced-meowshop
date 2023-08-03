@@ -10,7 +10,6 @@ function ProductPage() {
     axios.get(`${API_URL}/products`)
     .then((data) => {
         const products = data.data
-
         setProduct(products.data)
     })
 
