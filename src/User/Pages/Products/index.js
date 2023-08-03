@@ -22,7 +22,7 @@ function ProductPage() {
                 <div class="flex flex-row gap-3 items-center mt-2.5">
                     <span class="font-normal text-xs text-black">Home</span>
                     <span>/</span>
-                    <span class="font-semibold text-xs">Cat Accessories</span>
+                    <span class="font-semibold text-xs">Products</span>
                 </div>
                 <div class="text-3xl font-medium text-detail mt-6">
                     All

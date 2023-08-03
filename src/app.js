@@ -12,6 +12,9 @@ import ProductDetailPage from "./User/Pages/Products/ProductDetail";
 import SignUp from "./AccountUsers/SignUp";
 import Login from "./AccountUsers/Login";
 import FormSignUpLogin from "./AccountUsers";
+import BlogPage from "./User/Pages/Blog";
+import DetailBlogPage from "./User/Pages/Blog/DetailBlog";
+import AdminHomePage from "./Admin/pages/Home";
 
 const app = document.getElementById("app");
 
@@ -26,7 +29,12 @@ router.on("/products", () => {
 router.on("/products/:id", ({ data }) => {
   render(() => RenderUserPage(() => ProductDetailPage(data)), app);
 });
-
+router.on("/blog", () => {
+  render(() => RenderUserPage(BlogPage), app);
+});
+router.on("/blog/:id", ({ data }) => {
+  render(() => RenderUserPage(() => DetailBlogPage(data)), app);
+});
 
 
 // Admin routes & validate routes
@@ -45,10 +53,10 @@ router.on("/admin/*", () => { }, {
 
 
 router.on("/admin", () => {
-  render(() => RenderAdminPage(HomePage), app);
+  render(() => RenderAdminPage(AdminHomePage), app);
 });
 router.on("/admin/home", () => {
-  render(() => RenderAdminPage(HomePage), app);
+  render(() => RenderAdminPage(AdminHomePage), app);
 });
 router.on("/admin/products", () => {
   render(() => RenderAdminPage(AdminProductPage), app);
