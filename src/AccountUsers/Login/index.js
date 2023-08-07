@@ -20,7 +20,7 @@ function Login() {
             // console.log(userInfo)
             // console.log(Token)
            })
-           .catch(error=>{console.log(error)})
+           .catch(error=>{console.log("Catch", error)})
         })
 
     })
