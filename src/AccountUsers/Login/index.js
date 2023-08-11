@@ -11,16 +11,17 @@ function Login() {
                 userName: document.getElementById('userName').value,
                 password: document.getElementById('password').value,
             }
-           axios.post(`${API_URL}/auths/signin`,account)
-           .then((account)=>{
-            const userInfo = account.data.user
-            const Token = account.data.accessToken
-            window.localStorage.setItem("user",userInfo)
-            window.localStorage.setItem("token",Token)
-            // console.log(userInfo)
-            // console.log(Token)
-           })
-           .catch(error=>{console.log(error)})
+            axios.post(`${API_URL}/auths/signin`, account)
+                .then((account) => {
+                    const userInfo = account.data.user
+                    const Token = account.data.accessToken
+                    window.localStorage.setItem("user", userInfo)
+                    window.localStorage.setItem("token", Token)
+                    console.log(userInfo)
+                    console.log(Token)
+                    window.location.href = "/admin"
+                })
+                .catch(error => { console.log(error) })
         })
 
     })
@@ -48,6 +49,7 @@ function Login() {
                     type="text"
                     id="userName"
                     placeholder="Phone number / Username / Email"
+                    value = "luuhanh0201"
                     class="mt-6 text-base text-detail font-normal py-3.5 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full"
                 />
                 <br />
@@ -55,6 +57,7 @@ function Login() {
                     type="password"
                     name=""
                     id="password"
+                    value = "123123"
                     placeholder="Password"
                     class="text-base text-detail font-normal py-3.5 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-6"
                 />

@@ -44,10 +44,11 @@ router.on("/signup", () => { render(() => FormSignUpLogin(SignUp), app) })
 router.on("/admin/*", () => { }, {
   before(next) {
     // user = {}
-      const token = window.localStorage.getItem("token")
-      console.log(token)
-      if(!token) return window.location.href="/login"
-      next();
+    const token = window.localStorage.getItem("token")
+    console.log(token)
+    if (!token || token === "") return window.location.href = "/login"
+    
+    next();
   }
 })
 
