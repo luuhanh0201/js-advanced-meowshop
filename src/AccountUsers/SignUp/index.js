@@ -1,5 +1,36 @@
-
+import { useEffect } from "~/assets/lib"
+import { API_URL } from "~/assets/data"
+import axios from "axios"
+// import { signUpValid } from "../validate"
+// import Joi from "joi"
 function SignUp() {
+    useEffect(() => {
+        const formSignUp = document.getElementById("form-sign-up")
+        formSignUp.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const newAccount = {
+                userName: document.getElementById("userName").value,
+                fullName: document.getElementById("fullName").value,
+                password: document.getElementById("password").value,
+                confirmPassword: document.getElementById("confirmPassword").value,
+                email: document.getElementById("email").value,
+                numberPhone: document.getElementById("numberPhone").value
+            }
+            console.log("Sending database")
+            // const { error } = signUpValid.validate(newAccount, { abortEarly: false })
+            // if (error) {
+            //     console.log(error)
+            //     return;
+            // }
+            axios.post(`${API_URL}/auths/signup`, newAccount)
+                .then(() => {
+                    console.log("Dang ky thanh cong")
+                })
+                .catch((error) => {
+                    console.log("Dang ky that bai", error)
+                })
+        })
+    }, [])
     return `
     <div
     class="content-wrapper w-full h-screen bg-[url('https://res.cloudinary.com/dn3k4bznz/image/upload/v1690995572/Meowshop/zwmaduwrwmzuoelnuuh2.png')] bg-no-repeat bg-cover bg-center box-border pb-40"
@@ -16,11 +47,12 @@ function SignUp() {
     <div class="flex gap-20 justify-center items-center">
         
         <div class="content w-1/3 bg-white pt-12 px-12 mt-12 h-full rounded-md shadow-my-shadow pb-10">
-            <form class="mt-3">
+            <form id = "form-sign-up" class="mt-3">
                 <div class="text-3xl font-semibold text-black">Sign up</div>
                 <span class="inline-block mt-3.5 text-base font-normal text-detail2">Have an account?</span>
                 <span class="inline-block mt-3.5 text-detail text-base font-medium">Log in</span>
                 <input
+                id="userName"
                     type="text"
                     placeholder="Username"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-6"
@@ -39,6 +71,13 @@ function SignUp() {
                     name=""
                     id="password"
                     placeholder="Password"
+                    class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
+                />
+                <input
+                    type="password"
+                    name=""
+                    id="confirmPassword"
+                    placeholder="Confirm password"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
                 <br />
