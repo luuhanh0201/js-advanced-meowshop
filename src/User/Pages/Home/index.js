@@ -1,5 +1,5 @@
-import { useEffect, useState } from "~/assets/lib";
-import { API_URL } from "~/assets/data"
+import { useEffect, useState } from "../../../assets/lib";
+import { API_URL } from "../../../assets/data"
 import axios from "axios";
 function HomePage() {
   const [data, setData] = useState([])

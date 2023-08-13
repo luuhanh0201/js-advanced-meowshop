@@ -1,7 +1,7 @@
 
 import axios from "axios";
-import { useEffect } from "~/assets/lib"
-import { API_URL } from "~/assets/data";
+import { useEffect } from "../../assets/lib"
+import { API_URL } from "../../assets/data";
 function Login() {
     useEffect(() => {
         const formLogin = document.getElementById("form-login")

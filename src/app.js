@@ -1,4 +1,4 @@
-import { render, router } from "~/assets/lib";
+import { render, router } from "./assets/lib";
 import RenderUserPage from "./User";
 import ProductPage from "./User/Pages/Products";
 import HomePage from "./User/Pages/Home";

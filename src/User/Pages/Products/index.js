@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from "~/assets/lib"
-import { API_URL } from "~/assets/data";
+import { useState, useEffect } from "../../../assets/lib"
+import { API_URL } from "../../../assets/data";
 import  numeral  from "numeral";
 
 function ProductPage() {

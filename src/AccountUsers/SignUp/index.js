@@ -1,5 +1,5 @@
-import { useEffect } from "~/assets/lib"
-import { API_URL } from "~/assets/data"
+import { useEffect } from "../../assets/lib"
+import { API_URL } from "../../assets/data"
 import axios from "axios"
 // import { signUpValid } from "../validate"
 // import Joi from "joi"

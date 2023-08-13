@@ -1,11 +1,11 @@
 import axios from "axios"
-import { useEffect, useState, uploadFiles } from "~/assets/lib"
-import { API_URL } from "~/assets/data"
+import { useEffect, useState, uploadFiles } from "../../../assets/lib"
+import { API_URL } from "../../../assets/data"
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import productValidate from "./productValidate";
 import numeral from "numeral"
 function AdminDetailProduct({ id }) {
-    const [product, setProduct] = useState({images :[]})
+    const [product, setProduct] = useState({ images: [] })
     // const [detailProduct, setDetailProduct] = useState(product)
     const [categories, setCategories] = useState([])
 
@@ -61,7 +61,7 @@ function AdminDetailProduct({ id }) {
             const images = document.getElementById("images").files;
             const imagesUrl = await uploadFiles(images);
             const currentImages = product.images; // Lưu danh sách ảnh cũ
-    
+
             // Kiểm tra xem có ảnh mới được tải lên hay không
             const newProduct = {
                 name: document.getElementById("product-name").value,
@@ -72,19 +72,19 @@ function AdminDetailProduct({ id }) {
                 quantify: document.getElementById("quantify").value,
                 description: document.getElementById("description").value,
             };
-    
+
             if (imagesUrl.length > 0) {
                 newProduct.images = imagesUrl;
             } else {
                 newProduct.images = currentImages; // Giữ nguyên danh sách ảnh cũ nếu không có ảnh mới
             }
-    
+
             const dataProduct = productValidate.validate(newProduct);
             if (dataProduct.error) {
                 console.log(dataProduct.error.details);
                 return;
             }
-    
+
             axios.put(`${API_URL}/products/${id}`, newProduct)
                 .then(() => {
                     const confirm = window.confirm("Cập nhật sản phẩm thành công");
@@ -93,7 +93,7 @@ function AdminDetailProduct({ id }) {
                 });
         });
     });
-    
+
     // delete
     useEffect(() => {
         const btnDelete = document.getElementById("btn-delete");
@@ -143,8 +143,8 @@ function AdminDetailProduct({ id }) {
             <div class="col-span-5 grid grid-cols-4 gap-2 ">
                 <div class="swiper-container">
                     <div class="swiper-wrapper flex justify-between items-center">
-                        ${product.images.map(img =>{
-                            return `
+                        ${product.images.map(img => {
+        return `
                             <div class="swiper-slide mr-2 ">
                             <img
                                 class="rounded-md w-full h-20 object-cover cursor-pointer small-image"
@@ -153,7 +153,7 @@ function AdminDetailProduct({ id }) {
                             />
                         </div>
                             `
-                        }).join("")}
+    }).join("")}
                        
                     </div>
                 </div>
