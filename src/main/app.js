@@ -1,20 +1,20 @@
 import { render, router } from "~/assets/lib";
-import RenderUserPage from "./User";
-import ProductPage from "./User/Pages/Products";
-import HomePage from "./User/Pages/Home";
+import RenderUserPage from "../User";
+import ProductPage from "../User/Pages/Products";
+import HomePage from "../User/Pages/Home";
 
 
-import RenderAdminPage from "./Admin";
-import AdminProductPage from "./Admin/pages/Products";
-import AdminDetailProduct from "./Admin/pages/Products/detailProduct";
-import ProductDetailPage from "./User/Pages/Products/ProductDetail";
+import RenderAdminPage from "../Admin";
+import AdminProductPage from "../Admin/pages/Products";
+import AdminDetailProduct from "../Admin/pages/Products/detailProduct";
+import ProductDetailPage from "../User/Pages/Products/ProductDetail";
 
-import SignUp from "./AccountUsers/SignUp";
-import Login from "./AccountUsers/Login";
-import FormSignUpLogin from "./AccountUsers";
-import BlogPage from "./User/Pages/Blog";
-import DetailBlogPage from "./User/Pages/Blog/DetailBlog";
-import AdminHomePage from "./Admin/pages/Home";
+import SignUp from "../AccountUsers/SignUp";
+import Login from "../AccountUsers/Login";
+import FormSignUpLogin from "../AccountUsers";
+import BlogPage from "../User/Pages/Blog";
+import DetailBlogPage from "../User/Pages/Blog/DetailBlog";
+import AdminHomePage from "../Admin/pages/Home";
 
 const app = document.getElementById("app");
 
