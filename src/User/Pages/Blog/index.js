@@ -19,7 +19,7 @@ function BlogPage () {
             class="bg-white flex flex-row gap-4 rounded-r-lg overflow-hidden"
           >
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="object-cover w-28 h-20 rounded-l-lg"
             />
@@ -36,7 +36,7 @@ function BlogPage () {
             class="bg-white flex flex-row gap-4 rounded-r-lg overflow-hidden"
           >
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="object-cover w-28 h-20 rounded-l-lg"
             />
@@ -53,7 +53,7 @@ function BlogPage () {
             class="bg-white flex flex-row gap-4 rounded-r-lg overflow-hidden"
           >
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="object-cover w-28 h-20 rounded-l-lg"
             />
@@ -77,7 +77,7 @@ function BlogPage () {
             class="bg-white flex flex-row gap-4 rounded-r-lg overflow-hidden"
           >
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="object-cover w-28 h-20 rounded-l-lg"
             />
@@ -94,7 +94,7 @@ function BlogPage () {
             class="bg-white flex flex-row gap-4 rounded-r-lg overflow-hidden"
           >
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="object-cover w-28 h-20 rounded-l-lg"
             />
@@ -111,7 +111,7 @@ function BlogPage () {
             class="bg-white flex flex-row gap-4 rounded-r-lg overflow-hidden"
           >
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="object-cover w-28 h-20 rounded-l-lg"
             />
@@ -130,7 +130,7 @@ function BlogPage () {
         <div class="grid grid-cols-2 gap-8">
           <div class="rounded-md overflow-hidden bg-white">
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="w-full object-cover h-52"
             />
@@ -151,7 +151,7 @@ function BlogPage () {
           </div>
           <div class="rounded-md overflow-hidden bg-white">
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="w-full object-cover h-52"
             />
@@ -172,7 +172,7 @@ function BlogPage () {
           </div>
           <div class="rounded-md overflow-hidden bg-white">
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="w-full object-cover h-52"
             />
@@ -193,7 +193,7 @@ function BlogPage () {
           </div>
           <div class="rounded-md overflow-hidden bg-white">
             <img
-              src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
               alt=""
               class="w-full object-cover h-52"
             />

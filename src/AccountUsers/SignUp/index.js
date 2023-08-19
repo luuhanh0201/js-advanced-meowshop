@@ -1,9 +1,21 @@
-import { useEffect } from "~/assets/lib"
+import { useEffect, useState } from "~/assets/lib"
 import { API_URL } from "~/assets/data"
 import axios from "axios"
+import { signUpValid } from "../validate"
+import "animate.css"
 // import { signUpValid } from "../validate"
 // import Joi from "joi"
 function SignUp() {
+    const [toastMessage, setToastMessage] = useState("")
+    const [messageValid, setMessageValid] = useState({
+        userName: "",
+        fullName: "",
+        password: "",
+        confirmPassword: "",
+        email: "",
+        numberPhone: ""
+
+    })
     useEffect(() => {
         const formSignUp = document.getElementById("form-sign-up")
         formSignUp.addEventListener("submit", (e) => {
@@ -17,17 +29,44 @@ function SignUp() {
                 numberPhone: document.getElementById("numberPhone").value
             }
             console.log("Sending database")
-            // const { error } = signUpValid.validate(newAccount, { abortEarly: false })
-            // if (error) {
-            //     console.log(error)
-            //     return;
-            // }
+            const { error } = signUpValid.validate(newAccount, { abortEarly: false })
+            if (error) {
+                const newMessageValid = {}
+                newAccount.userName === "" ? newMessageValid.userName = "Please enter username" : newMessageValid.userName = "";
+                newAccount.fullName === "" ? newMessageValid.fullName = "Please enter fullName" : newMessageValid.fullName = "";
+                newAccount.password === "" ? newMessageValid.password = "Please enter password" : newMessageValid.password = "";
+                newAccount.confirmPassword !== newAccount.password || newAccount.confirmPassword === "" ? newMessageValid.confirmPassword = "Confirm password must match password" : newMessageValid.confirmPassword = "";
+                newAccount.email === "" ? newMessageValid.email = "Please enter email" : newMessageValid.email = "";
+                newAccount.numberPhone === "" ? newMessageValid.numberPhone = "Please enter numberPhone" : newMessageValid.numberPhone = "";
+
+
+                setMessageValid(newMessageValid)
+                console.log(error.details)
+                return;
+            }
             axios.post(`${API_URL}/auths/signup`, newAccount)
                 .then(() => {
-                    console.log("Dang ky thanh cong")
+                    setToastMessage(`
+
+                    <div class="fixed z-50 inset-0 flex justify-center items-center">
+                    <div class="fixed inset-0 bg-black opacity-10"></div>
+                    <div
+                        class="flex flex-col animate__animated animate__slideInDown z-50 bg-white  rounded-lg shadow-lg p-6 max-w-sm text-center"
+                    >
+                        <h2 class="text-2xl font-semibold mb-4 text-green-600">Sign up successfully!</h2>
+                        <p>You can log in to your account.</p>
+                       
+                    </div>
+
+                    `)
+
+
+                    setTimeout(()=>window.location.href = "/login")
                 })
                 .catch((error) => {
-                    console.log("Dang ky that bai", error)
+                    const newMessageValid = {}
+                    setMessageValid({ userName: error.response.data.message })
+                    console.log("Dang ky that bai", error.response)
                 })
         })
     }, [])
@@ -45,19 +84,19 @@ function SignUp() {
     </div>
 
     <div class="flex gap-20 justify-center items-center">
-        
         <div class="content w-1/3 bg-white pt-12 px-12 mt-12 h-full rounded-md shadow-my-shadow pb-10">
-            <form id = "form-sign-up" class="mt-3">
+            <form id = "form-sign-up" class="mt-3 grid-cols-2">
                 <div class="text-3xl font-semibold text-black">Sign up</div>
                 <span class="inline-block mt-3.5 text-base font-normal text-detail2">Have an account?</span>
-                <span class="inline-block mt-3.5 text-detail text-base font-medium">Log in</span>
+                <a href="/login" class="inline-block mt-3.5 text-detail text-base font-medium">Log in</a>
                 <input
                 id="userName"
                     type="text"
                     placeholder="Username"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-6"
                 />
-                <br />
+                ${messageValid.userName ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.userName}</span>` : ""}
+               
                 <input
                     type="text"
                     name=""
@@ -65,7 +104,9 @@ function SignUp() {
                     placeholder="Full Name"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
-                <br />
+                ${messageValid.fullName ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.fullName}</span>` : ""}
+
+                
                 <input
                     type="password"
                     name=""
@@ -73,6 +114,8 @@ function SignUp() {
                     placeholder="Password"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
+                ${messageValid.password ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.password}</span>` : ""}
+
                 <input
                     type="password"
                     name=""
@@ -80,7 +123,9 @@ function SignUp() {
                     placeholder="Confirm password"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
-                <br />
+                ${messageValid.confirmPassword ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.confirmPassword}</span>` : ""}
+
+                
                 <input
                     type="text"
                     name=""
@@ -88,7 +133,9 @@ function SignUp() {
                     placeholder="Email"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
-                <br />
+                ${messageValid.email ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.email}</span>` : ""}
+
+                
 
                 <input
                     type="text"
@@ -97,7 +144,9 @@ function SignUp() {
                     placeholder="Number Phone"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
-                <br />
+                ${messageValid.numberPhone ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.numberPhone}</span>` : ""}
+
+                
                 <button
                     type="submit"
                     class="uppercase text-base font-medium py-3.5 w-full bg-detail rounded-full text-white max-h-12 mt-6"
@@ -162,6 +211,10 @@ function SignUp() {
             </button>
         </div>
     </div>
+
+    ${toastMessage}
+   
+</div>
 </div>
     `;
 }

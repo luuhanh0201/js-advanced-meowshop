@@ -101,7 +101,11 @@ function AdminProductPage() {
                 return
             }
             await axios.post(`${API_URL}/products`, product)
-                .then(() => {
+                .then(async () => {
+
+                    // await settimeout => giao diện mess
+                  
+
                     window.location.href = "/admin/products"
 
                 })
@@ -196,7 +200,6 @@ function AdminProductPage() {
                 </tr>
                 ${products.map(({ _id, name, categoryId, images, price, discount, quantify }, index) => {
         // let img = Array.from(images)
-        console.log(categoryId)
         return `
                     <tr class= "${index % 2 === 0 ? 'bg-gray-100 shadow-sm' : ''}">
                     

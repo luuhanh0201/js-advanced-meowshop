@@ -130,7 +130,7 @@ function HomePage() {
   return `
   <div class="content-wrapper px-content mx-auto">
   <div
-    class="w-full py-40 bg-[url('https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png')] bg-no-repeat bg-cover bg-center rounded-md mt-1.5 flex items-center"
+    class="w-full py-40 bg-[url('https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png')] bg-no-repeat bg-cover bg-center rounded-md mt-1.5 flex items-center"
   >
     <div class="inline-flex flex-col ml-11">
       <div class="font-normal text-2xl text-black">CAT SUPPLIES</div>
@@ -152,7 +152,7 @@ function HomePage() {
   <div class="grid grid-cols-4 gap-7 mt-14 mb-16">
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -167,7 +167,7 @@ function HomePage() {
     </div>
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -182,7 +182,7 @@ function HomePage() {
     </div>
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -197,7 +197,7 @@ function HomePage() {
     </div>
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -212,7 +212,7 @@ function HomePage() {
     </div>
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -227,7 +227,7 @@ function HomePage() {
     </div>
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -242,7 +242,7 @@ function HomePage() {
     </div>
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -257,7 +257,7 @@ function HomePage() {
     </div>
     <div class="rounded-md overflow-hidden w-full relative">
       <img
-        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+        src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
         alt=""
         class="w-full h-72 object-cover"
       />
@@ -617,7 +617,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -718,7 +718,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -819,7 +819,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -920,7 +920,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1021,7 +1021,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1122,7 +1122,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1223,7 +1223,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1324,7 +1324,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1425,7 +1425,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1526,7 +1526,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1627,7 +1627,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1728,7 +1728,7 @@ function HomePage() {
                 />
               </svg>
               <img
-                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png"
+                src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png"
                 alt=""
                 class="h-56 w-full object-cover rounded-md"
               />
@@ -1823,7 +1823,7 @@ function HomePage() {
               <span class="text-black text-lg font-medium absolute left-3.5 top-1.5">28.02.2023</span>
             </div>
             <img
-              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png
         "
               alt=""
               class="w-full h-52 object-cover"
@@ -1866,7 +1866,7 @@ function HomePage() {
               <span class="text-black text-lg font-medium absolute left-3.5 top-1.5">28.02.2023</span>
             </div>
             <img
-              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png
         "
               alt=""
               class="w-full h-52 object-cover"
@@ -1909,7 +1909,7 @@ function HomePage() {
               <span class="text-black text-lg font-medium absolute left-3.5 top-1.5">28.02.2023</span>
             </div>
             <img
-              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png
         "
               alt=""
               class="w-full h-52 object-cover"
@@ -1952,7 +1952,7 @@ function HomePage() {
               <span class="text-black text-lg font-medium absolute left-3.5 top-1.5">28.02.2023</span>
             </div>
             <img
-              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1691047654/Rectangle_2_yibn2s.png
+              src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1690972923/Meowshop/u7uo0io1zwdzkhniqygl.png
         "
               alt=""
               class="w-full h-52 object-cover"
