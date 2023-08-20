@@ -15,6 +15,7 @@ import FormSignUpLogin from "./AccountUsers";
 import BlogPage from "./User/Pages/Blog";
 import DetailBlogPage from "./User/Pages/Blog/DetailBlog";
 import AdminHomePage from "./Admin/pages/Home";
+import InformationPage from "./User/Pages/Information";
 
 const app = document.getElementById("app");
 
@@ -41,6 +42,11 @@ router.on("/blog/:id", ({ data }) => {
 router.on("/login", () => { render(() => FormSignUpLogin(Login), app) })
 router.on("/signup", () => { render(() => FormSignUpLogin(SignUp), app) })
 
+
+
+router.on("/information", () => {
+  render(() => RenderUserPage(InformationPage), app);
+});
 router.on("/admin/*", () => { }, {
   before(next) {
     // user = {}

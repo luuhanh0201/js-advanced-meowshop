@@ -1,5 +1,49 @@
+import { getUserLocalStorage } from "../../../assets/data";
+import { useEffect, useState } from "../../../assets/lib";
+const infoUser = getUserLocalStorage("user") || undefined
 const UserHeader = () => {
-  return `
+    const [user, setUser] = useState(infoUser)
+
+
+    useEffect(() => {
+        const avatarBtn = document.getElementById('avatarBtn');
+        const navMenu = document.getElementById('navMenu');
+        avatarBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); // Ngăn chặn sự kiện click lan ra bên ngoài
+            navMenu.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (event) => {
+            const targetElement = event.target;
+            // Kiểm tra xem người dùng đã nhấp vào vùng ngoài menu hay không
+            if (!navMenu.contains(targetElement) && !avatarBtn.contains(targetElement)) {
+                navMenu.classList.add('hidden');
+            }
+        });
+    })
+
+    useEffect(() => {
+        const btnLogOut = document.getElementById("log-out");
+        if (btnLogOut) {
+            btnLogOut.addEventListener("click", handleLogoutClick);
+        }
+        function handleLogoutClick() {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            window.location.href = "/";
+        }
+        
+        // Cleanup: loại bỏ sự kiện lắng nghe khi cần
+        window.addEventListener("beforeunload", removeLogoutClickEvent);
+        
+        function removeLogoutClickEvent() {
+            if (btnLogOut) {
+                btnLogOut.removeEventListener("click", handleLogoutClick);
+            }
+        }
+    })
+
+
+    return `
     <div class="w-full content-wrapper mx-auto">
     <!-- detail -->
     <div class="flex detail w-full bg-green-700 py-2 items-center justify-center text-white gap-2">
@@ -48,19 +92,8 @@ const UserHeader = () => {
                     />
                 </form>
                 <div class="flex flex-center gap-7">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                    >
-                        <path d="M10 11C4.08 11 2 14 2 16V19H18V16C18 14 15.92 11 10 11Z" fill="#00575C" />
-                        <path
-                            d="M10 10C12.4853 10 14.5 7.98528 14.5 5.5C14.5 3.01472 12.4853 1 10 1C7.51472 1 5.5 3.01472 5.5 5.5C5.5 7.98528 7.51472 10 10 10Z"
-                            fill="#00575C"
-                        />
-                    </svg>
+                   
+                    
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="21"
@@ -85,34 +118,108 @@ const UserHeader = () => {
                             fill="#00575C"
                         />
                     </svg>
+
+                    ${infoUser === undefined ? `
+                        <ul class="flex items-center relative ">
+                            <li class="flex items-center">
+                                <div class="relative">
+                                <button id="avatarBtn">
+                
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                    >
+                                        <path d="M10 11C4.08 11 2 14 2 16V19H18V16C18 14 15.92 11 10 11Z" fill="#00575C" />
+                                        <path
+                                            d="M10 10C12.4853 10 14.5 7.98528 14.5 5.5C14.5 3.01472 12.4853 1 10 1C7.51472 1 5.5 3.01472 5.5 5.5C5.5 7.98528 7.51472 10 10 10Z"
+                                            fill="#00575C"
+                                        />
+                                    </svg>
+                                <button/>
+                                </div>
+                            </li>
+                            <ul
+                                id="navMenu"
+                                class=" absolute hidden bg-white text-gray-700 border border-gray-200 rounded-md shadow-lg top-8 -left-12 z-50 w-40 "
+                            >
+                                <li>
+                                    <a href="/signup" class="block px-4 py-2 hover:bg-gray-100 ">Đăng ký</a>
+                                </li>
+                                <li>
+                                    <a href="/login" class="block px-4 py-2 hover:bg-gray-100 ">Đăng nhập</a>
+                                </li>
+                                
+                            </ul>
+                        </ul>
+                        ` : `
+                        
+                        <ul class="flex items-center relative">
+                            <li class="flex items-center">
+                                <div class="relative">
+                                <button id="avatarBtn">
+                                <img
+                                    class="w-12 h-12 rounded-full border-2 border-gray-200"
+                                    src="${infoUser.avatar}"
+                                    alt="Avatar"
+                                />
+                            </button>
+                            <div
+                                class="absolute bottom-0 right-0 -mr-1 bg-green-700 rounded-full border-2 border-white"
+                            >
+                                <svg class="h-4 w-4 text-gray-100" viewBox="0 -2 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6 6l4 4 4-4H6z" />
+                                </svg>
+                            </div>
+                                </div>
+                            </li>
+                            <ul
+                                id="navMenu"
+                                class="absolute hidden bg-white text-gray-700 border border-gray-200 rounded-md shadow-lg top-14 -left-12 z-50 w-40"
+                            >
+                                <li>
+                                    <a href="/information" class="block px-4 py-2 hover:bg-gray-100">Trang cá nhân</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Nạp tiền</a>
+                                </li>
+                                <li>
+                                    <p class="block px-4 py-2 hover:bg-gray-100">
+                                        <span class="text-sm font-normal text-yellow-500"><i class="fa-solid fa-coins"></i> 0</span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <button id="log-out" class="block px-4 py-2 hover:bg-gray-100 border-t font-bold">Đăng xuất</button>
+                                </li>
+                            </ul>
+                        </ul>
+                
+                        `
+
+
+        }
                 </div>
             </nav>
-            <ul
-                id="menu"
-                class="uppercase flex flex-col gap-7 mt-9 max-w-width-nav-tablet transition-all duration-100 ease-linear lg:flex lg:max-w-full lg:flex-row lg:items-center lg:flex-wrap lg:justify-between lg:gap-3"
-            >
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="/home">Home</a>
-                    
-                </li>
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="/products">Products</a>
-                    
-                </li>
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="/service">service</a>
-                    
-                </li>
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="/information">information</a>
-                    
-                </li>
-          
-                <li class="flex flex-row justify-between style-navbar font-semibold lg:font-normal">
-                    <a href="/blog">BLOGS</a>
-                    
-                </li>
-            </ul>
+           
+                <ul id="" class="uppercase flex flex-col gap-7 mt-9 max-w-width-nav-tablet transition-all duration-100 ease-linear lg:flex lg:max-w-full lg:flex-row lg:items-center lg:flex-wrap lg:justify-between lg:gap-3">
+                    <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal ">
+                        <a id = "menu-item" class="font-semibold active-menu" href="/home">Home</a>
+                    </li>
+                    <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
+                        <a id = "menu-item" class="font-semibold " href="/products">Products</a>
+                    </li>
+                    <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
+                        <a id = "menu-item" class="font-semibold" href="/service">Service</a>
+                    </li>
+                    <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
+                        <a id = "menu-item" class="font-semibold" href="/information">Information</a>
+                    </li>
+                    <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
+                        <a id = "menu-item" class="font-semibold" href="/blog">Blogs</a>
+                    </li>
+                </ul>
         </div>
     </div>
 </div>

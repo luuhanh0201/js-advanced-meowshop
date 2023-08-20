@@ -74,6 +74,10 @@ html {
     transform: translateY(0);
 }
 
+.active-menu {
+    color: green;
+}
+
 /* @keyframes slideDownUp {
     0% {
         transform: translateY(-100%);
