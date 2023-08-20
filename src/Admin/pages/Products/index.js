@@ -101,11 +101,7 @@ function AdminProductPage() {
                 return
             }
             await axios.post(`${API_URL}/products`, product)
-                .then(async () => {
-
-                    // await settimeout => giao diện mess
-                  
-
+                .then(() => {
                     window.location.href = "/admin/products"
 
                 })
@@ -128,13 +124,10 @@ function AdminProductPage() {
     <div class="w-10/12 m-auto mt-4 flex">
         <div class="w-2/12">
             <nav class="w-full flex flex-col items-center shadow-md mb-4">
-                <form id="form-search" class="bg-white rounded pb-4 w-full">
+                <form id="form-search" class="bg-white rounded pb-4 w-full relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:z-10 after:bg-detail2 after:rounded-full">
                     <h3 class="ml-2 font-medium mb-4 pt-2">Tìm kiếm</h3>
-                    <input
-                        class="border-b-2 border-gray-400 ml-2 mr-2 w-max pb-1"
-                        type="text"
-                        placeholder="Theo mã, tên hàng"
-                    />
+                    <input type="text" class="w-full !border-transparent border-detail rounded-md" placeholder="Theo mã số, tên người dùng" />
+
                 </form>
             </nav>
             <nav class="w-full flex flex-col items-center shadow-md mb-4">
@@ -200,6 +193,7 @@ function AdminProductPage() {
                 </tr>
                 ${products.map(({ _id, name, categoryId, images, price, discount, quantify }, index) => {
         // let img = Array.from(images)
+        console.log(categoryId)
         return `
                     <tr class= "${index % 2 === 0 ? 'bg-gray-100 shadow-sm' : ''}">
                     
