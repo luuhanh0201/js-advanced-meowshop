@@ -81,8 +81,8 @@ function AdminHeader() {
                 <li><a class="py-2 px-4" href="/admin/home"><i class="fa-solid fa-eye"></i> Tổng quan</a></li>
                 <li><a class="py-2 px-4" href="/admin/products"><i class="fa-solid fa-box"></i> Sản phẩm</a></li>
                 <li><a class="py-2 px-4" href="#"><i class="fa-solid fa-file-invoice"></i> Hoá đơn</a></li>
-                <li><a class="py-2 px-4" href="#"><i class="fa-solid fa-circle-dollar-to-slot"></i> Sổ quỹ</a></li>
                 <li><a class="py-2 px-4" href="#"><i class="fa-solid fa-paste"></i> Bài viết</a></li>
+                <li><a class="py-2 px-4" href="/admin/user-management"><i class="fa-solid fa-circle-dollar-to-slot"></i> Quản lý người dùng</a></li>
             </ul>
         </nav>
     `
