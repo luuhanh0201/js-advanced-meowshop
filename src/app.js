@@ -15,6 +15,9 @@ import FormSignUpLogin from "./AccountUsers";
 import BlogPage from "./User/Pages/Blog";
 import DetailBlogPage from "./User/Pages/Blog/DetailBlog";
 import AdminHomePage from "./Admin/pages/Home";
+import InformationPage from "./User/Pages/Information";
+import UserManagement from "./Admin/pages/UserManagement";
+import AdminCategoriesPage from "./Admin/pages/Categories";
 
 const app = document.getElementById("app");
 
@@ -41,13 +44,19 @@ router.on("/blog/:id", ({ data }) => {
 router.on("/login", () => { render(() => FormSignUpLogin(Login), app) })
 router.on("/signup", () => { render(() => FormSignUpLogin(SignUp), app) })
 
+
+
+router.on("/information", () => {
+  render(() => RenderUserPage(InformationPage), app);
+});
 router.on("/admin/*", () => { }, {
   before(next) {
     // user = {}
     const token = window.localStorage.getItem("token")
     console.log(token)
-    if (!token || token === "") return window.location.href = "/login"
-    
+    if (!token) return window.location.href = "/login"
+    const user = window.localStorage.getItem("user")
+    if(JSON.parse(user).role !== "admin") return window.location.href = "/"
     next();
   }
 })
@@ -64,6 +73,12 @@ router.on("/admin/products", () => {
 });
 router.on("/admin/product/:id", ({ data }) => {
   render(() => RenderAdminPage(() => AdminDetailProduct(data)), app);
+});
+router.on("/admin/user-management", () => {
+  render(() => RenderAdminPage(UserManagement), app);
+});
+router.on("/admin/categories", () => {
+  render(() => RenderAdminPage(AdminCategoriesPage), app);
 });
 
 router.resolve();

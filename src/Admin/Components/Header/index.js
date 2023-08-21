@@ -1,6 +1,12 @@
-import { useEffect } from "~/assets/lib";
+import { useEffect, useState } from "~/assets/lib";
 
 function AdminHeader() {
+    const [infoUser, setInfoUser] = useState({})
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user)
+        setInfoUser(user)
+    }, [])
     useEffect(() => {
         const avatarBtn = document.getElementById('avatarBtn');
         const navMenu = document.getElementById('navMenu');
@@ -16,6 +22,15 @@ function AdminHeader() {
             }
         });
     })
+
+    useEffect(() => {
+        const btnLogOut = document.getElementById("log-out")
+        btnLogOut.addEventListener("click", () => {
+            localStorage.removeItem("user")
+            localStorage.removeItem("token")
+            window.location.href = "/"
+        })
+    })
     return `
     <header class="w-full border-b pt-2 z-50">
             <div class="w-10/12 m-auto flex justify-between">
@@ -29,7 +44,7 @@ function AdminHeader() {
                             <button id="avatarBtn">
                                 <img
                                     class="w-12 h-12 rounded-full border-2 border-gray-200"
-                                    src="https://res.cloudinary.com/dn3k4bznz/image/upload/v1689681502/Meowshop/LOGO4_1_w8r6hs.png"
+                                    src="${infoUser.avatar}"
                                     alt="Avatar"
                                 />
                             </button>
@@ -54,7 +69,7 @@ function AdminHeader() {
                             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sáng / Tối</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-t font-bold">Đăng xuất</a>
+                            <button id = "log-out" class="block px-4 py-2 hover:bg-gray-100 border-t font-bold">Đăng xuất</button>
                         </li>
                     </ul>
                 </ul>
@@ -65,9 +80,9 @@ function AdminHeader() {
             <ul class="w-10/12 flex justify-between font-semibold text-base text-white">
                 <li><a class="py-2 px-4" href="/admin/home"><i class="fa-solid fa-eye"></i> Tổng quan</a></li>
                 <li><a class="py-2 px-4" href="/admin/products"><i class="fa-solid fa-box"></i> Sản phẩm</a></li>
-                <li><a class="py-2 px-4" href="#"><i class="fa-solid fa-file-invoice"></i> Hoá đơn</a></li>
-                <li><a class="py-2 px-4" href="#"><i class="fa-solid fa-circle-dollar-to-slot"></i> Sổ quỹ</a></li>
+                <li><a class="py-2 px-4" href="/admin/categories"><i class="fa-solid fa-file-invoice mr-1"></i>Categories</a></li>
                 <li><a class="py-2 px-4" href="#"><i class="fa-solid fa-paste"></i> Bài viết</a></li>
+                <li><a class="py-2 px-4" href="/admin/user-management"><i class="fa-solid fa-user"></i> Quản lý người dùng</a></li>
             </ul>
         </nav>
     `
