@@ -16,6 +16,7 @@ import BlogPage from "./User/Pages/Blog";
 import DetailBlogPage from "./User/Pages/Blog/DetailBlog";
 import AdminHomePage from "./Admin/pages/Home";
 import InformationPage from "./User/Pages/Information";
+import UserManagement from "./Admin/pages/UserManagement";
 
 const app = document.getElementById("app");
 
@@ -72,6 +73,8 @@ router.on("/admin/products", () => {
 router.on("/admin/product/:id", ({ data }) => {
   render(() => RenderAdminPage(() => AdminDetailProduct(data)), app);
 });
-
+router.on("/admin/user-management", () => {
+  render(() => RenderAdminPage(UserManagement), app);
+});
 router.resolve();
 
