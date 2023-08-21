@@ -6,6 +6,8 @@ import { signInValid } from "../validate";
 import "animate.css"
 function Login() {
     const [toastMessage, setToastMessage] = useState("")
+    const [loading, setLoading] = useState("")
+
     const [messageValid, setMessageValid] = useState({
         userName: "",
         password: ""
@@ -14,7 +16,24 @@ function Login() {
         const formLogin = document.getElementById("form-login")
         formLogin.addEventListener("submit", (e) => {
             e.preventDefault();
-            const startTime = new Date().getTime();
+            setLoading(`
+            <div class="fixed z-50 inset-0 flex justify-center items-center">
+                <div class="fixed inset-0 bg-black opacity-10"></div>
+                <svg
+                    class="animate-spin -ml-1 mr-3 h-10 w-10 text-green-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                >
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                </svg>
+            </div >
+            `)
             const account = {
                 userName: document.getElementById('userName').value,
                 password: document.getElementById('password').value,
@@ -31,16 +50,16 @@ function Login() {
 
             }
             axios.post(`${API_URL}/auths/signin`, account)
-                .then((account) => {
-                    const userInfo = account.data.user
-                    const Token = account.data.accessToken
-                    window.localStorage.setItem("user", JSON.stringify(userInfo))
-                    window.localStorage.setItem("token", Token)
-
-                    if(userInfo.role === "admin"){
+                .then(async (account) => {
+                    const userInfo = await account.data.user
+                    const Token = await account.data.accessToken
+                    await window.localStorage.setItem("user", JSON.stringify(userInfo))
+                    await window.localStorage.setItem("token", Token)
+                    await setLoading("")
+                    if (userInfo.role === "admin") {
 
                     }
-                    setToastMessage(`
+                    await setToastMessage(`
 
                     <div class="fixed z-50 inset-0 flex justify-center items-center">
                     <div class="fixed inset-0 bg-black opacity-10"></div>
@@ -52,16 +71,12 @@ function Login() {
                         ${userInfo.role === 'admin' ? `<div role="status"class = "flex w-full mt-8 justify-center">
                         <a class = "mr-1 uppercase text-lg font-medium py-2 px-2 bg-detail rounded-md  text-white  hover:bg-detail/90 duration-200" href = "/admin">Admin</a>
                         <a class = "ml-1 uppercase text-lg font-medium py-2 px-2 bg-detail rounded-md  text-white  hover:bg-detail/90 duration-200" href = "/">User</a>
-                     </div>` : setTimeout(()=>{window.location.href = "/"},2000)}
+                     </div>` : setTimeout(() => { window.location.href = "/" }, 2000)}
                     </div>
                 </div>
 
                     `)
-                    console.log(userInfo)
-                    
-                    const endTime = new Date().getTime();
-                    const loadingTime = (endTime - startTime) / 1000;
-                    console.log(loadingTime)
+
                 })
                 .catch(async error => {
                     console.log(error.response)
@@ -81,9 +96,9 @@ function Login() {
                     </div>
                 </div>
                     `)
-                    if (response.data.password !== false) {
-                        setTimeout(() => { setToastMessage("") }, 2000)
-                    }
+
+                    setTimeout(() => { setToastMessage("") }, 2000)
+
                     const endTime = await new Date().getTime();
                     const loadingTime = await (endTime - startTime) / 1000;
                     await console.log(loadingTime)
@@ -198,7 +213,7 @@ function Login() {
             </button>
         </div>
         
-
+    ${loading} 
     ${toastMessage}
 
 
@@ -213,8 +228,3 @@ function Login() {
 
 export default Login;
 
-//     <div class="fixed z-50 inset-0 flex justify-center items-center">
-//         <div class=" fixed inset-0 bg-black opacity-40"></div>
-//         <span class="animate__animated animate__fadeIn z-50 bg-green-500 text-white rounded-md shadow-lg p-4">Đăng nhập thành công! Bạn có thể truy cập tài khoản của mình.</span
-//     >
-// </div>
