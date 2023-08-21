@@ -17,6 +17,7 @@ import DetailBlogPage from "./User/Pages/Blog/DetailBlog";
 import AdminHomePage from "./Admin/pages/Home";
 import InformationPage from "./User/Pages/Information";
 import UserManagement from "./Admin/pages/UserManagement";
+import AdminCategoriesPage from "./Admin/pages/Categories";
 
 const app = document.getElementById("app");
 
@@ -75,6 +76,9 @@ router.on("/admin/product/:id", ({ data }) => {
 });
 router.on("/admin/user-management", () => {
   render(() => RenderAdminPage(UserManagement), app);
+});
+router.on("/admin/categories", () => {
+  render(() => RenderAdminPage(AdminCategoriesPage), app);
 });
 
 router.resolve();
