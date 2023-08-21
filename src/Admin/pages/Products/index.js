@@ -4,6 +4,7 @@ import { API_URL } from "~/assets/data";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import productValidate from "./productValidate";
 import numeral from "numeral"
+import "animate.css"
 function AdminProductPage() {
 
     const [products, setProduct] = useState([])
@@ -225,8 +226,8 @@ function AdminProductPage() {
             </table>
         </div>
     </div>
-    <div id="wrapper-form-add" class="hidden absolute w-full h-full flex items-center justify-center">
-        <form id="form-add" class="relative w-2/3 bg-white z-10 rounded shadow-md p-4">
+    <div id="wrapper-form-add" class="z-50  hidden absolute w-full h-full flex items-center justify-center">
+        <form id="form-add" class="animate__animated animate__zoomIn relative w-2/3 bg-white z-10 rounded shadow-md p-4">
             <button id="close-form-add" class="absolute right-6 text-2xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>

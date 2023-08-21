@@ -31,10 +31,10 @@ const UserHeader = () => {
             localStorage.removeItem("token");
             window.location.href = "/";
         }
-        
+
         // Cleanup: loại bỏ sự kiện lắng nghe khi cần
         window.addEventListener("beforeunload", removeLogoutClickEvent);
-        
+
         function removeLogoutClickEvent() {
             if (btnLogOut) {
                 btnLogOut.removeEventListener("click", handleLogoutClick);
@@ -162,7 +162,7 @@ const UserHeader = () => {
                                 <button id="avatarBtn">
                                 <img
                                     class="w-12 h-12 rounded-full border-2 border-gray-200"
-                                    src="${infoUser.avatar}"
+                                    src="${infoUser.avatar.length === 0 ? "https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-12.jpg" : infoUser.avatar}"
                                     alt="Avatar"
                                 />
                             </button>
@@ -182,9 +182,11 @@ const UserHeader = () => {
                                 <li>
                                     <a href="/information" class="block px-4 py-2 hover:bg-gray-100">Trang cá nhân</a>
                                 </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Nạp tiền</a>
-                                </li>
+                               ${infoUser.role === 'admin' ? `
+                               <li>
+                               <a href="/admin" class="block px-4 py-2 hover:bg-gray-100">Trang quản trị</a>
+                           </li>
+                               ` : ""}
                                 <li>
                                     <p class="block px-4 py-2 hover:bg-gray-100">
                                         <span class="text-sm font-normal text-yellow-500"><i class="fa-solid fa-coins"></i> 0</span>
