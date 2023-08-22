@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "~/assets/lib";
-import { API_URL } from "~/assets/data";
+import { useEffect, useState } from "../../../../assets/lib";
+import { API_URL } from "../../../../assets/data";
 import numeral from "numeral";
 
 ("use strict");

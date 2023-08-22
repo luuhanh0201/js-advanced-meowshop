@@ -139,6 +139,7 @@ function Login() {
                     type="password"
                     name=""
                     id="password"
+                    value = "123123"
                     placeholder="Password"
                     class="text-base text-detail font-normal py-3.5 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-6"
                 />

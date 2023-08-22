@@ -1,7 +1,7 @@
 import { useState, useEffect, uploadFiles, uploadFile } from "~/assets/lib";
 import "animate.css";
 import axios from "axios";
-import { API_URL } from "~/assets/data";
+import { API_URL } from "../../../assets/data";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import productValidate from "./productValidate";
 import numeral from "numeral";
