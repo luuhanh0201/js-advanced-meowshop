@@ -83,7 +83,6 @@ function AdminProductPage() {
     formAdd.addEventListener("submit", async (e) => {
       // Note
       e.preventDefault();
-      console.log(1123);
       // Upload > 1 img
       const images = Array.from(document.getElementById("images").files);
       const imagesUrl = await uploadFiles(images);
@@ -172,13 +171,12 @@ function AdminProductPage() {
           name: nameCategory.value,
           image: imagesUrl[0]
         };
-        console.log(newCategory);
-       axios.post(`${API_URL}/categories/create`,newCategory
-       )
-       .then(()=>{
-        console.log("successfully uploaded");
-       })
-       .catch((error)=>console.log(error));
+        axios.post(`${API_URL}/categories/create`, newCategory
+        )
+          .then(() => {
+            console.log("successfully uploaded");
+          })
+          .catch((error) => console.log(error));
       });
     }
   });
@@ -188,6 +186,16 @@ function AdminProductPage() {
       slidesPerView: "auto",
     });
   });
+
+  // sort products by price
+  useEffect(() => {
+
+    const newProducts = [...products]; 
+    newProducts.sort((a, b) => a.price - b.price);
+    setProduct(newProducts)
+
+    
+  },products)
   return `
     <main class="w-full relative m-auto flex justify-center items-center h-screen z-0">
     ${toast}
@@ -216,19 +224,20 @@ function AdminProductPage() {
                     >
                         <option class="py-2" value="" selected>Tất cả</option>
                         ${categories.map(({ name }) => {
-                          return `
+    return `
                             <option class="py-2" value="${name}">${name}</option>
                             `;
-                        })}
+  })}
                     </select>
                 </form>
             </nav>
             <nav class="w-full flex flex-col items-center shadow-md mb-4">
                 <form id="form-categories" class="bg-white rounded pb-4 w-full">
                     <h3 class="ml-2 font-medium mb-4 pt-2">Bộ lọc</h3>
-                    <div class="w-full p-2"><input name="option" type="radio" /> <label>Từ A - Z</label></div>
                     <div class="w-full p-2">
-                        <input name="option" type="radio" /> <label>Từ cao - thấp</label>
+                    <input name="option" type="radio" value="price-up" id = "price-up"/> <label>Từ A - Z</label></div>
+                    <div class="w-full p-2">
+                        <input name="option" type="radio" value="price-down" id = "price-down"/> <label>Từ cao - thấp</label>
                     </div>
                 </form>
             </nav>
@@ -262,54 +271,48 @@ function AdminProductPage() {
                 <th class="px-4 py-2  border-r"></th>
                 </tr>
                 ${products
-                  .map(
-                    (
-                      {
-                        _id,
-                        name,
-                        categoryId,
-                        images,
-                        price,
-                        discount,
-                        quantify,
-                      },
-                      index
-                    ) => {
-                      // let img = Array.from(images)
-                      console.log(categoryId);
-                      return `
-                    <tr class= "${
-                      index % 2 === 0 ? "bg-gray-100 shadow-sm" : ""
-                    }">
+      .map(
+        (
+          {
+            _id,
+            name,
+            categoryId,
+            images,
+            price,
+            discount,
+            quantify,
+          },
+          index
+        ) => {
+          // let img = Array.from(images)
+          return `
+                    <tr class= "${index % 2 === 0 ? "bg-gray-100 shadow-sm" : ""
+            }">
                     
                     <td class="px-4 py-2 border-r">${index + 1}</td>
                     <td class="px-4 py-2 border-r">${name}</td>
-                    <td class="px-4 py-2 border-r">${
-                      categories.find((cate) => categoryId === cate._id)?.name
-                    }</td>
+                    <td class="px-4 py-2 border-r">${categories.find((cate) => categoryId === cate._id)?.name
+            }</td>
 
                     <td class="px-4 py-2 border-r overflow-hidden">
                     <div class="swiper-container">
                       <div class="swiper-wrapper">
                         ${images
-                          .map(
-                            (image) =>
-                              `<div class="swiper-slide "><img src="${image}" alt="img error" class="w-16 h-16 rounded overflow-hidden" /></div>`
-                          )
-                          .join("")}
+              .map(
+                (image) =>
+                  `<div class="swiper-slide "><img src="${image}" alt="img error" class="w-16 h-16 rounded overflow-hidden" /></div>`
+              )
+              .join("")}
                       </div>
                      
                     </div>
                   </td>
-                    <td class="px-4 py-2 border-r">${
-                      price === "" ? 0 : numeral(price).format("0,0")
-                    } VNĐ</td>
-                    <td class="px-4 py-2 border-r">${
-                      discount === "" ? 0 : discount
-                    } %</td>
-                    <td class="px-4 py-2 border-r">${
-                      quantify === "" ? 0 : quantify
-                    }</td>
+                    <td class="px-4 py-2 border-r">${price === "" ? 0 : numeral(price).format("0,0")
+            } VNĐ</td>
+                    <td class="px-4 py-2 border-r">${discount === "" ? 0 : discount
+            } %</td>
+                    <td class="px-4 py-2 border-r">${quantify === "" ? 0 : quantify
+            }</td>
                     <td class="px-4 py-2 border-r text-xs">
                         
                         <a class="hover:text-blue-500 duration-300" href="/admin/product/${_id}">Chi tiết</a>
@@ -319,9 +322,9 @@ function AdminProductPage() {
                     </td>
                 </tr>
                     `;
-                    }
-                  )
-                  .join("")}
+        }
+      )
+      .join("")}
             </table>
         </div>
     </div>
@@ -387,10 +390,10 @@ function AdminProductPage() {
                     >
                         <option value="" disabled selected>Chọn danh mục</option>
                         ${categories.map(({ _id, name }) => {
-                          return `
+        return `
                            <option value="${_id}">${name}</option>
                            `;
-                        })}
+      })}
                     </select>
                 </div>
               
