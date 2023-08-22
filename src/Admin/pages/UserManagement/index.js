@@ -115,14 +115,17 @@ function UserManagement() {
   useEffect(() => {
     const btns = document.querySelectorAll("#btn-remove");
     btns.forEach((btn) => {
+
       const id = btn.dataset.id;
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault()
         const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?");
         if (!confirm) return;
         axios
           .delete(`${API_URL}/products/${id}`)
           .then(() => {
-            window.location.reload();
+            // window.location.reload();
+            console.log(1)
           })
           .catch((err) => {
             console.log(err);

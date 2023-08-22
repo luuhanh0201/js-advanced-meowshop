@@ -55,6 +55,7 @@ function InformationPage() {
 
           setTimeout(() => {
             setToastMessage("")
+            window.location.reload()
           }, 1500);
         })
         .catch(error => {
