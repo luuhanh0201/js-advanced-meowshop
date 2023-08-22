@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "~/assets/lib"
 import { API_URL } from "~/assets/data";
 import  numeral  from "numeral";
-
+import "animate.css"
 function ProductPage() {
     const [product, setProduct] = useState([])
 
@@ -81,7 +81,8 @@ function ProductPage() {
             ${
                 product.map(product=>{
                     return `
-                    <div class="w-full bg-white rounded-md cursor-pointer shadow-shadow-slide-product relative h-96">
+                    <div class="w-full bg-white rounded-md cursor-pointer shadow-shadow-slide-product relative h-96 animate__animated animate__pulse
+                    ">
             <div class="rounded-md overflow-hidden hover:scale-105 transition duration-300 hover:cursor-zoom-in">
                 ${product.discount === "" || product.discount === 0 ? "" : `
                 <svg

@@ -17,6 +17,7 @@ import DetailBlogPage from "./User/Pages/Blog/DetailBlog";
 import AdminHomePage from "./Admin/pages/Home";
 import InformationPage from "./User/Pages/Information";
 import UserManagement from "./Admin/pages/UserManagement";
+import AboutPage from "./User/Pages/About";
 
 const app = document.getElementById("app");
 
@@ -37,6 +38,12 @@ router.on("/blog", () => {
 router.on("/blog/:id", ({ data }) => {
   render(() => RenderUserPage(() => DetailBlogPage(data)), app);
 });
+router.on("/about", () => {
+  render(() => RenderUserPage(AboutPage), app);
+});
+router.on("/information", () => {
+  render(() => RenderUserPage(InformationPage), app);
+});
 
 
 // Admin routes & validate routes
@@ -45,9 +52,7 @@ router.on("/signup", () => { render(() => FormSignUpLogin(SignUp), app) })
 
 
 
-router.on("/information", () => {
-  render(() => RenderUserPage(InformationPage), app);
-});
+
 router.on("/admin/*", () => { }, {
   before(next) {
     // user = {}

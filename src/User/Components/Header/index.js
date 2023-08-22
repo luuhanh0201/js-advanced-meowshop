@@ -6,6 +6,7 @@ const UserHeader = () => {
 
 
     useEffect(() => {
+       
         const avatarBtn = document.getElementById('avatarBtn');
         const navMenu = document.getElementById('navMenu');
         avatarBtn.addEventListener('click', (event) => {
@@ -44,7 +45,7 @@ const UserHeader = () => {
 
 
     return `
-    <div class="w-full content-wrapper mx-auto">
+    <div class="w-full content-wrapper mx-auto" id="hihi">
     <!-- detail -->
     <div class="flex detail w-full bg-green-700 py-2 items-center justify-center text-white gap-2">
         <span class="text-sm font-semibold"> FREE SHIPPING with $20 Purchase </span>
@@ -210,11 +211,9 @@ const UserHeader = () => {
                     <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
                         <a id = "menu-item" class="font-semibold " href="/products">Products</a>
                     </li>
+                   
                     <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
-                        <a id = "menu-item" class="font-semibold" href="/service">Service</a>
-                    </li>
-                    <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
-                        <a id = "menu-item" class="font-semibold" href="/information">Information</a>
+                        <a id = "menu-item" class="font-semibold" href="/about">about</a>
                     </li>
                     <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
                         <a id = "menu-item" class="font-semibold" href="/blog">Blogs</a>
