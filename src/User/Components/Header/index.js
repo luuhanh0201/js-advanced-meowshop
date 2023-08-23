@@ -62,6 +62,7 @@ const UserHeader = () => {
         const inputSearch = document.getElementById("input-search")
         const btnSearch = document.getElementById("btn-search")
         inputSearch.addEventListener("input", (e) => {
+            console.log(e.target.value)
             e.preventDefault()
             const productFilter = products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase()))
             const productContainer = document.getElementById("product-list");
