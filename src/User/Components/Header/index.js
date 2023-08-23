@@ -1,8 +1,12 @@
-import { getUserLocalStorage } from "../../../assets/data";
+import axios from "axios";
+import { API_URL, getUserLocalStorage } from "../../../assets/data";
 import { useEffect, useState } from "../../../assets/lib";
+import "animate.css"
+import numeral from "numeral";
 const infoUser = getUserLocalStorage("user") || undefined
 const UserHeader = () => {
     const [user, setUser] = useState(infoUser)
+    const [products, setProducts] = useState([])
 
 
     useEffect(() => {
@@ -32,10 +36,10 @@ const UserHeader = () => {
             localStorage.removeItem("token");
             window.location.href = "/";
         }
-        
+
         // Cleanup: loại bỏ sự kiện lắng nghe khi cần
         window.addEventListener("beforeunload", removeLogoutClickEvent);
-        
+
         function removeLogoutClickEvent() {
             if (btnLogOut) {
                 btnLogOut.removeEventListener("click", handleLogoutClick);
@@ -43,6 +47,71 @@ const UserHeader = () => {
         }
     })
 
+    // get all products
+    useEffect(() => {
+        axios.get(`${API_URL}/products`)
+            .then(response => setProducts(response.data.data))
+            .catch(error => error)
+    }, [])
+    // Search
+
+    // Hello
+
+
+    useEffect(() => {
+        const inputSearch = document.getElementById("input-search")
+        const btnSearch = document.getElementById("btn-search")
+        inputSearch.addEventListener("input", (e) => {
+            console.log(e.target.value)
+            e.preventDefault()
+            const productFilter = products.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase()))
+            const productContainer = document.getElementById("product-list");
+            productContainer.innerHTML = "";
+
+            if (e.target.value !== "") {
+                productContainer.innerHTML = (`
+                <p class =" pl-4 pt-4 font-semibold text-gray-400">Search product</p>
+                `)
+            }
+            productFilter.forEach(product => {
+                const productElement = document.createElement("div");
+                productElement.innerHTML = ` 
+                <li class="flex overflow-hidden items-center justify-center hover:bg-green-100 duration-200 py-2 rounded-md">
+                    <img class="w-2/12 px-8" src="${product.images[0]}" alt="" />
+                    <a class="w-8/12 line-clamp-1 font-normal items-center pr-2" href="/products/${product._id}">${product.name}</a>
+                    <span class="w-2/12">${numeral(product.price).format("0,0")} đ</span>
+                </li>
+                `;
+                productContainer.appendChild(productElement);
+            });
+            if (productFilter.length === 0) {
+                productContainer.innerHTML = (`
+                <p class ="text-center py-4 font-semibold text-gray-400">Product not found</p>
+                `)
+            }
+            document.addEventListener("click", (e) => {
+                if (!productContainer.contains(e.target)) {
+                    productContainer.innerHTML = ""; // Xóa nội dung
+                   
+                }
+            });
+
+
+
+
+
+
+
+            console.log(productFilter)
+
+        })
+
+        btnSearch.addEventListener("click", (e) => {
+            e.preventDefault()
+            console.log("Click btn search")
+        })
+
+    })
 
     return `
     <div class="w-full content-wrapper mx-auto" id="hihi">
@@ -84,17 +153,25 @@ const UserHeader = () => {
                         type="text"
                         placeholder="What can we help you find? "
                         class=" py-2 px-10 w-full border border-solid border-detail rounded-full"
-                        required
+                        id = "input-search"
+                        autocomplete="off"
                     />
                     <input
                         type="submit"
                         value="search"
                         class="absolute right-0  text-1.5  uppercase h-full px-5 bg-detail rounded-full text-white"
+                        id = "btn-search"
                     />
+
+                    <div id="search-product" class = " z-50 absolute w-full max-h-80 bg-gray-50 top-11 overflow-auto scrollbar">
+                    
+                    <ul id ="product-list" class = "rounded-md" >
+                   
+                    </ul>
+                    </div>
                 </form>
                 <div class="flex flex-center gap-7">
                    
-                    
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="21"
@@ -163,7 +240,7 @@ const UserHeader = () => {
                                 <button id="avatarBtn">
                                 <img
                                     class="w-12 h-12 rounded-full border-2 border-gray-200"
-                                    src="${infoUser.avatar}"
+                                    src="${infoUser.avatar.length === 0 ? "https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-12.jpg" : infoUser.avatar}"
                                     alt="Avatar"
                                 />
                             </button>
@@ -183,9 +260,11 @@ const UserHeader = () => {
                                 <li>
                                     <a href="/information" class="block px-4 py-2 hover:bg-gray-100">Trang cá nhân</a>
                                 </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Nạp tiền</a>
-                                </li>
+                               ${infoUser.role === 'admin' ? `
+                               <li>
+                               <a href="/admin" class="block px-4 py-2 hover:bg-gray-100">Trang quản trị</a>
+                           </li>
+                               ` : ""}
                                 <li>
                                     <p class="block px-4 py-2 hover:bg-gray-100">
                                         <span class="text-sm font-normal text-yellow-500"><i class="fa-solid fa-coins"></i> 0</span>
