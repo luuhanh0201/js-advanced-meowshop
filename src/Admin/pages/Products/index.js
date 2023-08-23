@@ -189,13 +189,10 @@ function AdminProductPage() {
 
   // sort products by price
   useEffect(() => {
-
-    const newProducts = [...products]; 
-    newProducts.sort((a, b) => a.price - b.price);
+    const newProducts = [...products];
+    newProducts.sort((a, b) => b.price - a.price);
     setProduct(newProducts)
-
-    
-  },products)
+  }, products)
   return `
     <main class="w-full relative m-auto flex justify-center items-center h-screen z-0">
     ${toast}

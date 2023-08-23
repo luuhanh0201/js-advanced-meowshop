@@ -1,20 +1,61 @@
 import axios from "axios";
 import { useState, useEffect } from "~/assets/lib"
 import { API_URL } from "~/assets/data";
-import  numeral  from "numeral";
+import numeral from "numeral";
 import "animate.css"
 function ProductPage() {
     const [product, setProduct] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [displayedProducts, setDisplayedProducts] = useState([]);
+    const productPerPage = 12
+    const totalPages = Math.ceil(product.length / productPerPage);
+    useEffect(() => {
+        axios.get(`${API_URL}/products`)
+            .then((data) => {
+                const products = data.data.data
+                setProduct(products)
+                const startIndex = (currentPage - 1) * productPerPage;
+                const endIndex = startIndex + productPerPage;
+                setDisplayedProducts(products.slice(startIndex, endIndex));
 
-   useEffect(()=>{
-    axios.get(`${API_URL}/products`)
-    .then((data) => {
-        const products = data.data
-        setProduct(products.data)
-    })
+            })
 
-   },[])
-    // console.log(product)
+    }, [currentPage])
+    useEffect(() => {
+        const btnNextPage = document.getElementById("next-page");
+        const btnPrevPage = document.getElementById("prev-page");
+
+        btnNextPage.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (currentPage + 1 <= totalPages) {
+                setCurrentPage(currentPage + 1);
+            }
+        });
+
+        btnPrevPage.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (currentPage - 1 >= 1) {
+                setCurrentPage(currentPage - 1);
+            }
+        });
+
+        const spansEle = document.querySelectorAll(".span-value")
+        spansEle.forEach(item => {
+            item.addEventListener("click", (e) => {
+                setCurrentPage(e.target.innerHTML)
+
+                item.classList.add("w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity")
+            })
+        })
+        // Clean up event listeners when component unmounts
+        return () => {
+            btnNextPage.removeEventListener("click");
+            btnPrevPage.removeEventListener("click");
+        };
+    });
+    // useEffect(() => {
+    //     console.log(totalPages)
+    // })
 
     return `
      <div class="content-wraper font-Roboto px-content mx-auto">
@@ -78,10 +119,9 @@ function ProductPage() {
 
                     <!-- list product -->
                     <div class="grid grid-cols-4 gap-x-3.5 gap-y-5">
-            ${
-                product.map(product=>{
-                    return `
-                    <div class="w-full bg-white rounded-md cursor-pointer shadow-shadow-slide-product relative h-96 animate__animated animate__pulse
+            ${displayedProducts.map(product => {
+        return `
+                    <div class="w-full bg-white rounded-md cursor-pointer shadow-shadow-slide-product relative h-96  duration-200 
                     ">
             <div class="rounded-md overflow-hidden hover:scale-105 transition duration-300 hover:cursor-zoom-in">
                 ${product.discount === "" || product.discount === 0 ? "" : `
@@ -140,9 +180,9 @@ function ProductPage() {
                 <div class="flex flex-row justify-between items-center mt-8">
                     <!-- price -->
                     <div class="flex flex-row items-center gap-0.5">
-                        ${product.discount !== 0 ? `<span class="text-detail text-lg font-medium">${numeral(product.price - (product.price/product.discount)).format("0,0")}</span>` 
-                        :
-                         `<span class="text-detail text-lg font-medium">${numeral(product.price).format("0,0")}</span>`}
+                        ${product.discount !== 0 ? `<span class="text-detail text-lg font-medium">${numeral(product.price - (product.price / product.discount)).format("0,0")}</span>`
+                :
+                `<span class="text-detail text-lg font-medium">${numeral(product.price).format("0,0")}</span>`}
                         <span class="text-sm text-detail font-normal"> đ</span>
                     </div>
                     <!-- sold -->
@@ -151,42 +191,37 @@ function ProductPage() {
             </div>
         </div>
                     `
-                }).join("")
-            }
+    }).join("")
+        }
         </div>
                 </main>
                 <!-- dàn trang -->
                 <div
                     class="flex flex-row gap-9 justify-center items-center pr-2.5 mt-8 mb-14 text-sm font-normal text-black"
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="9"
-                        height="14"
-                        viewBox="0 0 9 14"
-                        fill="none"
-                        class="cursor-pointer"
-                    >
-                        <path d="M8 1L2 7L8 13" stroke="black" stroke-width="2" />
-                    </svg>
-                    <span class="w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity cursor-pointer"
-                        >1</span
-                    >
-                    <span class="cursor-pointer">2</span>
-                    <span class="cursor-pointer">3</span>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="9"
-                        height="14"
-                        viewBox="0 0 9 14"
-                        fill="none"
-                        class="cursor-pointer"
-                    >
-                        <path d="M1 13L7 7L1 0.999999" stroke="black" stroke-width="2" />
-                    </svg>
+            <button class="cursor-pointer" id="prev-page">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+            
+            ${Array.from({ length: totalPages }, (_, index) => {
+            return `
+               <span class="cursor-pointer span-value ${index + 1 === currentPage ? "w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity " : ""}"
+               >${index + 1}</span
+               > 
+               `
+        }).join("")}
+
+            <button class="cursor-pointer" id="next-page">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+                  
                 </div>
             </div>
     `;
 }
 
 export default ProductPage;
+
+{/* <span class="w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity cursor-pointer"
+>1</span
+> */}

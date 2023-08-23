@@ -47,7 +47,6 @@ function SignUp() {
                 email: document.getElementById("email").value,
                 numberPhone: document.getElementById("numberPhone").value
             }
-            console.log("Sending database")
             const { error } = signUpValid.validate(newAccount, { abortEarly: false })
             if (error) {
                 const newMessageValid = {}
@@ -60,10 +59,10 @@ function SignUp() {
 
                 setLoading("")
                 setMessageValid(newMessageValid)
-                console.log(error.details)
                 return;
             }
             axios.post(`${API_URL}/auths/signup`, newAccount)
+                // peddling
                 .then(async () => {
                     await setLoading("")
                     await setToastMessage(`
@@ -81,11 +80,12 @@ function SignUp() {
                     `)
 
 
-                    await setTimeout(() => window.location.href = "/login", 5000)
+                    await setTimeout(() => window.location.href = "/login", 2000)
                 })
-                .catch((error) => {
+                .catch(async (error) => {
                     const newMessageValid = {}
-                    setMessageValid({ userName: error.response.data.message })
+                    await setLoading("")
+                    await setMessageValid({ userName: error.response.data.message })
                     console.log("Dang ky that bai", error.response)
                 })
                 .finally(() => {
@@ -251,4 +251,7 @@ function SignUp() {
 }
 
 export default SignUp;
+
+
+
 
