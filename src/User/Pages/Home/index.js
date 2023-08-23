@@ -43,7 +43,7 @@ function HomePage() {
                     Bạn muốn nuôi một em Cún, bé Mèo không nhỉ? Chắc chắn sẽ Vui lắm đấy!
                 </p>
                 <p class="mt-4 text-lg font-medium text-green-400">
-                    Gia nhập cộng đồng VuiPet và trải nghiệm làm “Sen” nhé!
+                    Gia nhập cộng đồng MeowShop và trải nghiệm làm “Sen” nhé!
                 </p>
             </div>
                     <div class="basis-3/5 h-full">
@@ -80,7 +80,7 @@ function HomePage() {
                         <div class="h-[20rem]">
                             <img src="https://vuipet.com/wp-content/uploads/2023/04/Shop-600x600.jpg" alt="" class="object-cover h-full w-11/12 block mx-auto rotate-[-4deg]">
                         </div>
-                        <p class="mt-5 px-7 text-green-500 font-bold text-2xl">Petshop
+                        <p class="mt-5 px-7 text-green-500 font-bold text-2xl">
                             Thức ăn – Phụ kiện</p>
                     </div>
                     <div class="w-full bg-black shadow-my-shadow hover:-translate-y-2 duration-300 ease-out pb-6">

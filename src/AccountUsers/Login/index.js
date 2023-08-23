@@ -17,7 +17,7 @@ function Login() {
         formLogin.addEventListener("submit", (e) => {
             e.preventDefault();
             setLoading(`
-            <div class="fixed z-50 inset-0 flex justify-center items-center">
+            <div class="fixed z-50 inset-0 flex justify-center items-center ">
                 <div class="fixed inset-0 bg-black opacity-10"></div>
                 <svg
                     class="animate-spin -ml-1 mr-3 h-10 w-10 text-green-600"
