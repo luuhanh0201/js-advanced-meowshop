@@ -230,7 +230,7 @@ function AdminDetailProduct({ id }) {
                             <input
                                 class="w-full outline-none h-full py-1 px-2 input-name"
                                 type="text"
-                                value="${numeral(product.price).format("0,0")}"
+                                value="${product.price}"
                                 id = "price"
                                 disabled
                             />
