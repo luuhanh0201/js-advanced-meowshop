@@ -1,63 +1,150 @@
 import axios from "axios";
-import { useState, useEffect } from "~/assets/lib"
+import { useState, useEffect } from "~/assets/lib";
 import { API_URL } from "~/assets/data";
 import numeral from "numeral";
-import "animate.css"
+import "animate.css";
 function ProductPage() {
-    const [product, setProduct] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const [displayedProducts, setDisplayedProducts] = useState([]);
-    const productPerPage = 12
-    const totalPages = Math.ceil(product.length / productPerPage);
-    useEffect(() => {
-        axios.get(`${API_URL}/products`)
-            .then((data) => {
-                const products = data.data.data
-                setProduct(products)
-                const startIndex = (currentPage - 1) * productPerPage;
-                const endIndex = startIndex + productPerPage;
-                setDisplayedProducts(products.slice(startIndex, endIndex));
+  const [categories, setCategories] = useState([]);
+  const [categoriesChecked, setCategoriesChecked] = useState();
+  //   lấy dữ liệu từ api
+  const [product, setProduct] = useState([]);
+  //   product filter theo category
+  const [productFilter, setProductFiler] = useState([]);
+  // checked product filter theo giá
+  const [priceChecked, setPriceChecked] = useState({
+    upPrice: "",
+    downPrice: "",
+  });
 
-            })
+  const [currentPage, setCurrentPage] = useState(1);
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+  const productPerPage = 12;
 
-    }, [currentPage])
-    useEffect(() => {
-        const btnNextPage = document.getElementById("next-page");
-        const btnPrevPage = document.getElementById("prev-page");
+  const [totalPages, setTotalPage] = useState();
 
-        btnNextPage.addEventListener("click", (e) => {
-            e.preventDefault();
-            if (currentPage + 1 <= totalPages) {
-                setCurrentPage(currentPage + 1);
-            }
-        });
+  useEffect(() => {
+    axios.get(`${API_URL}/products`).then((data) => {
+      const products = data.data.data;
+      setProduct(products);
+      const totalPage = Math.ceil(product.length / productPerPage);
+      setTotalPage(totalPage);
 
-        btnPrevPage.addEventListener("click", (e) => {
-            e.preventDefault();
-            if (currentPage - 1 >= 1) {
-                setCurrentPage(currentPage - 1);
-            }
-        });
-
-        const spansEle = document.querySelectorAll(".span-value")
-        spansEle.forEach(item => {
-            item.addEventListener("click", (e) => {
-                setCurrentPage(e.target.innerHTML)
-
-                item.classList.add("w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity")
-            })
-        })
-        // Clean up event listeners when component unmounts
-        return () => {
-            btnNextPage.removeEventListener("click");
-            btnPrevPage.removeEventListener("click");
-        };
+      const startIndex = (currentPage - 1) * productPerPage;
+      const endIndex = startIndex + productPerPage;
+      setDisplayedProducts(products.slice(startIndex, endIndex));
     });
-    // useEffect(() => {
-    //     console.log(totalPages)
-    // })
+  }, [currentPage]);
 
-    return `
+  useEffect(() => {
+    axios.get(`${API_URL}/categories`).then((data) => {
+      setCategories(data.data.data);
+    });
+  }, []);
+  //   lọc sản phẩm theo category
+
+  let valueCategory = 0;
+  useEffect(() => {
+    const categories = document.querySelectorAll('input[name="category"]');
+    categories.forEach((category) => {
+      category.addEventListener("click", () => {
+        valueCategory = category.value;
+        // xác đinh category đang được checked
+        setCategoriesChecked(valueCategory);
+        let products = product.filter(
+          (product) => product.categoryId == category.value
+        );
+        let startIndex = (currentPage - 1) * productPerPage;
+        let endIndex = startIndex + productPerPage;
+        if (products.length < 12) {
+          startIndex = 0;
+          endIndex = products.length;
+        }
+        setTotalPage(`${Math.ceil(products.length / productPerPage)}`);
+        setDisplayedProducts(products.slice(startIndex, endIndex));
+        setProductFiler(products);
+      });
+    });
+  }, valueCategory);
+
+  useEffect(() => {
+    const listProduct = productFilter.length > 0 ? productFilter : product;
+    const upPrice = document.getElementById("price-1");
+    const dowPrice = document.getElementById("price-2");
+    upPrice.addEventListener("click", () => {
+      console.log(1);
+      const products = listProduct.sort((a, b) => a.price - b.price);
+      const upProduct = product.sort((a, b) => a.price - b.price);
+      let startIndex = (currentPage - 1) * productPerPage;
+      let endIndex = startIndex + productPerPage;
+      if (products.length < 12) {
+        startIndex = 0;
+        endIndex = products.length;
+      }
+      setPriceChecked({
+        upPrice: "checked",
+        dowPrice: "",
+      });
+      setDisplayedProducts(products.slice(startIndex, endIndex));
+      setProductFiler(products);
+      setProduct(upProduct);
+    });
+    dowPrice.addEventListener("click", () => {
+      const products = listProduct.sort((a, b) => b.price - a.price);
+      const dowProduct = product.sort((a, b) => b.price - a.price);
+      let startIndex = (currentPage - 1) * productPerPage;
+      let endIndex = startIndex + productPerPage;
+      if (products.length < 12) {
+        startIndex = 0;
+        endIndex = products.length;
+      }
+      setPriceChecked({
+        upPrice: "",
+        dowPrice: "checked",
+      });
+      setDisplayedProducts(products.slice(startIndex, endIndex));
+      setProductFiler(products);
+      setProduct(dowProduct);
+    });
+  });
+
+  //
+
+  useEffect(() => {
+    const btnNextPage = document.getElementById("next-page");
+    const btnPrevPage = document.getElementById("prev-page");
+
+    btnNextPage.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage + 1 <= totalPages) {
+        setCurrentPage(currentPage + 1);
+      }
+    });
+
+    btnPrevPage.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage - 1 >= 1) {
+        setCurrentPage(currentPage - 1);
+      }
+    });
+
+    const spansEle = document.querySelectorAll(".span-value");
+    spansEle.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        setCurrentPage(e.target.innerHTML);
+
+        item.classList.add(
+          "w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity"
+        );
+      });
+    });
+    // Clean up event listeners when component unmounts
+    return () => {
+      btnNextPage.removeEventListener("click");
+      btnPrevPage.removeEventListener("click");
+    };
+  });
+
+  return ` 
      <div class="content-wraper font-Roboto px-content mx-auto">
                 <!-- phân trang -->
                 <div class="flex flex-row gap-3 items-center mt-2.5">
@@ -67,7 +154,11 @@ function ProductPage() {
                 </div>
                 <div class="text-3xl font-medium text-detail mt-6">
                     All
-                    <span class="text-detail2 text-3xl font-normal">(${product.length || 0})</span>
+                    <span class="text-detail2 text-3xl font-normal">(${
+                      productFilter.length
+                        ? productFilter.length
+                        : product.length
+                    })</span>
                 </div>
                 <!-- main product -->
                 <main class="grid grid-cols-[auto,1fr] mt-11 gap-24">
@@ -77,17 +168,23 @@ function ProductPage() {
                         <!--BRAND -->
                         <div class="mt-8">
                             <div class="uppercase text-base font-semibold">BRAND</div>
-                            <form action="" class="grid grid-cols-[auto,1fr] gap-2.5 mt-5">
-                                <input type="checkbox" name="PetKit" id="brand-1" />
-                                <label for="brand-1" class="select-none text-base font-normal">PetKit</label>
-                                <input type="checkbox" name="Doggy Man" id="brand-2" />
-                                <label for="brand-2" class="select-none text-base font-normal">Doggy Man</label>
-                                <input type="checkbox" name="LMD" id="brand-3" />
-                                <label for="brand-3" class="select-none text-base font-normal">LMD</label>
-                                <input type="checkbox" name="Catty Man" id="brand-4" />
-                                <label for="brand-4" class="select-none text-base font-normal">Catty Man</label>
-                                <input type="checkbox" name="Pawsee" id="brand-5" />
-                                <label for="brand-5" class="select-none text-base font-normal">Pawsee</label>
+                            <form action="" class="grid grid-cols-[auto,1fr] gap-2.5 mt-5 items-center justify-center">
+                            ${categories
+                              .map((category) => {
+                                return `
+                            <input type="radio" ${
+                              category._id == categoriesChecked ? "checked" : ""
+                            } name="category"  id="${category._id}"  value="${
+                                  category._id
+                                }" />
+                            <label for="${
+                              category._id
+                            }" class="text-base font-normal select-none">${
+                                  category.name
+                                }</label>
+                                `;
+                              })
+                              .join("")}
                             </form>
                         </div>
 
@@ -95,23 +192,15 @@ function ProductPage() {
                         <div class="mt-8">
                             <div class="uppercase text-base font-semibold">price</div>
                             <form action="" class="grid grid-cols-[auto,1fr] gap-2.5 mt-5">
-                                <input type="radio" name="price" id="price-1" />
-                                <label for="price-1" class="text-base font-normal select-none">Under $10</label>
-                                <input type="radio" name="price" id="price-2" />
-                                <label for="price-2" class="select-none text-base font-normal">$10 - $50</label>
-                                <input type="radio" name="price" id="price-3" />
-                                <label for="price-3" class="select-none text-base font-normal">$50 - $100</label>
-                                <input type="radio" name="price" id="price-4" />
-                                <label for="price-4" class="select-none text-base font-normal">$100 - $300</label>
-                                <input type="radio" name="price" id="price-5" />
-                                <label for="price-5" class="select-none text-base font-normal">$300 - $500</label>
-                                <input
-                                    type="radio"
-                                    name="price"
-                                    id="price-6
-                        "
-                                />
-                                <label for="price-5" class="select-none text-base font-normal">$300 - $500</label>
+                                <input type="radio" value="upPrice" name="price" id="price-1"  ${
+                                  priceChecked.upPrice
+                                }/>
+                                <label for="price-1" class="text-base font-normal select-none">Thấp đến cao</label>
+                                <input type="radio" value="dowPrice" name="price" id="price-2"  ${
+                                  priceChecked.dowPrice
+                                }/>
+                                <label for="price-2" class="select-none text-base font-normal">Cao đến Thấp</label>
+                                
                             </form>
                         </div>
                     </div>
@@ -119,12 +208,16 @@ function ProductPage() {
 
                     <!-- list product -->
                     <div class="grid grid-cols-4 gap-x-3.5 gap-y-5">
-            ${displayedProducts.map(product => {
-        return `
+            ${displayedProducts
+              .map((product) => {
+                return `
                     <div class="w-full bg-white rounded-md cursor-pointer shadow-shadow-slide-product relative h-96  duration-200 
                     ">
             <div class="rounded-md overflow-hidden hover:scale-105 transition duration-300 hover:cursor-zoom-in">
-                ${product.discount === "" || product.discount === 0 ? "" : `
+                ${
+                  product.discount === "" || product.discount === 0
+                    ? ""
+                    : `
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="55"
@@ -137,7 +230,8 @@ function ProductPage() {
                     <span class="absolute top-1 left-2 text-base text-black font-normal">
                         ${product.discount}%
                     </span></svg
-                >`}
+                >`
+                }
 
                 <!-- like product -->
                 <svg
@@ -156,7 +250,9 @@ function ProductPage() {
                         class=""
                     />
                 </svg>
-                <img src="${product.images[0]}" alt="" class="h-56 w-full object-cover rounded-md" />
+                <img src="${
+                  product.images[0]
+                }" alt="" class="h-56 w-full object-cover rounded-md" />
             </div>
             <div class="content-product px-3.5 pt-3.5 pb-3 relative overflow-hidden group">
                 <button
@@ -180,9 +276,15 @@ function ProductPage() {
                 <div class="flex flex-row justify-between items-center mt-8">
                     <!-- price -->
                     <div class="flex flex-row items-center gap-0.5">
-                        ${product.discount !== 0 ? `<span class="text-detail text-lg font-medium">${numeral(product.price - (product.price / product.discount)).format("0,0")}</span>`
-                :
-                `<span class="text-detail text-lg font-medium">${numeral(product.price).format("0,0")}</span>`}
+                        ${
+                          product.discount !== 0
+                            ? `<span class="text-detail text-lg font-medium">${numeral(
+                                product.price - product.price / product.discount
+                              ).format("0,0")}</span>`
+                            : `<span class="text-detail text-lg font-medium">${numeral(
+                                product.price
+                              ).format("0,0")}</span>`
+                        }
                         <span class="text-sm text-detail font-normal"> đ</span>
                     </div>
                     <!-- sold -->
@@ -190,9 +292,9 @@ function ProductPage() {
                 </div>
             </div>
         </div>
-                    `
-    }).join("")
-        }
+                    `;
+              })
+              .join("")}
         </div>
                 </main>
                 <!-- dàn trang -->
@@ -204,12 +306,16 @@ function ProductPage() {
             </button>
             
             ${Array.from({ length: totalPages }, (_, index) => {
-            return `
-               <span class="cursor-pointer span-value ${index + 1 === currentPage ? "w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity " : ""}"
+              return `
+               <span class="cursor-pointer span-value ${
+                 index + 1 === currentPage
+                   ? "w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity "
+                   : ""
+               }"
                >${index + 1}</span
                > 
-               `
-        }).join("")}
+               `;
+            }).join("")}
 
             <button class="cursor-pointer" id="next-page">
                 <i class="fa-solid fa-angle-right"></i>
@@ -222,6 +328,8 @@ function ProductPage() {
 
 export default ProductPage;
 
-{/* <span class="w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity cursor-pointer"
+{
+  /* <span class="w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity cursor-pointer"
 >1</span
-> */}
+> */
+}
