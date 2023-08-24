@@ -9,7 +9,14 @@ import "animate.css";
 function AdminProductPage() {
   const [products, setProduct] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+
   const [toast, setToast] = useState("");
+  const [checkedFilter, setCheckedFilter] = useState({
+    priceUp: "",
+    priceDown: "",
+    valueCategory: ""
+  })
   // Bật tắt form add, reset value khi bật tắt form add
   useEffect(() => {
     ClassicEditor.create(document.getElementById("description")).catch(
@@ -38,6 +45,7 @@ function AdminProductPage() {
         const products = response.data;
         // Xử lý dữ liệu sản phẩm
         setProduct(products.data);
+        setDisplayedProducts(products.data);
       })
       .catch((error) => {
         // Xử lý lỗi
@@ -189,10 +197,44 @@ function AdminProductPage() {
 
   // sort products by price
   useEffect(() => {
-    const newProducts = [...products];
-    newProducts.sort((a, b) => b.price - a.price);
-    setProduct(newProducts)
-  }, products)
+    const inputPriceUp = document.getElementById("price-up");
+    const inputPriceDown = document.getElementById("price-down");
+    const valueCategory = document.getElementById("category-select");
+    // console.log(inputPriceDown)
+    inputPriceUp.addEventListener("click", () => {
+      const newProducts = [...products];
+      newProducts.sort((a, b) => a.price - b.price);
+      setCheckedFilter({
+        priceUp: "checked",
+        priceDown: ""
+      })
+      setProduct(newProducts)
+    })
+
+    inputPriceDown.addEventListener("click", () => {
+      const newProducts = [...products];
+      newProducts.sort((a, b) => b.price - a.price);
+      setCheckedFilter({
+        priceUp: "",
+        priceDown: "checked"
+      })
+      setProduct(newProducts)
+    })
+
+    valueCategory.addEventListener("change", (e) => {
+      if(e.target.value === ""){
+        return setProduct(displayedProducts)
+      }
+      setProduct(displayedProducts.filter(product => {
+        const cateName = categories.find((cate) => product.categoryId === cate._id)?.name
+        setCheckedFilter({checkedFilter,valueCategory: e.target.value})
+        console.log(checkedFilter)
+        return cateName === e.target.value
+      }))
+      console.log(products)
+    })
+
+  }, [products])
   return `
     <main class="w-full relative m-auto flex justify-center items-center h-screen z-0">
     ${toast}
@@ -222,7 +264,7 @@ function AdminProductPage() {
                         <option class="py-2" value="" selected>Tất cả</option>
                         ${categories.map(({ name }) => {
     return `
-                            <option class="py-2" value="${name}">${name}</option>
+                            <option class="py-2" value="${name}" ${checkedFilter.valueCategory === name ? "selected" : ""}>${name}</option>
                             `;
   })}
                     </select>
@@ -232,9 +274,9 @@ function AdminProductPage() {
                 <form id="form-categories" class="bg-white rounded pb-4 w-full">
                     <h3 class="ml-2 font-medium mb-4 pt-2">Bộ lọc</h3>
                     <div class="w-full p-2">
-                    <input name="option" type="radio" value="price-up" id = "price-up"/> <label>Từ A - Z</label></div>
+                        <input name="option" type="radio" value="price-up" id = "price-up" ${checkedFilter.priceUp}/> <label>Giá tăng dần</label></div>
                     <div class="w-full p-2">
-                        <input name="option" type="radio" value="price-down" id = "price-down"/> <label>Từ cao - thấp</label>
+                        <input name="option" type="radio" value="price-down" id = "price-down" ${checkedFilter.priceDown}/> <label>Giá giảm dần</label>
                     </div>
                 </form>
             </nav>
@@ -242,7 +284,9 @@ function AdminProductPage() {
 
         <div class="w-10/12 ml-4">
             <div class="flex justify-between items-center">
-                <h3 class="text-lg font-medium">Sản phẩm</h3>
+                <div class ="mt-2" >
+                <h3 class="text-lg font-medium">Sản phẩm (${products.length})</h3>
+                </div>
                 <div>
                     <button style = "background-color:#166534" id="open-form-add" class="bg-green-700 text-white px-2 py-1 rounded text-sm" type="submit">
                         Thêm mới <i class="fa-solid fa-plus"></i>
