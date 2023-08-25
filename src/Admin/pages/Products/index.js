@@ -7,10 +7,12 @@ import productValidate from "./productValidate";
 import numeral from "numeral";
 import "animate.css";
 function AdminProductPage() {
+  const [toastMessage, setToastMessage] = useState("")
+  const [loading, setLoading] = useState("")
+
   const [products, setProduct] = useState([]);
   const [categories, setCategories] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
-
   const [toast, setToast] = useState("");
   const [checkedFilter, setCheckedFilter] = useState({
     priceUp: "",
@@ -76,14 +78,14 @@ function AdminProductPage() {
         axios
           .delete(`${API_URL}/products/${id}`)
           .then(() => {
-            window.location.reload();
+            setProduct(products.filter(product => product.id !== id))
           })
           .catch((err) => {
             console.log(err);
           });
       });
     });
-  });
+  },[products]);
 
   // Add product
   useEffect(() => {
@@ -104,7 +106,7 @@ function AdminProductPage() {
         quantify: document.querySelector("#quantify").value,
         description: document.querySelector("#description").value,
       };
-      const dataProduct = productValidate.validate(product);
+      const dataProduct = productValidate.validate(product,{abortEarly:false});
 
       if (dataProduct.error) {
         console.log(dataProduct.error.details);
@@ -125,38 +127,83 @@ function AdminProductPage() {
     const btnCategory = document.querySelector("#addCategory");
     btnCategory.addEventListener("click", () => {
       setToast(`
-        <div id="opacity" class="transition-all duration-300 bg-slate-500 opacity-50  w-full h-screen absolute top-0 left-0 z-20"></div>
+      <div class="flex justify-center items-center">
+      <div
+          id="opacity"
+          class="flex transition-all duration-300 bg-slate-500 opacity-50 w-full h-screen absolute top-0 left-0 z-20"
+      ></div>
 
-        <div id="toast-message-cta" class="animate__animated animate__zoomIn absolute z-50 top-28 w-2/5 p-4 text-gray-500 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-400" role="alert">
-            <div class="">
-                <div class="text-sm font-normal flex justify-between">
-                    <span class="mb-1 text-xl font-bold text-gray-900 dark:text-white">Thêm mới Category</span>
-        
-                    <button type="button" id="closeToast" class="auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500" data-dismiss-target="#toast-message-cta" aria-label="Close">
-                    <span class="sr-only">Close</span>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                </button>
-                </div>
-        
-                    <form class="w-full">
-                    <div class="flex flex-col gap-2">
-                        <div>
-                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên Category</label>
-                            <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
-                        </div>
-                        <div>   
-                        <label class="block mb-2 text-sm font-medium text-gray-900">UpLoad Image</label> 
-                        <input class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="imageCategory" type="file">
-        </div> 
-        
-                        </div>
-                        <button type="submit" id="submitCategory" class="mt-3 text-white !bg-blue-800  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm !w-1/4 sm:w-auto px-5 py-2.5 text-center ">Lưu</button>  
-                        </form>
-                </div>
-                
-            </div>
+      <div
+          id="toast-message-cta"
+          class="animate__animated animate__zoomIn z-50 top-28 w-2/5 p-4 text-gray-500 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-400 absolute items-center justify-center"
+          role="alert"
+      >
+          <div class="items-center justify-center top-0">
+              <div class="text-sm font-normal flex justify-between">
+                  <span class="mb-1 text-xl font-bold text-gray-900 dark:text-white">Thêm mới Category</span>
+
+                  <button
+                      type="button"
+                      id="closeToast"
+                      class="auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500"
+                      data-dismiss-target="#toast-message-cta"
+                      aria-label="Close"
+                  >
+                      <span class="sr-only">Close</span>
+                      <svg
+                          class="w-3 h-3"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 14 14"
+                      >
+                          <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                          />
+                      </svg>
+                  </button>
+              </div>
+
+              <form class="w-full">
+                  <div class="flex flex-col gap-2">
+                      <div>
+                          <label
+                              for="first_name"
+                              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >Tên Category</label
+                          >
+                          <input
+                              type="text"
+                              id="first_name"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                              placeholder="Name category"
+                              required
+                          />
+                      </div>
+                      <div>
+                          <label class="block mb-2 text-sm font-medium text-gray-900">UpLoad Image</label>
+                          <input
+                              class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                              id="imageCategory"
+                              type="file"
+                          />
+                      </div>
+                  </div>
+                  <button
+                      type="submit"
+                      id="submitCategory"
+                      class="mt-3 text-white !bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm !w-1/4 sm:w-auto px-5 py-2.5 text-center"
+                  >
+                      Lưu
+                  </button>
+              </form>
+          </div>
+      </div>
+  </div>
         `);
     });
     // close toast
@@ -237,9 +284,8 @@ function AdminProductPage() {
   }, [products])
   return `
     <main class="w-full relative m-auto flex justify-center items-center h-screen z-0">
-    ${toast}
 
-    <div class="w-10/12 m-auto mt-4 flex">
+    <div class="w-10/12 m-auto pt-4 flex">
         <div class="w-2/12">
             <nav class="w-full flex flex-col items-center shadow-md mb-4">
                 <form id="form-search" class="bg-white rounded pb-4 w-full relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:z-10 after:bg-detail2 after:rounded-full">
@@ -369,7 +415,7 @@ function AdminProductPage() {
             </table>
         </div>
     </div>
-    <div id="wrapper-form-add" class="z-50  hidden absolute w-full h-full flex items-center justify-center">
+    <div id="wrapper-form-add" class="z-50  hidden absolute w-full h-full flex items-center justify-center top-0">
         <form id="form-add" class="animate__animated animate__zoomIn relative w-2/3 bg-white z-10 rounded shadow-md p-4">
             <button id="close-form-add" class="absolute right-6 text-2xl">
                 <i class="fa-solid fa-xmark"></i>
@@ -482,6 +528,10 @@ function AdminProductPage() {
 
         <div class="absolute inset-0 bg-black opacity-50 backdrop-filter backdrop-blur"></div>
     </div>
+    ${toast}
+
+    ${toastMessage}
+    ${loading}
 </main>
     `;
 }

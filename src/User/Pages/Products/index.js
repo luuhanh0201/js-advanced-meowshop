@@ -154,7 +154,7 @@ function ProductPage() {
   });
 
   return ` 
-  ${currentPage}
+  
      <div class="content-wraper font-Roboto px-content mx-auto">
                 <!-- phân trang -->
                 <div class="flex flex-row gap-3 items-center mt-2.5">
@@ -177,7 +177,7 @@ function ProductPage() {
                         <div class="text-xl font-normal">Filter</div>
                         <!--BRAND -->
                         <div class="mt-8">
-                            <div class="uppercase text-base font-semibold">BRAND</div>
+                            <div class="uppercase text-base font-semibold">categories</div>
                             <form action="" class="grid grid-cols-[auto,1fr] gap-2.5 mt-5 items-center justify-center">
                             ${categories
                               .map((category) => {
