@@ -26,12 +26,14 @@ function ProductPage() {
     axios.get(`${API_URL}/products`).then((data) => {
       const products = data.data.data;
       setProduct(products);
-      const totalPage = Math.ceil(product.length / productPerPage);
+     const renderProduct = productFilter.length > 0 ? productFilter : products
+
+      const totalPage = Math.ceil(renderProduct.length / productPerPage);
       setTotalPage(totalPage);
 
       const startIndex = (currentPage - 1) * productPerPage;
       const endIndex = startIndex + productPerPage;
-      setDisplayedProducts(products.slice(startIndex, endIndex));
+      setDisplayedProducts(renderProduct.slice(startIndex, endIndex));
     });
   }, [currentPage]);
 
@@ -53,6 +55,7 @@ function ProductPage() {
         let products = product.filter(
           (product) => product.categoryId == category.value
         );
+        console.log(products);
         let startIndex = (currentPage - 1) * productPerPage;
         let endIndex = startIndex + productPerPage;
         if (products.length < 12) {
@@ -62,6 +65,8 @@ function ProductPage() {
         setTotalPage(`${Math.ceil(products.length / productPerPage)}`);
         setDisplayedProducts(products.slice(startIndex, endIndex));
         setProductFiler(products);
+      setCurrentPage(1)
+
       });
     });
   }, valueCategory);
@@ -87,12 +92,15 @@ function ProductPage() {
       setDisplayedProducts(products.slice(startIndex, endIndex));
       setProductFiler(products);
       setProduct(upProduct);
+      setCurrentPage(1)
+
     });
     dowPrice.addEventListener("click", () => {
       const products = listProduct.sort((a, b) => b.price - a.price);
       const dowProduct = product.sort((a, b) => b.price - a.price);
       let startIndex = (currentPage - 1) * productPerPage;
       let endIndex = startIndex + productPerPage;
+
       if (products.length < 12) {
         startIndex = 0;
         endIndex = products.length;
@@ -104,6 +112,7 @@ function ProductPage() {
       setDisplayedProducts(products.slice(startIndex, endIndex));
       setProductFiler(products);
       setProduct(dowProduct);
+      setCurrentPage(1)
     });
   });
 
@@ -145,6 +154,7 @@ function ProductPage() {
   });
 
   return ` 
+  ${currentPage}
      <div class="content-wraper font-Roboto px-content mx-auto">
                 <!-- phân trang -->
                 <div class="flex flex-row gap-3 items-center mt-2.5">
