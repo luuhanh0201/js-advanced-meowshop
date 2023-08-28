@@ -3,7 +3,7 @@ import Footer from "./Components/Footer";
 function RenderUserPage(page) {
   return `
     ${Header()}
-   <div class ="m-auto" style = "width:1400px">
+   <div class ="m-auto " style = "width:1400px ">
    ${page()}
    </div>
     ${Footer()}
