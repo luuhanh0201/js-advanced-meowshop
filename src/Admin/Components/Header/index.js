@@ -2,9 +2,16 @@ import { useEffect, useState } from "~/assets/lib";
 
 function AdminHeader() {
     const [infoUser, setInfoUser] = useState({})
+    const [url, setUrl] = useState("HOME")
+    const currentURL = window.location.href
+    useEffect(() => {
+        const pathParts = currentURL.split('/');
+        const lastString = pathParts[pathParts.length - 1];
+        document.title = lastString
+
+    }, [])
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
-        console.log(user)
         setInfoUser(user)
     }, [])
     useEffect(() => {
@@ -60,16 +67,16 @@ function AdminHeader() {
                     <ul
                         id="navMenu"
                         class=" absolute hidden bg-white text-gray-700 border border-gray-200 rounded-md shadow-lg top-14 left-0 
-                        w-32 z-50"
+                        w-40 z-50"
                     >
                         <li>
                             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Ngôn ngữ</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sáng / Tối</a>
+                            <a href="/" class="block px-4 py-2 hover:bg-gray-100">Trang người dùng</a>
                         </li>
                         <li>
-                            <button id = "log-out" class="block px-4 py-2 hover:bg-gray-100 border-t font-bold">Đăng xuất</button>
+                            <button id = "log-out" class="w-full px-4 py-2 hover:bg-gray-100 border-t font-bold">Đăng xuất</button>
                         </li>
                     </ul>
                 </ul>

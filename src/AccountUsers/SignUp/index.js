@@ -3,20 +3,19 @@ import { API_URL } from "~/assets/data"
 import axios from "axios"
 import { signUpValid } from "../validate"
 import "animate.css"
-// import { signUpValid } from "../validate"
-// import Joi from "joi"
+
 function SignUp() {
-    const [toastMessage, setToastMessage] = useState("")
-    const [loading, setLoading] = useState("")
-    const [messageValid, setMessageValid] = useState({
+    const [account, setAccount] = useState({
         userName: "",
         fullName: "",
         password: "",
         confirmPassword: "",
         email: "",
         numberPhone: ""
-
     })
+    const [toastMessage, setToastMessage] = useState("")
+    const [loading, setLoading] = useState("")
+    const [messageValid, setMessageValid] = useState([])
     useEffect(() => {
         const formSignUp = document.getElementById("form-sign-up")
         formSignUp.addEventListener("submit", (e) => {
@@ -47,25 +46,30 @@ function SignUp() {
                 email: document.getElementById("email").value,
                 numberPhone: document.getElementById("numberPhone").value
             }
+            setAccount(newAccount)
+
             const { error } = signUpValid.validate(newAccount, { abortEarly: false })
             if (error) {
-                const newMessageValid = {}
-                newAccount.userName === "" ? newMessageValid.userName = "Please enter username" : newMessageValid.userName = "";
-                newAccount.fullName === "" ? newMessageValid.fullName = "Please enter fullName" : newMessageValid.fullName = "";
-                newAccount.password === "" ? newMessageValid.password = "Please enter password" : newMessageValid.password = "";
-                newAccount.confirmPassword !== newAccount.password || newAccount.confirmPassword === "" ? newMessageValid.confirmPassword = "Confirm password must match password" : newMessageValid.confirmPassword = "";
-                newAccount.email === "" ? newMessageValid.email = "Please enter email" : newMessageValid.email = "";
-                newAccount.numberPhone === "" ? newMessageValid.numberPhone = "Please enter numberPhone" : newMessageValid.numberPhone = "";
+                const fieldNames = ["userName", "fullName", "password", "confirmPassword", "email", "numberPhone"];
+                const newMessageValid = {};
 
+                fieldNames.forEach(fieldName => {
+                    newMessageValid[fieldName] = "";
+                });
+
+                error.details.forEach(errorMessage => {
+                    const fieldName = errorMessage.context.key;
+                    const message = errorMessage.message;
+                    newMessageValid[fieldName] = message;
+                });
+                setMessageValid(newMessageValid);
                 setLoading("")
-                setMessageValid(newMessageValid)
                 return;
             }
             axios.post(`${API_URL}/auths/signup`, newAccount)
                 // peddling
-                .then(async () => {
-                    await setLoading("")
-                    await setToastMessage(`
+                .then(() => {
+                    setToastMessage(`
 
                     <div class="fixed z-50 inset-0 flex justify-center items-center">
                     <div class="fixed inset-0 bg-black opacity-10"></div>
@@ -79,24 +83,39 @@ function SignUp() {
 
                     `)
 
+                    setAccount({
+                        userName: "",
+                        fullName: "",
+                        password: "",
+                        confirmPassword: "",
+                        email: "",
+                        numberPhone: ""
+                    })
 
-                    await setTimeout(() => window.location.href = "/login", 2000)
+                    setMessageValid({
+                        userName: "",
+                        fullName: "",
+                        password: "",
+                        confirmPassword: "",
+                        email: "",
+                        numberPhone: ""
+                    })
+
+
+                    setTimeout(() => window.location.href = "/login", 2000)
                 })
-                .catch(async (error) => {
-                    const newMessageValid = {}
-                    await setLoading("")
-                    await setMessageValid({ userName: error.response.data.message })
+                .catch((error) => {
+                    setMessageValid({ userName: error.response.data.message })
+                    //  setMessageValid({ userName: error.response.data.message })
                     console.log("Dang ky that bai", error.response)
                 })
                 .finally(() => {
 
-
-                    setTimeout(() => {
-                        setLoading("")
-                    }, timeout);
+                    setLoading("")
                 })
+
         })
-    }, [])
+    })
     return `
     <div
     class="content-wrapper w-full h-screen bg-[url('https://res.cloudinary.com/dn3k4bznz/image/upload/v1690995572/Meowshop/zwmaduwrwmzuoelnuuh2.png')] bg-no-repeat bg-cover bg-center box-border pb-40"
@@ -120,6 +139,7 @@ function SignUp() {
                 id="userName"
                     type="text"
                     placeholder="Username"
+                    value="${account.userName}"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-6"
                 />
                 ${messageValid.userName ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.userName}</span>` : ""}
@@ -129,6 +149,7 @@ function SignUp() {
                     name=""
                     id="fullName"
                     placeholder="Full Name"
+                    value="${account.fullName}"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
                 ${messageValid.fullName ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.fullName}</span>` : ""}
@@ -139,6 +160,7 @@ function SignUp() {
                     name=""
                     id="password"
                     placeholder="Password"
+                    value="${account.password}"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
                 ${messageValid.password ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.password}</span>` : ""}
@@ -148,6 +170,7 @@ function SignUp() {
                     name=""
                     id="confirmPassword"
                     placeholder="Confirm password"
+                    value="${account.confirmPassword}"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
                 ${messageValid.confirmPassword ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.confirmPassword}</span>` : ""}
@@ -158,6 +181,7 @@ function SignUp() {
                     name=""
                     id="email"
                     placeholder="Email"
+                    value="${account.email}"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
                 ${messageValid.email ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.email}</span>` : ""}
@@ -169,12 +193,14 @@ function SignUp() {
                     name=""
                     id="numberPhone"
                     placeholder="Number Phone"
+                    value="${account.numberPhone}"
                     class="text-base text-detail font-normal py-2 px-6 border border-solid border-detail2 rounded-full max-h-12 w-full mt-3"
                 />
                 ${messageValid.numberPhone ? `<span class = "ml-2 text-red-600 text-xs" >${messageValid.numberPhone}</span>` : ""}
 
                 
                 <button
+                id="btn-form-sign-up"
                     type="submit"
                     class="uppercase text-base font-medium py-3.5 w-full bg-detail rounded-full text-white max-h-12 mt-6"
                 >

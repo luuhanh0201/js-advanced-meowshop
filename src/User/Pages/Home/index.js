@@ -1,6 +1,7 @@
 import { useEffect, useState } from "~/assets/lib";
 import axios from "axios";
 import { API_URL } from "~/assets/data";
+import "animate.css"
 import numeral from "numeral";
 function HomePage() {
   const [categoriesAccessories, setCategoriesAccessory] = useState([]);
@@ -33,27 +34,31 @@ function HomePage() {
   return `
    
   <main class="px-content m-x-auto mt-5 mb-20 inline-block">
-                <div class="flex flex-row h-[30rem]  overflow-hidden items-center justify-center">
-                <div class="basis-2/5">
-                <p class="text-2xl font-bold text-gray-500">Muốn VUI – Nuôi PET !</p>
-                <div class="mt-5 mb-5 relative w-32 h-2 bg-gray-300 after:absolute after:w-2 l-5">
-                    <p class="relative w-4 h-4 rounded-full bg-detail -top-1 left-0 animation-lineLeftRight"></p>
-                </div>
-                <p class="text-lg font-medium text-green-400">
-                    Bạn muốn nuôi một em Cún, bé Mèo không nhỉ? Chắc chắn sẽ Vui lắm đấy!
-                </p>
-                <p class="mt-4 text-lg font-medium text-green-400">
-                    Gia nhập cộng đồng MeowShop và trải nghiệm làm “Sen” nhé!
-                </p>
-            </div>
-                    <div class="basis-3/5 h-full">
-                        <img src="https://vuipet.com/wp-content/uploads/2021/04/bg-vuipet-01.png" alt="" class=" inline-block m-auto h-full object-cover">
-                    </div>
-                </div>
+  <div class="flex flex-row h-[30rem] overflow-hidden justify-between items-center">
+  <div class="basis-2/5 animate__animated animate__backInLeft">
+      <p class="text-2xl font-bold text-gray-500">Muốn VUI – Nuôi PET !</p>
+      <div class="mt-5 mb-5 relative w-32 h-2 bg-gray-300 after:absolute after:w-2 l-5">
+          <p class="relative w-4 h-4 rounded-full bg-detail -top-1 left-0 animation-lineLeftRight"></p>
+      </div>
+      <p class="text-lg font-medium text-green-400">
+          Bạn muốn nuôi một bé Mèo không nhỉ? Chắc chắn sẽ Vui lắm đấy!
+      </p>
+      <p class="mt-4 text-lg font-medium text-green-400">
+          Gia nhập cộng đồng MeowShop và trải nghiệm làm “Sen” nhé!
+      </p>
+  </div>
+  <div class="h-full">
+      <img
+          src="https://png.pngtree.com/png-clipart/20230316/ourmid/pngtree-cute-little-cat-ai-digital-artwork-png-image_6652213.png"
+          alt=""
+          class="inline-block m-auto h-full object-cover animate__animated animate__backInRight"
+      />
+  </div>
+</div>
                 <div class="flex flex-row h-[25rem]  overflow-hidden items-center justify-center gap-10 mt-10">
                     <!-- slide -->
                     <div class="basis-3/5 h-full w-full relative group border-l border-b border-black pl-1.5 pb-1.5">
-                        <img src="https://vuipet.com/wp-content/uploads/2023/05/vuipet-spa-thu-cung-4-598x400.jpg" alt="" class="w-full h-full object-cover">
+                        <img src="https://giadinhpet.com/wp-content/uploads/2020/11/meo-canh-gia-bao-nhieu-min-1.jpg" alt="" class="w-full h-full object-cover">
                        <div class="absolute bottom-5 right-10 w-32 flex items-center justify-center gap-6 group-hover:gap-9 transition-all">
                         <button type="button" class=" text-white bg-detail rounded-full inline-block w-10 h-10 hover:bg-green-950"><i class="fa-solid fa-arrow-left"></i></button>
                         <button type="button" class=" text-white bg-detail rounded-full inline-block w-10 h-10 hover:bg-green-950"><i class="fa-solid fa-arrow-right"></i></button>
@@ -64,17 +69,16 @@ function HomePage() {
                     <div class="mt-5 mb-5 relative w-32 h-2 bg-gray-300 after:absolute after:w-2 l-5">
                     <p class="relative w-4 h-4 rounded-full bg-detail -top-1 left-0 animation-lineLeftRight"></p>
                 </div>
-                    <p class="text-lg font-medium text-green-400">Một cửa hàng thú cưng xinh xắn kinh doanh chó mèo cảnh thuần chủng 100% và cung cấp các dịch vụ chăm sóc thú cưng cao cấp, chuẩn 5*.</p>
+                    <p class="text-lg font-medium text-green-400">Một cửa hàng thú cưng xinh xắn cung cấp các dịch vụ chăm sóc thú cưng cao cấp, chuẩn 5*.</p>
                 </div>
                 </div>
                 <h2 class="text-center mt-10 text-green-600 text-2xl font-bold">DỊCH VỤ THÚ CƯNG Ở MeowShop</h2>
                 <div class="grid grid-cols-3 gap-16 mt-8">
                     <div class="w-full bg-black shadow-my-shadow hover:-translate-y-2 duration-300 ease-out pb-6">
                         <div class="h-[20rem]">
-                            <img src="https://vuipet.com/wp-content/uploads/2023/04/Group-3-600x593.png" alt="" class="object-cover h-full w-11/12 block mx-auto rotate-[4deg]">
+                            <img src="https://dean2020.edu.vn/wp-content/uploads/2020/03/anh-meo-12.jpg" alt="" class="object-cover h-full w-11/12 block mx-auto rotate-[4deg]">
                         </div>
-                        <p class="mt-5 px-7 text-green-500 font-bold text-2xl">Kinh doanh Chó mèo cảnh
-                            Thuần chủng – Xinh xịn</p>
+                        <p class="mt-5 px-7 text-green-500 font-bold text-2xl">Đồ chơi – Nội thất</p>
                     </div>
                     <div class="w-full bg-black shadow-my-shadow hover:-translate-y-2 duration-300 ease-out pb-6">
                         <div class="h-[20rem]">
@@ -85,22 +89,22 @@ function HomePage() {
                     </div>
                     <div class="w-full bg-black shadow-my-shadow hover:-translate-y-2 duration-300 ease-out pb-6">
                         <div class="h-[20rem]">
-                            <img src="https://vuipet.com/wp-content/uploads/2023/04/Group-8-hotel-600x612.png" alt="" class="object-cover h-full w-11/12 block mx-auto ">
+                            <img src="https://img.meta.com.vn/Data/image/2021/09/21/anh-meo-con-35.jpg" alt="" class="object-cover h-full w-11/12 block mx-auto ">
                         </div>
                         <p class="mt-5 px-7 text-green-500 font-bold text-2xl">Trông giữ thú cưng
                             Hotel – Daycare</p>
                     </div>
                     <div class="w-full bg-black shadow-my-shadow hover:-translate-y-2 duration-300 ease-out pb-6">
                         <div class="h-[20rem]">
-                            <img src="https://vuipet.com/wp-content/uploads/2023/04/Spa-600x600.jpg" alt="" class="object-cover h-full w-11/12 block mx-auto rotate-[4deg]">
+                            <img src="https://huevet.vn/wp-content/uploads/2020/03/2106_cl1-min.png" alt="" class="object-cover h-full w-11/12 block mx-auto rotate-[4deg]">
                         </div>
                         <p class="mt-5 px-7 text-green-500 font-bold text-2xl">Spa – Cắt tỉa lông chuẩn 5*</p>
                     </div>
                     <div class="w-full bg-black shadow-my-shadow hover:-translate-y-2 duration-300 ease-out pb-6">
                         <div class="h-[20rem]">
-                            <img src="https://vuipet.com/wp-content/uploads/2023/04/PG-600x600.jpg" alt="" class="object-cover h-full w-11/12 block mx-auto rotate-[-4deg]">
+                            <img src="https://scr.vn/wp-content/uploads/2020/10/Anh-meo-cute-dang-yeu-de-thuong-1536x960.jpg" alt="" class="object-cover h-full w-11/12 block mx-auto rotate-[-4deg]">
                         </div>
-                        <p class="mt-5 px-7 text-green-500 font-bold text-2xl">Khu vui chơi cho Boss</p>
+                        <p class="mt-5 px-7 text-green-500 font-bold text-2xl">Khu vui chơi cho Pet</p>
                     </div>
                     <div class="w-full bg-black shadow-my-shadow hover:-translate-y-2 duration-300 ease-out pb-6">
                         <div class="h-[20rem]">

@@ -43,6 +43,8 @@ function Login() {
                 account.userName === "" ? newMessageValid.userName = "Please enter username" : newMessageValid.userName = "";
                 account.password === "" ? newMessageValid.password = "Please enter password" : newMessageValid.password = "";
                 setMessageValid(newMessageValid);
+                 setLoading("")
+
                 return;
             }
             const { error } = signInValid.validate(account, { abortEarly: false });
@@ -51,6 +53,7 @@ function Login() {
             }
             axios.post(`${API_URL}/auths/signin`, account)
                 .then(async (account) => {
+                    console.log(1)
                     const userInfo = await account.data.user
                     const Token = await account.data.accessToken
                     await window.localStorage.setItem("user", JSON.stringify(userInfo))
@@ -76,10 +79,13 @@ function Login() {
                 </div>
 
                     `)
+                    await setLoading("")
 
                 })
                 .catch(async error => {
                     console.log(error.response)
+                    await setLoading("")
+
                     await setToastMessage(`
                     <div class="fixed z-50 inset-0 flex justify-center items-center text-center">
                     <div class="fixed inset-0 bg-black opacity-10"></div>
@@ -97,7 +103,7 @@ function Login() {
                 </div>
                     `)
 
-                    setTimeout(() => { setToastMessage("") }, 2000)
+                    // setTimeout(() => { setToastMessage("") }, 2000)
 
                     const endTime = await new Date().getTime();
                     const loadingTime = await (endTime - startTime) / 1000;

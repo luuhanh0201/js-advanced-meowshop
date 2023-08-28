@@ -2,24 +2,29 @@ import axios from "axios";
 import { useEffect, useState } from "~/assets/lib";
 import { API_URL } from "~/assets/data";
 import numeral from "numeral";
-
+import Swiper from "swiper";
 ("use strict");
 
 function ProductDetailPage({ id }) {
-    const [product, setProduct] = useState({images:[]})
+    const [product, setProduct] = useState({ images: [] })
+    const [categories, setCategories] = useState([])
     console.log(id);
     useEffect(async () => {
         await axios.get(`${API_URL}/products/${id}`)
             .then(response => {
                 const product = response.data
-               setProduct(product.data)
+                setProduct(product.data)
+            })
+        await axios.get(`${API_URL}/categories`)
+            .then(response => {
+                const categories = response.data
+                setCategories(categories.data)
             })
     }, [])
     useEffect(() => {
         const handleOther = () => {
 
             const $ = document.querySelector.bind(document);
-            console.log($("#group-rated"));
             $("#group-rated").onclick = function (e) {
                 var ElementActive = $("#group-rated .rated-active");
                 if (ElementActive) {
@@ -219,13 +224,13 @@ function ProductDetailPage({ id }) {
                           <!-- slide -->
                           <div class="swiper mySwiper2 basis-11/12">
                               <div class="swiper-wrapper h-full w-full">
-                                  ${product.images.map(img =>{
-                                    return `
+                                  ${product.images.map(img => {
+        return `
                                     <div class="swiper-slide flex items-center justify-center rounded-md overflow-hidden">
                                     <img src="${img}" class=" object-cover object-center" />
                                 </div>
                                     `
-                                  }).join("")}
+    }).join("")}
                                  
                               </div>
                               <div
@@ -239,9 +244,8 @@ function ProductDetailPage({ id }) {
 
                           <div thumbsSlider="" class="swiper mySwiper basis-1/12">
                               <div class="swiper-wrapper flex flex-col h-full w-full gap-2">
-                                 ${
-                                    product.images.map(img=>{
-                                        return `
+                                 ${product.images.map(img => {
+        return `
                                         <div
                                       class="swiper-slide opacity-40 w-full h-1/6 rounded-md overflow-hidden cursor-pointer"
                                   >
@@ -250,8 +254,8 @@ function ProductDetailPage({ id }) {
                                       class="block w-full h-full object-cover" />
                                   </div>
                                         `
-                                    }).join("")
-                                 }
+    }).join("")
+        }
                               </div>
                           </div>
                       </div>
@@ -541,7 +545,7 @@ function ProductDetailPage({ id }) {
                       <!-- Price -->
                       <div class="flex flex-row gap-1.5 mt-5">
                           ${product.discount !== 0 ? `
-                          <div class="text-3xl font-medium text-Price">${numeral(product.price - (product.price/product.discount)).format("0,0") + " VNĐ" || ""}</div>
+                          <div class="text-3xl font-medium text-Price">${numeral(product.price - (product.price / product.discount)).format("0,0") + " VNĐ" || ""}</div>
                           ` : `
                           <div class="text-3xl font-medium text-Price">${numeral(product.price).format("0,0") + " VNĐ" || ""}</div>
                           `}
@@ -557,11 +561,6 @@ function ProductDetailPage({ id }) {
                          ` : ""}
                       </div>
                       <!-- time Sale -->
-                      <div
-                          class="text-10 text-black mt-2 py-0.5 px-2.5 bg-Secondary-yl rounded-full inline-block font-normal"
-                      >
-                          Sale ends in 12 hours
-                      </div>
                       <!-- desc -->
                       <div class="text-detail2 text-10 font-normal mt-2">
                           Local taxes included (where applicable)
