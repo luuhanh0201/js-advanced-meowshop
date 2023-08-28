@@ -19,6 +19,9 @@ function AdminProductPage() {
     priceDown: "",
     valueCategory: ""
   })
+  
+
+
   // Bật tắt form add, reset value khi bật tắt form add
   useEffect(() => {
     ClassicEditor.create(document.getElementById("description")).catch(
@@ -78,7 +81,7 @@ function AdminProductPage() {
         axios
           .delete(`${API_URL}/products/${id}`)
           .then(() => {
-            setProduct(products.filter(product => product.id !== id))
+            setProduct(products.filter(product => product._id !== id))
           })
           .catch((err) => {
             console.log(err);
@@ -382,17 +385,7 @@ function AdminProductPage() {
             }</td>
 
                     <td class="px-4 py-2 border-r overflow-hidden">
-                    <div class="swiper-container">
-                      <div class="swiper-wrapper">
-                        ${images
-              .map(
-                (image) =>
-                  `<div class="swiper-slide "><img src="${image}" alt="img error" class="w-16 h-16 rounded overflow-hidden" /></div>`
-              )
-              .join("")}
-                      </div>
-                     
-                    </div>
+                   <img class ="rounded-md" src = " ${images[0]}" alt =""/>
                   </td>
                     <td class="px-4 py-2 border-r">${price === "" ? 0 : numeral(price).format("0,0")
             } VNĐ</td>
@@ -533,7 +526,33 @@ function AdminProductPage() {
     ${toastMessage}
     ${loading}
 </main>
+ 
     `;
 }
 
 export default AdminProductPage;
+{/* <div
+class="flex flex-row gap-9 justify-center items-center pr-2.5 mt-8 mb-14 text-sm font-normal text-black"
+>
+<button class="cursor-pointer" id="prev-page">
+<i class="fa-solid fa-angle-left"></i>
+</button>
+
+${Array.from({ length: totalPages }, (_, index) => {
+return `
+<span class="cursor-pointer span-value ${
+index + 1 === currentPage
+? "w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity "
+: ""
+}"
+>${index + 1}</span
+> 
+`;
+}).join("")}
+
+<button class="cursor-pointer" id="next-page">
+<i class="fa-solid fa-angle-right"></i>
+</button>
+
+</div>
+</div> */}

@@ -26,7 +26,7 @@ function ProductPage() {
     axios.get(`${API_URL}/products`).then((data) => {
       const products = data.data.data;
       setProduct(products);
-     const renderProduct = productFilter.length > 0 ? productFilter : products
+      const renderProduct = productFilter.length > 0 ? productFilter : products
 
       const totalPage = Math.ceil(renderProduct.length / productPerPage);
       setTotalPage(totalPage);
@@ -65,7 +65,7 @@ function ProductPage() {
         setTotalPage(`${Math.ceil(products.length / productPerPage)}`);
         setDisplayedProducts(products.slice(startIndex, endIndex));
         setProductFiler(products);
-      setCurrentPage(1)
+        setCurrentPage(1)
 
       });
     });
@@ -164,11 +164,10 @@ function ProductPage() {
                 </div>
                 <div class="text-3xl font-medium text-detail mt-6">
                     All
-                    <span class="text-detail2 text-3xl font-normal">(${
-                      productFilter.length
-                        ? productFilter.length
-                        : product.length
-                    })</span>
+                    <span class="text-detail2 text-3xl font-normal">(${productFilter.length
+      ? productFilter.length
+      : product.length
+    })</span>
                 </div>
                 <!-- main product -->
                 <main class="grid grid-cols-[auto,1fr] mt-11 gap-24">
@@ -180,21 +179,17 @@ function ProductPage() {
                             <div class="uppercase text-base font-semibold">categories</div>
                             <form action="" class="grid grid-cols-[auto,1fr] gap-2.5 mt-5 items-center justify-center">
                             ${categories
-                              .map((category) => {
-                                return `
-                            <input type="radio" ${
-                              category._id == categoriesChecked ? "checked" : ""
-                            } name="category"  id="${category._id}"  value="${
-                                  category._id
-                                }" />
-                            <label for="${
-                              category._id
-                            }" class="text-base font-normal select-none">${
-                                  category.name
-                                }</label>
+      .map((category) => {
+        return `
+                            <input type="radio" ${category._id == categoriesChecked ? "checked" : ""
+          } name="category"  id="${category._id}"  value="${category._id
+          }" />
+                            <label for="${category._id
+          }" class="text-base font-normal select-none">${category.name
+          }</label>
                                 `;
-                              })
-                              .join("")}
+      })
+      .join("")}
                             </form>
                         </div>
 
@@ -202,13 +197,11 @@ function ProductPage() {
                         <div class="mt-8">
                             <div class="uppercase text-base font-semibold">price</div>
                             <form action="" class="grid grid-cols-[auto,1fr] gap-2.5 mt-5">
-                                <input type="radio" value="upPrice" name="price" id="price-1"  ${
-                                  priceChecked.upPrice
-                                }/>
+                                <input type="radio" value="upPrice" name="price" id="price-1"  ${priceChecked.upPrice
+    }/>
                                 <label for="price-1" class="text-base font-normal select-none">Thấp đến cao</label>
-                                <input type="radio" value="dowPrice" name="price" id="price-2"  ${
-                                  priceChecked.dowPrice
-                                }/>
+                                <input type="radio" value="dowPrice" name="price" id="price-2"  ${priceChecked.dowPrice
+    }/>
                                 <label for="price-2" class="select-none text-base font-normal">Cao đến Thấp</label>
                                 
                             </form>
@@ -219,15 +212,14 @@ function ProductPage() {
                     <!-- list product -->
                     <div class="grid grid-cols-4 gap-x-3.5 gap-y-5">
             ${displayedProducts
-              .map((product) => {
-                return `
+      .map((product) => {
+        return `
                     <div class="w-full bg-white rounded-md cursor-pointer shadow-shadow-slide-product relative h-96  duration-200 
                     ">
             <div class="rounded-md overflow-hidden hover:scale-105 transition duration-300 hover:cursor-zoom-in">
-                ${
-                  product.discount === "" || product.discount === 0
-                    ? ""
-                    : `
+                ${product.discount === "" || product.discount === 0
+            ? ""
+            : `
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="55"
@@ -241,7 +233,7 @@ function ProductPage() {
                         ${product.discount}%
                     </span></svg
                 >`
-                }
+          }
 
                 <!-- like product -->
                 <svg
@@ -260,9 +252,8 @@ function ProductPage() {
                         class=""
                     />
                 </svg>
-                <img src="${
-                  product.images[0]
-                }" alt="" class="h-56 w-full object-cover rounded-md" />
+                <img src="${product.images[0]
+          }" alt="" class="h-56 w-full object-cover rounded-md" />
             </div>
             <div class="content-product px-3.5 pt-3.5 pb-3 relative overflow-hidden group">
                 <button
@@ -286,15 +277,14 @@ function ProductPage() {
                 <div class="flex flex-row justify-between items-center mt-8">
                     <!-- price -->
                     <div class="flex flex-row items-center gap-0.5">
-                        ${
-                          product.discount !== 0
-                            ? `<span class="text-detail text-lg font-medium">${numeral(
-                                product.price - product.price / product.discount
-                              ).format("0,0")}</span>`
-                            : `<span class="text-detail text-lg font-medium">${numeral(
-                                product.price
-                              ).format("0,0")}</span>`
-                        }
+                        ${product.discount !== 0
+            ? `<span class="text-detail text-lg font-medium">${numeral(
+              product.price - product.price / product.discount
+            ).format("0,0")}</span>`
+            : `<span class="text-detail text-lg font-medium">${numeral(
+              product.price
+            ).format("0,0")}</span>`
+          }
                         <span class="text-sm text-detail font-normal"> đ</span>
                     </div>
                     <!-- sold -->
@@ -303,8 +293,8 @@ function ProductPage() {
             </div>
         </div>
                     `;
-              })
-              .join("")}
+      })
+      .join("")}
         </div>
                 </main>
                 <!-- dàn trang -->
@@ -316,16 +306,15 @@ function ProductPage() {
             </button>
             
             ${Array.from({ length: totalPages }, (_, index) => {
-              return `
-               <span class="cursor-pointer span-value ${
-                 index + 1 === currentPage
-                   ? "w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity "
-                   : ""
-               }"
+        return `
+               <span class="cursor-pointer span-value ${index + 1 === currentPage
+            ? "w-10 h-10 text-center leading-10 rounded-full bg-accessory-opacity "
+            : ""
+          }"
                >${index + 1}</span
                > 
                `;
-            }).join("")}
+      }).join("")}
 
             <button class="cursor-pointer" id="next-page">
                 <i class="fa-solid fa-angle-right"></i>

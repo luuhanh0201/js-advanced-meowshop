@@ -7,10 +7,20 @@ const infoUser = getUserLocalStorage("user") || undefined
 const UserHeader = () => {
     const [user, setUser] = useState(infoUser)
     const [products, setProducts] = useState([])
+    const [url, setUrl] = useState("HOME")
+    const currentURL = window.location.href
+    useEffect(() => {
+        const pathParts = currentURL.split('/');
+        const lastString = pathParts[pathParts.length - 1];
+        document.title = lastString
 
+        setUrl(lastString.toUpperCase())
+        // const menuItem = document.querySelectorAll("#menu a")
+
+    }, [])
 
     useEffect(() => {
-       
+
         const avatarBtn = document.getElementById('avatarBtn');
         const navMenu = document.getElementById('navMenu');
         avatarBtn.addEventListener('click', (event) => {
@@ -36,8 +46,6 @@ const UserHeader = () => {
             localStorage.removeItem("token");
             window.location.href = "/";
         }
-
-        // Cleanup: loại bỏ sự kiện lắng nghe khi cần
         window.addEventListener("beforeunload", removeLogoutClickEvent);
 
         function removeLogoutClickEvent() {
@@ -70,7 +78,7 @@ const UserHeader = () => {
 
             if (e.target.value !== "") {
                 productContainer.innerHTML = (`
-                <p class =" pl-4 pt-4 font-semibold text-gray-400">Search product</p>
+                <p class =" pl-4 pt-4 font-semibold text-gray-400 rounded-md ">Search product</p>
                 `)
             }
             productFilter.forEach(product => {
@@ -92,7 +100,7 @@ const UserHeader = () => {
             document.addEventListener("click", (e) => {
                 if (!productContainer.contains(e.target)) {
                     productContainer.innerHTML = ""; // Xóa nội dung
-                   
+
                 }
             });
 
@@ -114,6 +122,7 @@ const UserHeader = () => {
     })
 
     return `
+    
     <div class="w-full content-wrapper mx-auto" id="hihi">
     <!-- detail -->
     <div class="flex detail w-full bg-green-700 py-2 items-center justify-center text-white gap-2">
@@ -163,7 +172,7 @@ const UserHeader = () => {
                         id = "btn-search"
                     />
 
-                    <div id="search-product" class = " z-50 absolute w-full max-h-80 bg-gray-50 top-11 overflow-auto scrollbar">
+                    <div id="search-product" class = " z-50 absolute w-full max-h-80 bg-gray-50 top-11 overflow-auto scrollbar rounded-md">
                     
                     <ul id ="product-list" class = "rounded-md" >
                    
@@ -283,19 +292,19 @@ const UserHeader = () => {
                 </div>
             </nav>
            
-                <ul id="" class="uppercase flex flex-col gap-7 mt-9 max-w-width-nav-tablet transition-all duration-100 ease-linear lg:flex lg:max-w-full lg:flex-row lg:items-center lg:flex-wrap lg:justify-between lg:gap-3">
+                <ul id="menu" class="uppercase flex flex-col gap-7 mt-9 max-w-width-nav-tablet transition-all duration-100 ease-linear lg:flex lg:max-w-full lg:flex-row lg:items-center lg:flex-wrap lg:justify-between lg:gap-3">
                     <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal ">
-                        <a id = "menu-item" class="font-semibold active-menu" href="/home">Home</a>
+                        <a id = "menu-item" class="font-semibold text-lg ${url === "HOME" ? "active-menu" : ""}" href="/home">Home</a>
                     </li>
                     <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
-                        <a id = "menu-item" class="font-semibold " href="/products">Products</a>
+                        <a id = "menu-item" class="font-semibold text-lg ${url === "PRODUCTS" ? "active-menu" : ""} " href="/products">Products</a>
                     </li>
                    
                     <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
-                        <a id = "menu-item" class="font-semibold" href="/about">about</a>
+                        <a id = "menu-item" class="font-semibold text-lg ${url === "ABOUT" ? "active-menu" : ""}" href="/about">about</a>
                     </li>
                     <li class="flex flex-row justify-between style-navbar font-bold lg:font-normal">
-                        <a id = "menu-item" class="font-semibold" href="/blog">Blogs</a>
+                        <a id = "menu-item" class="font-semibold text-lg ${url === "BLOG" ? "active-menu" : ""}" href="/blog">Blogs</a>
                     </li>
                 </ul>
         </div>
