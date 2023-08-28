@@ -102,8 +102,9 @@ function Login() {
                     </div>
                 </div>
                     `)
+                    
 
-                    // setTimeout(() => { setToastMessage("") }, 2000)
+                    setTimeout(() => { setToastMessage("") }, 2000)
 
                     const endTime = await new Date().getTime();
                     const loadingTime = await (endTime - startTime) / 1000;
