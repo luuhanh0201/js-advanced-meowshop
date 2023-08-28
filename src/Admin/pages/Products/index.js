@@ -19,7 +19,7 @@ function AdminProductPage() {
     priceDown: "",
     valueCategory: ""
   })
-  
+
 
 
   // Bật tắt form add, reset value khi bật tắt form add
@@ -88,39 +88,121 @@ function AdminProductPage() {
           });
       });
     });
-  },[products]);
+  }, [products]);
 
   // Add product
   useEffect(() => {
     const formAdd = document.getElementById("form-add");
-    formAdd.addEventListener("submit", async (e) => {
+    formAdd.addEventListener("submit",async (e) => {
       // Note
       e.preventDefault();
+      setLoading(`
+            <div class="fixed z-50 inset-0 flex justify-center items-center">
+                <div class="fixed inset-0 bg-black opacity-10"></div>
+                <svg
+                    class="animate-spin -ml-1 mr-3 h-10 w-10 text-green-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                >
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                </svg>
+            </div >
+            `)
+      const name = document.querySelector("#name").value;
+      const category = document.querySelector("#category").value;
+      const brand = document.querySelector("#brand").value;
+      const price = document.querySelector("#price").value;
+      const discount = document.querySelector("#discount").value;
+      const quantify = document.querySelector("#quantify").value;
+      const description = document.querySelector("#description").value;
       // Upload > 1 img
-      const images = Array.from(document.getElementById("images").files);
+      const images = await Array.from(document.getElementById("images").files);
       const imagesUrl = await uploadFiles(images);
       const product = {
-        name: document.querySelector("#name").value,
-        categoryId: document.querySelector("#category").value,
-        brand: document.querySelector("#brand").value,
+        name: name,
+        categoryId: category,
+        brand: brand,
         images: imagesUrl,
-        price: document.querySelector("#price").value,
-        discount: document.querySelector("#discount").value,
-        quantify: document.querySelector("#quantify").value,
-        description: document.querySelector("#description").value,
+        price: price,
+        discount: discount,
+        quantify: quantify,
+        description: description,
       };
-      const dataProduct = productValidate.validate(product,{abortEarly:false});
+      console.log(product)
+
+
+      const dataProduct = productValidate.validate(product, { abortEarly: false });
 
       if (dataProduct.error) {
+        setLoading("")
+        setToastMessage(`
+
+                    <div class="fixed z-50 inset-0 flex justify-center items-center">
+                    <div class="fixed inset-0 bg-black opacity-10"></div>
+                    <div
+                        class="flex flex-col animate__animated animate__slideInDown z-50 bg-white  rounded-lg shadow-lg p-6 max-w-sm text-center"
+                    >
+                        <h2 class="text-2xl font-semibold mb-4 text-green-600">Vui lòng nhập lại</h2>
+
+
+                    </div>
+
+                    `)
+
+        setTimeout(() => {
+          setToastMessage("")
+        }, 2000);
         console.log(dataProduct.error.details);
         return;
       }
-      await axios
+      axios
         .post(`${API_URL}/products`, product)
         .then(() => {
-          window.location.href = "/admin/products";
+          setLoading("")
+          setToastMessage(`
+
+                    <div class="fixed z-50 inset-0 flex justify-center items-center">
+                    <div class="fixed inset-0 bg-black opacity-10"></div>
+                    <div
+                        class="flex flex-col animate__animated animate__slideInDown z-50 bg-white  rounded-lg shadow-lg p-6 max-w-sm text-center"
+                    >
+                        <h2 class="text-2xl font-semibold mb-4 text-green-600">Thêm sản phẩm thành công</h2>
+                        
+                       
+                    </div>
+
+                    `)
+
+          setTimeout(() => {
+            setToastMessage("")
+            window.location.href = "/admin/products";
+          }, 1500);
         })
         .catch((err) => {
+          setLoading("")
+          setToastMessage(`
+
+                    <div class="fixed z-50 inset-0 flex justify-center items-center">
+                    <div class="fixed inset-0 bg-black opacity-10"></div>
+                    <div
+                        class="flex flex-col animate__animated animate__slideInDown z-50 bg-white  rounded-lg shadow-lg p-6 max-w-sm text-center"
+                    >
+                        <h2 class="text-2xl font-semibold mb-4 text-red-600">Thêm thất bại</h2>
+                        
+                       
+                    </div>
+
+                    `)
+
+          setTimeout(() => {
+            setToastMessage("")
+          }, 2000);
           console.log(err);
         });
     });
@@ -220,11 +302,11 @@ function AdminProductPage() {
     const submitCategory = document.querySelector("#submitCategory");
 
     if (submitCategory) {
-      submitCategory.addEventListener("click", async (e) => {
+      submitCategory.addEventListener("click", (e) => {
         e.preventDefault();
         const nameCategory = document.querySelector("#first_name");
         const images = Array.from(document.getElementById("imageCategory").files);
-        const imagesUrl = await uploadFiles(images);
+        const imagesUrl = uploadFiles(images);
         const newCategory = {
           name: nameCategory.value,
           image: imagesUrl[0]
@@ -239,11 +321,7 @@ function AdminProductPage() {
     }
   });
 
-  useEffect(() => {
-    var swiper = new Swiper(".swiper-container", {
-      slidesPerView: "auto",
-    });
-  });
+
 
   // sort products by price
   useEffect(() => {
@@ -272,19 +350,19 @@ function AdminProductPage() {
     })
 
     valueCategory.addEventListener("change", (e) => {
-      if(e.target.value === ""){
+      if (e.target.value === "") {
         return setProduct(displayedProducts)
       }
       setProduct(displayedProducts.filter(product => {
         const cateName = categories.find((cate) => product.categoryId === cate._id)?.name
-        setCheckedFilter({checkedFilter,valueCategory: e.target.value})
+        setCheckedFilter({ checkedFilter, valueCategory: e.target.value })
         console.log(checkedFilter)
         return cateName === e.target.value
       }))
       console.log(products)
     })
 
-  }, [products])
+  })
   return `
     <main class="w-full relative m-auto flex justify-center items-center h-screen z-0">
 
